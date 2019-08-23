@@ -1,0 +1,25 @@
+# app/config/routing.yml
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+    prefix: /admin/security/
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /admin/profile/
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /admin/resetting/
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /admin/profile/
+
+user:
+    resource: "@UserBundle/Resources/config/routing/user.yml"
+    prefix:   /admin/
+    
+
+service:
+    resource: "@ServiceBundle/Resources/config/routing.yml"
+    prefix:   /

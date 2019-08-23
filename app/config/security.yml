@@ -1,0 +1,68 @@
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_ASOCIADO
+        ROLE_SUPER_ADMIN: [ROLE_ASOCIADO, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+            #id: fos_user.user_manager
+
+    firewalls:   
+        admin:
+            pattern: ^/admin/*
+            form_login:
+                provider: fos_userbundle
+                csrf_provider: form.csrf_provider
+                login_path: fos_user_security_login
+                check_path: fos_user_security_check
+                default_target_path: service_backend_admin
+            logout:
+               path: fos_user_security_logout
+               target: service_backend_admin
+            anonymous:    true
+            remember_me:
+                key: R00t.R00t....
+                name: gruponiv_cph
+                lifetime: 3600
+                
+        client:
+            pattern: ^/*
+            form_login:
+                provider: fos_userbundle
+                csrf_provider: form.csrf_provider
+                login_path: service_init_account
+                check_path: fos_user_security_check_client
+                default_target_path: service_account_client
+            logout:
+               path: fos_user_security_logout_client
+               target: service_init_account
+            anonymous:    true
+            remember_me:
+                key: R00t.R00t....
+                name: gruponiv_cph
+                lifetime: 3600        
+        
+        
+
+    access_control:        
+        - { path: '^/admin/security/*', role: IS_AUTHENTICATED_ANONYMOUSLY }        
+        - { path: '^/admin/resetting/*', role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: '^/admin/profile/*', role: ROLE_ADMIN }
+        - { path: '^/admin/*', role: ROLE_ADMIN }
+        - { path: '^/cliente/security/*', role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: '^/cliente/emailValido/*', role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: '^/cliente/nuevo/*', role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: '^/cliente/crear/*', role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: '^/cliente/confirmar/cuenta/*', role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: '^/cliente/nueva/clave/*', role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: '^/cliente/recuperar/cuenta/*', role: IS_AUTHENTICATED_ANONYMOUSLY }        
+        - { path: '^/cliente/recuperar/contrasenna/*', role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: '^/cliente/crearDireccion/*', role: [ROLE_CLIENTE, ROLE_TIENDA] }      
+        - { path: '^/cliente/nuevaDireccion/*', role: [ROLE_CLIENTE, ROLE_TIENDA] }
+        - { path: '^/carrito/cofirmarCompra/*', roles: [ROLE_CLIENTE, ROLE_TIENDA] }  
+        - { path: '^/cliente/*', roles: [ROLE_CLIENTE, ROLE_TIENDA] }  
+        
