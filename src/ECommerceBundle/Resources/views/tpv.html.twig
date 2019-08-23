@@ -1,0 +1,9 @@
+<form id="form-tpv" name="frm" action="https://sis.redsys.es/sis/realizarPago" method="POST">
+    <input type="hidden" name="Ds_SignatureVersion" value="{{ version }}"/>
+    <input type="hidden" name="Ds_MerchantParameters" value="{{ params }}"/>
+    <input type="hidden" name="Ds_Signature" value="{{ signature }}"/>
+</form>
+    
+<script>
+    document.getElementById('form-tpv').submit()
+</script>

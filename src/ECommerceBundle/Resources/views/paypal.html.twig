@@ -1,0 +1,48 @@
+{% if siteOption.paypalSandbox %}
+    {% set urlFormPaypal = "https://www.sandbox.paypal.com/cgi-bin/webscr" %}
+{% else %}
+    {% set urlFormPaypal = "http://www.paypal.com/webscr" %}
+{% endif %}
+
+<form id="form-paypal" action="{{ urlFormPaypal }}" method="post">
+    <!-- Seller identification -->    
+    <input type="hidden" name="custom" value="{{ orderClient.id }}">
+    
+    <input type="hidden" name="notify_url" value="{{ url('site_paypal_ipn_notification') }}">
+    <input type="hidden" name="return" value="{{ url('site_paypal_compra_exitosa') }}">
+    <input type="hidden" name="cancel_return" value="{{ url('service_homepage') }}">
+    <input type="hidden" name="cmd" value="_cart">
+    <input type="hidden" name="upload" value="1">
+    <input type="hidden" name="business" value="{{ siteOption.paypalId }}">    
+    <input type="hidden" name="currency_code" value="{{ siteOption.currencyCode }}">
+
+    <!-- Shopping cart -->
+    <input type="hidden" name="bn" value="Dabberspain_BuyNow_WPS_ES">
+    <input type="hidden" name="page_style" value="paypal">
+    
+    <input type="hidden" name="charset" value="utf-8">
+    
+    <!-- Customer identification -->
+    <input type="hidden" name="zip" value="{{ orderClient.postalCode }}">
+    
+    
+    <input type="hidden" name="email" value="{{ orderClient.client.email }}">
+    
+    <input type="hidden" name="first_name" value="{{ orderClient.client.name }}">
+    <input type="hidden" name="last_name" value="{{ orderClient.client.lastName }}">
+
+    <!-- Products -->
+    {% for orderProduct in orderClient.products %}
+        <input type="hidden" name="item_name_{{ loop.index }}" value="{{ orderProduct.product.name }}">
+        <input type="hidden" name="amount_{{ loop.index }}" value="{{ orderProduct.product.price }}">
+        <input type="hidden" name="quantity_{{ loop.index }}" value="{{ orderProduct.count }}">
+    {% endfor %}
+
+    <!-- Submit controls -->
+    <!--input type="image" name="submit" border="0" src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg"
+           alt="Descargando identificación de Paypal" /-->
+</form>
+
+<script>
+    document.getElementById('form-paypal').submit();
+</script>
