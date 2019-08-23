@@ -1,0 +1,383 @@
+{% extends '::base_metronic_layout.html.twig' %}
+
+{% block page_title %}Dabber spain | Administración{% endblock %}
+
+{% block stylesheet %}
+
+{% endblock %}
+
+{% block structure %}
+
+    <!-- BEGIN HEADER -->
+    <div class="page-header navbar navbar-fixed-top">
+    <!-- BEGIN HEADER INNER -->
+    <div class="page-header-inner">
+    <!-- BEGIN LOGO -->
+    <div class="page-logo">
+        <a href="{{ path('service_backend_admin') }}" style="color: #FFFF00 !important;">
+            <img src="{{ asset('web/bundles/metronic/jl/dabber.bmp') }}" alt="logo" width="60%" style="margin-top: 5px"/>
+        </a>
+        <div class="menu-toggler sidebar-toggler hide">
+            <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+        </div>
+    </div>
+    <!-- END LOGO -->
+    <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+    <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+    </a>
+    <!-- END RESPONSIVE MENU TOGGLER -->
+    <!-- BEGIN TOP NAVIGATION MENU -->
+    <div class="top-menu">
+    <ul class="nav navbar-nav pull-right">
+    <!-- BEGIN USER LOGIN DROPDOWN -->
+    <li class="dropdown dropdown-user">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+            <img alt="" class="img-circle hide1" src="{{ asset('web/bundles/metronic/jl/avatar.png') }}"/>
+                <span class="username username-hide-on-mobile">
+                    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                        {{ app.user.email }}
+                    {% else %}
+                        Invitado
+                    {% endif %}
+                </span>
+                {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                    <i class="fa fa-angle-down"></i>
+                {% endif %}
+        </a>
+        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="{{ path('fos_user_profile_show') }}">
+                        <i class="icon-user"></i> Perfil </a>
+                </li>
+                <li>
+                    <a href="{{ path('fos_user_security_logout') }}">
+                        <i class="icon-key"></i> Cerrar sesión </a>
+                </li>
+            </ul>
+        {% endif %}
+    </li>
+    <!-- END USER LOGIN DROPDOWN -->
+    </ul>
+    </div>
+    <!-- END TOP NAVIGATION MENU -->
+    </div>
+    <!-- END HEADER INNER -->
+    </div>
+    <!-- END HEADER -->
+
+    <div class="clearfix">
+    </div>
+
+    <div class="page-container">
+    <!-- BEGIN SIDEBAR -->
+    <div class="page-sidebar-wrapper">
+    <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+    <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+    <div class="page-sidebar navbar-collapse collapse">
+    <!-- BEGIN SIDEBAR MENU -->
+    <ul class="page-sidebar-menu" data-auto-scroll="true" data-slide-speed="200">
+    <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+    <li class="sidebar-toggler-wrapper" style="margin-bottom: 20px">
+        <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+        <div class="sidebar-toggler">
+        </div>
+        <!-- END SIDEBAR TOGGLER BUTTON -->
+    </li>
+    <li {% block rootmenuhome %} {% endblock %}>
+        <a href="{{ path('service_backend_admin') }}">
+            <i class="icon-home"></i>
+            <span class="title">Inicio</span>
+            {% block rootmenuhomeaux %} {% endblock %}
+        </a>
+    </li>
+    
+    <li {% block rootmenuorderclients %} {% endblock %}>
+        <a href="{{ path('orderclient') }}">
+            <i class="fa fa-compass"></i>
+            <span class="title">Pedidos</span>
+            {% block rootmenuorderclientsaux %} {% endblock %}
+        </a>        
+    </li>
+    
+    <li {% block rootmenuclient %} {% endblock %}>
+        <a href="javascript:;">
+            <i class="fa fa-user-md"></i>
+            <span class="title">Clientes</span>
+            {% block rootmenuclientaux %} {% endblock %}
+            <span class="arrow {% block rootmenuclientarrow %} {% endblock %}"></span>
+        </a>
+        <ul class="sub-menu">
+            <li {% block rootmenugender %} {% endblock %}>
+                <a href="{{ path('gender') }}">
+                    <i class="icon-list"></i>
+                    Géneros</a>
+            </li>
+            
+            <li {% block rootmenuclienti %} {% endblock %}>
+                <a href="{{ path('client') }}">
+                    <i class="icon-list"></i>
+                    Clientes</a>
+            </li>
+            
+            <li {% block rootmenuaddress %} {% endblock %}>
+                <a href="{{ path('addressclient') }}">
+                    <i class="icon-list"></i>
+                    Direcciones</a>
+            </li>
+            
+            
+            
+        </ul>
+    </li>
+    
+    <li {% block rootmenuusers %} {% endblock %}>
+        <a href="{{ path('admin_user',  { 'role': 'ROLE_ADMIN' }) }}">
+            <i class="fa fa-group"></i>
+            <span class="title">Usuarios</span>
+            {% block rootmenuusersaux %} {% endblock %}
+            {#<span class="arrow {% block rootmenuusersarrow %} {% endblock %}"></span>#}
+        </a>        
+    </li>
+    
+    <li {% block rootmenutemplateemail %} {% endblock %}>
+        <a href="{{ path('templateemail') }}">
+            <i class="fa fa-empire"></i>
+            <span class="title">Avisos por email</span>
+            {% block rootmenutemplateemailsaux %} {% endblock %}
+        </a>        
+    </li>
+    
+    <li {% block rootmenuticket %} {% endblock %}>
+        <a href="{{ path('ticket') }}">
+            <i class="fa fa-navicon"></i>
+            <span class="title">Comunicación por ticket</span>
+            {% block rootmenuticketsaux %} {% endblock %}
+        </a>        
+    </li>
+    
+    <li {% block rootmenuscontact %} {% endblock %}>
+        <a href="{{ path('contact') }}">
+            <i class="fa fa-user"></i>
+            <span class="title">Mensajes</span>
+            {% block rootmenuscontactsaux %} {% endblock %}
+        </a>
+    </li>
+    
+    
+    <li {% block rootmenuabastecer %} {% endblock %}>
+        <a href="{{ path('stock') }}">
+            <i class="fa fa-circle-o"></i>
+            <span class="title">Abastecer</span>
+            {% block rootmenuabasteceraux %} {% endblock %}
+        </a>
+    </li>
+    
+    <li {% block rootmenucatalog %} {% endblock %}>
+        <a href="javascript:;">
+            <i class="fa fa-life-ring"></i>
+            <span class="title">Catalogo</span>
+            {% block rootmenucatalogoaux %} {% endblock %}
+            <span class="arrow {% block rootmenucatalogoarrow %} {% endblock %}"></span>
+        </a>
+        <ul class="sub-menu">
+            <li {% block rootmenucategory %} {% endblock %}>
+                <a href="{{ path('category') }}">
+                    <i class="icon-list"></i>
+                    Categorías</a>
+            </li>
+            
+            <li {% block rootmenuproduct %} {% endblock %}>
+                <a href="{{ path('product') }}">
+                    <i class="icon-list"></i>
+                    Productos</a>
+            </li>
+        </ul>
+     </li>
+    
+    
+    
+    
+    <li {% block rootmenusend %} {% endblock %}>
+        <a href="javascript:;">
+            <i class="fa fa-language"></i>
+            <span class="title">Envio</span>
+            {% block rootmenusendaux %} {% endblock %}
+            <span class="arrow {% block rootmenusendarrow %} {% endblock %}"></span>
+        </a>
+        <ul class="sub-menu">
+            <li {% block rootmenusendzone %} {% endblock %}>
+                <a href="{{ path('freeshippingzone') }}">
+                    <i class="icon-list"></i>
+                    Envio a zona</a>
+            </li>
+            
+            <li {% block rootmenusendcountry %} {% endblock %}>
+                <a href="{{ path('freeshippingcountry') }}">
+                    <i class="icon-list"></i>
+                    Envio a país</a>
+            </li>
+            
+            <!--
+            <li {% block rootmenuunitlocal %} {% endblock %}>
+                <a href="{{ path('localunit_edit') }}">
+                    <i class="icon-list"></i>
+                    Unidades Locales</a>
+            </li>
+            -->
+            
+            <!--
+            <li {% block rootmenutransport %} {% endblock %}>
+                <a href="{{ path('carrier') }}">
+                    <i class="icon-list"></i>
+                    Transportistas</a>
+            </li>
+            -->
+            
+        </ul>
+    </li>
+            
+            
+    <li {% block rootmenulocation %} {% endblock %}>
+        <a href="javascript:;">
+            <i class="fa fa-language"></i>
+            <span class="title">Localización</span>
+            {% block rootmenulocationaux %} {% endblock %}
+            <span class="arrow {% block rootmenulocationarrow %} {% endblock %}"></span>
+        </a>
+        <ul class="sub-menu">
+            <!--
+            <li {% block rootmenulanguage %} {% endblock %}>
+                <a href="{{ path('language') }}">
+                    <i class="icon-list"></i>
+                    Idiomas</a>
+            </li>
+            -->
+            
+            
+            <li {% block rootmenucommunity %} {% endblock %}>
+                <a href="{{ path('community') }}">
+                    <i class="icon-list"></i>
+                    Comunidad</a>
+            </li>
+            
+            <li {% block rootmenuprovince %} {% endblock %}>
+                <a href="{{ path('province') }}">
+                    <i class="icon-list"></i>
+                    Provincias</a>
+            </li>
+            
+            <li {% block rootmenuzone %} {% endblock %}>
+                <a href="{{ path('zone') }}">
+                    <i class="icon-list"></i>
+                    Zonas</a>
+            </li>
+            
+            <li {% block rootmenucountry %} {% endblock %}>
+                <a href="{{ path('country') }}">
+                    <i class="icon-list"></i>
+                    Países</a>
+            </li>
+            
+            <li {% block rootmenutaxzone %} {% endblock %}>
+                <a href="{{ path('taxzone') }}">
+                    <i class="icon-list"></i>
+                    Impuesto a zona</a>
+            </li>
+            
+            <li {% block rootmenutaxcountry %} {% endblock %}>
+                <a href="{{ path('taxcountry') }}">
+                    <i class="icon-list"></i>
+                    Impuesto a país</a>
+            </li>
+        </ul>
+    </li>
+    
+    <li {% block rootmenusbanners %} {% endblock %}>
+        <a href="{{ path('banner') }}">
+            <i class="fa fa-picture-o"></i>
+            <span class="title">Banner</span>
+            {% block rootmenusbannersaux %} {% endblock %}
+        </a>
+    </li>
+    
+    <li {% block rootmenustechnoly %} {% endblock %}>
+        <a href="{{ path('technology') }}">
+            <i class="fa fa-compass"></i>
+            <span class="title">Tecnologías</span>
+            {% block menustechnolysaux %} {% endblock %}
+        </a>
+    </li>
+    
+    <li {% block rootmenusnippets %} {% endblock %}>
+        <a href="{{ path('snippet') }}">
+            <i class="fa fa-file-text"></i>
+            <span class="title">Textos</span>
+            {% block rootmenusnippetsaux %} {% endblock %}
+        </a>
+    </li>
+    
+     
+     <li {% block rootmenunotice %} {% endblock %}>
+        <a href="javascript:;">
+            <i class="fa fa-navicon"></i>
+            <span class="title">Noticias</span>
+            {% block rootmenunoticeaux %} {% endblock %}
+            <span class="arrow {% block rootmenunoticearrow %} {% endblock %}"></span>
+        </a>
+        
+        <ul class="sub-menu">
+            <li {% block rootmenucategorynotice %} {% endblock %}>
+                <a href="{{ path('notice') }}"><i class="icon-list"></i>Noticias</a>
+            </li>
+            
+            <li {% block rootmenunoticecategories %} {% endblock %}>
+                <a href="{{ path('categorynotice') }}"><i class="icon-list"></i>Categorías</a>
+            </li>
+        </ul>
+     </li>
+    
+    
+    
+    <li {% block rootmenureports %} {% endblock %}>
+        <a href="{{ path('report_invoice') }}">
+            <i class="fa fa-building"></i>
+            <span class="title">Facturación</span>
+            {% block rootmenureportsaux %} {% endblock %}
+        </a>
+    </li>
+    
+    
+    
+    <li {% block rootmenusiteoptions %} {% endblock %}>
+        <a href="{{ path('siteoption_edit') }}">
+            <i class="fa fa-cog"></i>
+            <span class="title">Opciones</span>
+            {% block rootmenusiteoptionsaux %} {% endblock %}
+        </a>
+    </li>
+
+    </ul>
+    <!-- END SIDEBAR MENU -->
+    </div>
+    </div>
+    <!-- END SIDEBAR -->
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+    {% block render %} {% endblock %}
+    </div>
+    <!-- END CONTENT -->
+    </div>
+    <!-- BEGIN FOOTER -->
+    <div class="page-footer">
+        <div class="page-footer-inner">
+            2017 &copy; Dabber Sport
+        </div>
+        <div class="page-footer-tools">
+    <span class="go-top">
+    <i class="fa fa-angle-up"></i>
+    </span>
+        </div>
+    </div>
+    <!-- END FOOTER -->
+{% endblock %}
