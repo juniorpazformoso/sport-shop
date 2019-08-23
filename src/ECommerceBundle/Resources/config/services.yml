@@ -1,0 +1,7 @@
+parameters:
+#    system_e_commerce.example.class: System\ECommerceBundle\Example
+
+services:
+    shoppingcartservice:
+        class: ECommerceBundle\Controller\SessionShoppingCart
+        arguments: [@session]
