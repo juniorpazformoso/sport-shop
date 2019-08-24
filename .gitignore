@@ -8,7 +8,7 @@
 /bin/
 /composer.phar
 composer.lock
-
+*.php~
 # Symfony2 configuration files
 app/config/parameters.ini
 app/config/parameters.yml
