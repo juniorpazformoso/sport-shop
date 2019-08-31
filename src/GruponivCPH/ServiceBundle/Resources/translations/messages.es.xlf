@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+
+            <trans-unit id="1">
+                <source>front.title</source>
+                <target>La web de Lucía Zalbidea</target>
+            </trans-unit>
+
+            <trans-unit id="10">
+                <source>sidebar.home</source>
+                <target>Inicio</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>sidebar.contact</source>
+                <target>Contacto</target>
+            </trans-unit>
+
+            <trans-unit id="50">
+                <source>content.title.lastjobs</source>
+                <target>Últimos trabajos</target>
+            </trans-unit>
+
+            <trans-unit id="60">
+                <source>contact.name</source>
+                <target>Escriba su nombre y apellidos:</target>
+            </trans-unit>
+            <trans-unit id="61">
+                <source>contact.email</source>
+                <target>Dirección de e-mail:</target>
+            </trans-unit>
+            <trans-unit id="62">
+                <source>contact.source</source>
+                <target>Tema del mensaje:</target>
+            </trans-unit>
+            <trans-unit id="63">
+                <source>contact.body</source>
+                <target>Escriba su mensaje:</target>
+            </trans-unit>
+            <trans-unit id="64">
+                <source>contact.captcha</source>
+                <target>Entre el código de seguridad:</target>
+            </trans-unit>
+            <trans-unit id="65">
+                <source>contact.error</source>
+                <target>Código de seguridad incorrecto. Por favor inténtelo nuevamente.</target>
+            </trans-unit>
+            <trans-unit id="66">
+                <source>contact.success</source>
+                <target>Se han enviado sus datos de contacto exitosamente.</target>
+            </trans-unit>
+            <trans-unit id="67">
+                <source>contact.create</source>
+                <target>Crear</target>
+            </trans-unit>
+
+
+
+            <trans-unit id="70">
+                <source>content.article.author</source>
+                <target>por</target>
+            </trans-unit>
+            <trans-unit id="71">
+                <source>content.article.written</source>
+                <target>Escrito</target>
+            </trans-unit>
+            <trans-unit id="72">
+                <source>content.article.readmore</source>
+                <target>Leer más ...</target>
+            </trans-unit>
+            <trans-unit id="73">
+                <source>content.article.gallery</source>
+                <target>Galería de Imágenes</target>
+            </trans-unit>
+            <trans-unit id="74">
+                <source>content.article.shares</source>
+                <target>Compartir en redes sociales</target>
+            </trans-unit>
+
+
+            <trans-unit id="85">
+                <source>content.category.pagination.next</source>
+                <target>Siguiente</target>
+            </trans-unit>
+            <trans-unit id="86">
+                <source>content.category.pagination.previous</source>
+                <target>Anterior</target>
+            </trans-unit>
+
+
+            <trans-unit id="100">
+                <source>sidebar.right.title.artistatwork</source>
+                <target>La artista trabajando</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
