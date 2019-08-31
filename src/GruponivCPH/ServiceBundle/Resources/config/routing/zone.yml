@@ -1,0 +1,30 @@
+zone:
+    path:     /
+    defaults: { _controller: "ServiceBundle:Zone:index" }
+
+zone_show:
+    path:     /{id}/show
+    defaults: { _controller: "ServiceBundle:Zone:show" }
+
+zone_new:
+    path:     /new
+    defaults: { _controller: "ServiceBundle:Zone:new" }
+
+zone_create:
+    path:     /create
+    defaults: { _controller: "ServiceBundle:Zone:create" }
+    methods:  POST
+
+zone_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ServiceBundle:Zone:edit" }
+
+zone_update:
+    path:     /{id}/update
+    defaults: { _controller: "ServiceBundle:Zone:update" }
+    methods:  [POST, PUT]
+
+zone_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ServiceBundle:Zone:delete" }
+    methods:  [POST, DELETE]

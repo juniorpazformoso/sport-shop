@@ -1,0 +1,30 @@
+snippet:
+    path:     /
+    defaults: { _controller: "ServiceBundle:Snippet:index" }
+
+snippet_show:
+    path:     /{id}/show
+    defaults: { _controller: "ServiceBundle:Snippet:show" }
+
+snippet_new:
+    path:     /new
+    defaults: { _controller: "ServiceBundle:Snippet:new" }
+
+snippet_create:
+    path:     /create
+    defaults: { _controller: "ServiceBundle:Snippet:create" }
+    methods:  POST
+
+snippet_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ServiceBundle:Snippet:edit" }
+
+snippet_update:
+    path:     /{id}/update
+    defaults: { _controller: "ServiceBundle:Snippet:update" }
+    methods:  [POST, PUT]
+
+snippet_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ServiceBundle:Snippet:delete" }
+    methods:  [POST, DELETE]

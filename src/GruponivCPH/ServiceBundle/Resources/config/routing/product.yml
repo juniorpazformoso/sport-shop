@@ -1,0 +1,49 @@
+product:
+    path:     /
+    defaults: { _controller: "ServiceBundle:Product:index" }
+
+product_show:
+    path:     /{id}/show
+    defaults: { _controller: "ServiceBundle:Product:show" }
+
+product_new:
+    path:     /new
+    defaults: { _controller: "ServiceBundle:Product:new" }
+
+product_create:
+    path:     /create
+    defaults: { _controller: "ServiceBundle:Product:create" }
+    methods:  POST
+
+
+product_delete_image:
+    path:     /deleteImage
+    defaults: { _controller: "ServiceBundle:Product:removeImage" }
+
+product_images_upload:
+    path:     /uploadProductImage/{idProduct}
+    defaults: { _controller: "ServiceBundle:Product:uploadProductImage" }
+    
+
+product_images:
+    path:     /{id}/images
+    defaults: { _controller: "ServiceBundle:Product:imageProduct" }
+    
+    
+product_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ServiceBundle:Product:edit" }
+
+product_update:
+    path:     /{id}/update
+    defaults: { _controller: "ServiceBundle:Product:update" }
+    methods:  [POST, PUT]
+
+product_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ServiceBundle:Product:delete" }
+    methods:  [POST, DELETE]
+
+product_remove_all:
+    path:     /removeAllImages/{id}
+    defaults: { _controller: "ServiceBundle:Product:removeAllImageSlider" }

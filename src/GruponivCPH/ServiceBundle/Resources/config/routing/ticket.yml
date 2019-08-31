@@ -1,0 +1,36 @@
+ticket:
+    path:     /
+    defaults: { _controller: "ServiceBundle:Ticket:index" }
+
+ticket_show:
+    path:     /show/ticket/{id}
+    defaults: { _controller: "ServiceBundle:Ticket:show" }
+    
+ticket_close:
+    path:     /closeTicket/{id}
+    defaults: { _controller: "ServiceBundle:Ticket:closeTicket" }
+
+ticket_new:
+    path:     /new
+    defaults: { _controller: "ServiceBundle:Ticket:new" }
+
+ticket_create:
+    path:     /create
+    defaults: { _controller: "ServiceBundle:Ticket:create" }
+    methods:  POST
+
+ticket_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ServiceBundle:Ticket:edit" }
+
+
+
+ticket_update:
+    path:     /{id}/update
+    defaults: { _controller: "ServiceBundle:Ticket:update" }
+    methods:  [POST, PUT]
+
+ticket_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ServiceBundle:Ticket:delete" }
+    methods:  [POST, DELETE]

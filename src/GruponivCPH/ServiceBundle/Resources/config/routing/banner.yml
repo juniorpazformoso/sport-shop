@@ -1,0 +1,30 @@
+banner:
+    path:     /
+    defaults: { _controller: "ServiceBundle:Banner:index" }
+
+banner_show:
+    path:     /{id}/show
+    defaults: { _controller: "ServiceBundle:Banner:show" }
+
+banner_new:
+    path:     /new
+    defaults: { _controller: "ServiceBundle:Banner:new" }
+
+banner_create:
+    path:     /create
+    defaults: { _controller: "ServiceBundle:Banner:create" }
+    methods:  POST
+
+banner_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ServiceBundle:Banner:edit" }
+
+banner_update:
+    path:     /{id}/update
+    defaults: { _controller: "ServiceBundle:Banner:update" }
+    methods:  [POST, PUT]
+
+banner_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ServiceBundle:Banner:delete" }
+    methods:  [POST, DELETE]

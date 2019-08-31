@@ -1,0 +1,30 @@
+language:
+    path:     /
+    defaults: { _controller: "ServiceBundle:Language:index" }
+
+language_show:
+    path:     /{id}/show
+    defaults: { _controller: "ServiceBundle:Language:show" }
+
+language_new:
+    path:     /new
+    defaults: { _controller: "ServiceBundle:Language:new" }
+
+language_create:
+    path:     /create
+    defaults: { _controller: "ServiceBundle:Language:create" }
+    methods:  POST
+
+language_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ServiceBundle:Language:edit" }
+
+language_update:
+    path:     /{id}/update
+    defaults: { _controller: "ServiceBundle:Language:update" }
+    methods:  [POST, PUT]
+
+language_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ServiceBundle:Language:delete" }
+    methods:  [POST, DELETE]

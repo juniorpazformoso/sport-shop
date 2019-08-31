@@ -1,0 +1,87 @@
+service_account_client:
+    path:     /
+    defaults: { _controller: ServiceBundle:SiteClient:myAccount }
+    
+service_confirm_account:
+    path:     /confirmar/cuenta/{token}
+    defaults: { _controller: ServiceBundle:SiteClient:confirmAccount }
+    
+
+service_new_password:
+    path:     /nueva/clave/{token}
+    defaults: { _controller: ServiceBundle:SiteClient:confirmRequestPassword }
+    
+    
+request_activation_account:
+    path:     /recuperar/cuenta/{email}
+    defaults: { _controller: ServiceBundle:SiteClient:requestActivationAccount }
+    
+request_password_account:
+    path:     /recuperar/contrasenna/{email}
+    defaults: { _controller: ServiceBundle:SiteClient:requestPasswordAccount }
+    
+service_history_client:
+    path:     /seguimiento/pedidos
+    defaults: { _controller: ServiceBundle:SiteClient:clientOrderHistory }
+    
+review_order:
+    path:     /revisar/pedido/{id}
+    defaults: { _controller: ServiceBundle:SiteClient:reviewOrder }
+
+
+service_address_client:
+    path:     /direcciones
+    defaults: { _controller: ServiceBundle:SiteClient:addressClient }    
+    
+    
+site_ticket_new:
+    path:     /ticket/nuevo
+    defaults: { _controller: ServiceBundle:SiteClient:newTicket }
+    
+    
+account_personal_data:
+    path:     /datos/personales
+    defaults: { _controller: ServiceBundle:SiteClient:personalData }
+    
+showTicket:
+    path:     /showTicket/{id}
+    defaults: { _controller: "ServiceBundle:SiteClient:showTicket" }
+    
+tickets_client:
+    path:     /tickets
+    defaults: { _controller: "ServiceBundle:SiteClient:tickets" }
+    
+service_init_account:
+    path:     /security
+    defaults: { _controller: ServiceBundle:SiteClient:initAccount }
+    
+    
+service_new_account:
+    path:     /nuevo/{email}
+    defaults: { _controller: ServiceBundle:SiteClient:new }
+    
+service_create_account:
+    path:     /crear
+    defaults: { _controller: "ServiceBundle:SiteClient:create" }
+    methods:  POST
+
+service_new_client_address:
+    path:     /nuevaDireccion
+    defaults: { _controller: ServiceBundle:SiteClient:newAddressClient }
+    
+service_create_client_address:
+    path:     /crearDireccion
+    defaults: { _controller: "ServiceBundle:SiteClient:createAddressClient" }
+    methods:  POST
+
+email_client_unique:
+    path:     /emailValido
+    defaults: { _controller: "ServiceBundle:SiteClient:checkClientUniqueEmail" }
+    
+    
+
+fos_user_security_check_client:
+    path:     /security/login_check
+    
+fos_user_security_logout_client:
+    path:     /security/logout

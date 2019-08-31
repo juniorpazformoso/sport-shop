@@ -1,0 +1,30 @@
+localunit:
+    path:     /
+    defaults: { _controller: "ServiceBundle:LocalUnit:index" }
+
+localunit_show:
+    path:     /{id}/show
+    defaults: { _controller: "ServiceBundle:LocalUnit:show" }
+
+localunit_new:
+    path:     /new
+    defaults: { _controller: "ServiceBundle:LocalUnit:new" }
+
+localunit_create:
+    path:     /create
+    defaults: { _controller: "ServiceBundle:LocalUnit:create" }
+    methods:  POST
+
+localunit_edit:
+    path:     /edit
+    defaults: { _controller: "ServiceBundle:LocalUnit:edit" }
+
+localunit_update:
+    path:     /update
+    defaults: { _controller: "ServiceBundle:LocalUnit:update" }
+    methods:  [POST, PUT]
+
+localunit_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ServiceBundle:LocalUnit:delete" }
+    methods:  [POST, DELETE]

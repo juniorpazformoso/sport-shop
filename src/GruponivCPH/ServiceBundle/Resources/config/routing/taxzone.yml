@@ -1,0 +1,30 @@
+taxzone:
+    path:     /
+    defaults: { _controller: "ServiceBundle:TaxZone:index" }
+
+taxzone_show:
+    path:     /{id}/show
+    defaults: { _controller: "ServiceBundle:TaxZone:show" }
+
+taxzone_new:
+    path:     /new
+    defaults: { _controller: "ServiceBundle:TaxZone:new" }
+
+taxzone_create:
+    path:     /create
+    defaults: { _controller: "ServiceBundle:TaxZone:create" }
+    methods:  POST
+
+taxzone_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ServiceBundle:TaxZone:edit" }
+
+taxzone_update:
+    path:     /{id}/update
+    defaults: { _controller: "ServiceBundle:TaxZone:update" }
+    methods:  [POST, PUT]
+
+taxzone_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ServiceBundle:TaxZone:delete" }
+    methods:  [POST, DELETE]

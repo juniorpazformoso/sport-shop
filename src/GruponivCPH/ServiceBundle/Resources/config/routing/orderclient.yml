@@ -1,0 +1,39 @@
+orderclient:
+    path:     /
+    defaults: { _controller: "ServiceBundle:OrderClient:index" }
+
+orderclient_export:
+    path:     /export/orders
+    defaults: { _controller: "ServiceBundle:OrderClient:exportClients" }
+    
+
+orderclient_show:
+    path:     /{id}/show
+    defaults: { _controller: "ServiceBundle:OrderClient:show" }
+
+orderclient_new:
+    path:     /new
+    defaults: { _controller: "ServiceBundle:OrderClient:new" }
+
+orderclient_create:
+    path:     /create
+    defaults: { _controller: "ServiceBundle:OrderClient:create" }
+    methods:  POST
+
+orderclient_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ServiceBundle:OrderClient:edit" }
+
+orderclient_update:
+    path:     /{id}/update
+    defaults: { _controller: "ServiceBundle:OrderClient:update" }
+    methods:  [POST, PUT]
+
+orderclient_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ServiceBundle:OrderClient:delete" }
+    methods:  [POST, DELETE]
+
+orderclients_delete_all:
+    path:     /deleteAll
+    defaults: { _controller: "ServiceBundle:OrderClient:deleteAll" }

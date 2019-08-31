@@ -1,0 +1,30 @@
+addressclient:
+    path:     /direcciones
+    defaults: { _controller: "ServiceBundle:AddressClient:index" }
+
+addressclient_show:
+    path:     /{id}/show
+    defaults: { _controller: "ServiceBundle:AddressClient:show" }
+
+addressclient_new:
+    path:     /new
+    defaults: { _controller: "ServiceBundle:AddressClient:new" }
+
+addressclient_create:
+    path:     /create
+    defaults: { _controller: "ServiceBundle:AddressClient:create" }
+    methods:  POST
+
+addressclient_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ServiceBundle:AddressClient:edit" }
+
+addressclient_update:
+    path:     /{id}/update
+    defaults: { _controller: "ServiceBundle:AddressClient:update" }
+    methods:  [POST, PUT]
+
+addressclient_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ServiceBundle:AddressClient:delete" }
+    methods:  [POST, DELETE]

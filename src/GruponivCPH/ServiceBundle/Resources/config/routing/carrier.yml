@@ -1,0 +1,30 @@
+carrier:
+    path:     /
+    defaults: { _controller: "ServiceBundle:Carrier:index" }
+
+carrier_show:
+    path:     /{id}/show
+    defaults: { _controller: "ServiceBundle:Carrier:show" }
+
+carrier_new:
+    path:     /new
+    defaults: { _controller: "ServiceBundle:Carrier:new" }
+
+carrier_create:
+    path:     /create
+    defaults: { _controller: "ServiceBundle:Carrier:create" }
+    methods:  POST
+
+carrier_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ServiceBundle:Carrier:edit" }
+
+carrier_update:
+    path:     /{id}/update
+    defaults: { _controller: "ServiceBundle:Carrier:update" }
+    methods:  [POST, PUT]
+
+carrier_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ServiceBundle:Carrier:delete" }
+    methods:  [POST, DELETE]

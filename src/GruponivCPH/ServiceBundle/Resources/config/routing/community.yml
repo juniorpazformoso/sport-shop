@@ -1,0 +1,30 @@
+community:
+    path:     /
+    defaults: { _controller: "ServiceBundle:Community:index" }
+
+community_show:
+    path:     /{id}/show
+    defaults: { _controller: "ServiceBundle:Community:show" }
+
+community_new:
+    path:     /new
+    defaults: { _controller: "ServiceBundle:Community:new" }
+
+community_create:
+    path:     /create
+    defaults: { _controller: "ServiceBundle:Community:create" }
+    methods:  POST
+
+community_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ServiceBundle:Community:edit" }
+
+community_update:
+    path:     /{id}/update
+    defaults: { _controller: "ServiceBundle:Community:update" }
+    methods:  [POST, PUT]
+
+community_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ServiceBundle:Community:delete" }
+    methods:  [POST, DELETE]

@@ -1,0 +1,30 @@
+siteoption:
+    path:     /
+    defaults: { _controller: "ServiceBundle:SiteOption:index" }
+
+siteoption_show:
+    path:     /{id}/show
+    defaults: { _controller: "ServiceBundle:SiteOption:show" }
+
+siteoption_new:
+    path:     /new
+    defaults: { _controller: "ServiceBundle:SiteOption:new" }
+
+siteoption_create:
+    path:     /create
+    defaults: { _controller: "ServiceBundle:SiteOption:create" }
+    methods:  POST
+
+siteoption_edit:
+    path:     /edit
+    defaults: { _controller: "ServiceBundle:SiteOption:edit" }
+
+siteoption_update:
+    path:     /update
+    defaults: { _controller: "ServiceBundle:SiteOption:update" }
+    methods:  [POST, PUT]
+
+siteoption_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ServiceBundle:SiteOption:delete" }
+    methods:  [POST, DELETE]

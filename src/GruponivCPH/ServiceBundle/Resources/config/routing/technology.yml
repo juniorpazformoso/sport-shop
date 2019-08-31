@@ -1,0 +1,30 @@
+technology:
+    path:     /
+    defaults: { _controller: "ServiceBundle:Technology:index" }
+
+technology_show:
+    path:     /{id}/show
+    defaults: { _controller: "ServiceBundle:Technology:show" }
+
+technology_new:
+    path:     /new
+    defaults: { _controller: "ServiceBundle:Technology:new" }
+
+technology_create:
+    path:     /create
+    defaults: { _controller: "ServiceBundle:Technology:create" }
+    methods:  POST
+
+technology_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ServiceBundle:Technology:edit" }
+
+technology_update:
+    path:     /{id}/update
+    defaults: { _controller: "ServiceBundle:Technology:update" }
+    methods:  [POST, PUT]
+
+technology_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ServiceBundle:Technology:delete" }
+    methods:  [POST, DELETE]

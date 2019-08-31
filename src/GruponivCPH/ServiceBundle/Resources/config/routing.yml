@@ -1,0 +1,147 @@
+service_community:
+    resource: "@ServiceBundle/Resources/config/routing/community.yml"
+    prefix:   /admin/community
+
+service_province:
+    resource: "@ServiceBundle/Resources/config/routing/province.yml"
+    prefix:   /admin/province
+
+service_emailsender:
+    resource: "@ServiceBundle/Resources/config/routing/emailsender.yml"
+    prefix:   /emailsender
+
+service_templateemail:
+    resource: "@ServiceBundle/Resources/config/routing/templateemail.yml"
+    prefix:   /admin/templateemail
+
+service_reports:
+    resource: "@ServiceBundle/Resources/config/routing/reports.yml"
+    prefix:   /admin/reports
+    
+service_answerticket:
+    resource: "@ServiceBundle/Resources/config/routing/answerticket.yml"
+    prefix:   /answerticket
+
+service_questionticket:
+    resource: "@ServiceBundle/Resources/config/routing/questionticket.yml"
+    prefix:   /questionticket
+
+service_ticket:
+    resource: "@ServiceBundle/Resources/config/routing/ticket.yml"
+    prefix:   /admin/ticket
+
+service_orderclient:
+    resource: "@ServiceBundle/Resources/config/routing/orderclient.yml"
+    prefix:   /admin/orderclient
+
+service_localunit:
+    resource: "@ServiceBundle/Resources/config/routing/localunit.yml"
+    prefix:   /admin/localunit
+
+service_carrier:
+    resource: "@ServiceBundle/Resources/config/routing/carrier.yml"
+    prefix:   /admin/carrier
+
+service_taxcountry:
+    resource: "@ServiceBundle/Resources/config/routing/taxcountry.yml"
+    prefix:   /admin/taxcountry
+
+service_taxzone:
+    resource: "@ServiceBundle/Resources/config/routing/taxzone.yml"
+    prefix:   /admin/taxzone
+
+service_freeshippingcountry:
+    resource: "@ServiceBundle/Resources/config/routing/freeshippingcountry.yml"
+    prefix:   /admin/country/send
+
+service_freeshippingzone:
+    resource: "@ServiceBundle/Resources/config/routing/freeshippingzone.yml"
+    prefix:   /admin/zone/send
+
+service_addressclient:
+    resource: "@ServiceBundle/Resources/config/routing/addressclient.yml"
+    prefix:   /admin/addressclient
+
+service_client:
+    resource: "@ServiceBundle/Resources/config/routing/client.yml"
+    prefix:   /admin/client
+    
+service_siteclient:
+    resource: "@ServiceBundle/Resources/config/routing/siteclient.yml"
+    prefix:   /cliente
+
+
+service_gender:
+    resource: "@ServiceBundle/Resources/config/routing/gender.yml"
+    prefix:   /admin/gender
+
+service_language:
+    resource: "@ServiceBundle/Resources/config/routing/language.yml"
+    prefix:   /admin/language
+    
+service_stock:
+    resource: "@ServiceBundle/Resources/config/routing/stock.yml"
+    prefix:   /admin/stock
+
+service_country:
+    resource: "@ServiceBundle/Resources/config/routing/country.yml"
+    prefix:   /admin/country
+
+service_zone:
+    resource: "@ServiceBundle/Resources/config/routing/zone.yml"
+    prefix:   /admin/zone
+
+service_contact:
+    resource: "@ServiceBundle/Resources/config/routing/contact.yml"
+    prefix:   /admin/contact
+
+service_technology:
+    resource: "@ServiceBundle/Resources/config/routing/technology.yml"
+    prefix:   /admin/technology
+
+service_snippet:
+    resource: "@ServiceBundle/Resources/config/routing/snippet.yml"
+    prefix:   /admin/snippet
+
+service_notice:
+    resource: "@ServiceBundle/Resources/config/routing/notice.yml"
+    prefix:   /admin/notice
+
+service_categorynotice:
+    resource: "@ServiceBundle/Resources/config/routing/categorynotice.yml"
+    prefix:   /admin/categorynotice
+
+service_product:
+    resource: "@ServiceBundle/Resources/config/routing/product.yml"
+    prefix:   /admin/product
+
+
+service_backend_admin:
+    path:     /admin/
+    defaults: { _controller: ServiceBundle:Default:indexAdmin }
+    
+service_banner:
+    resource: "@ServiceBundle/Resources/config/routing/banner.yml"
+    prefix:   /admin/banner
+    
+service_siteoption:
+    resource: "@ServiceBundle/Resources/config/routing/siteoption.yml"
+    prefix:   /admin
+    
+    
+service_category:
+    resource: "@ServiceBundle/Resources/config/routing/category.yml"
+    prefix:   /admin
+    
+service_site:
+    resource: "@ServiceBundle/Resources/config/routing/site.yml"
+    prefix:   /
+    
+service_cart:
+    resource: "@ServiceBundle/Resources/config/routing/cart.yml"
+    prefix:   /
+    
+    
+service_site_map:
+    path:     /map/
+    defaults: { _controller: ServiceBundle:Map:test }

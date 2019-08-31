@@ -1,0 +1,34 @@
+category:
+    path:     /category/
+    defaults: { _controller: "ServiceBundle:Category:index" }
+
+category_show:
+    path:     /category/show/{id}/
+    defaults: { _controller: "ServiceBundle:Category:show" }
+
+category_new:
+    path:     /category/new/
+    defaults: { _controller: "ServiceBundle:Category:new" }
+
+category_create:
+    path:     /category/create/
+    defaults: { _controller: "ServiceBundle:Category:create" }
+    methods:  POST
+
+category_edit:
+    path:     /category/edit/{id}/
+    defaults: { _controller: "ServiceBundle:Category:edit" }
+
+category_update:
+    path:     /category/update/{id}/
+    defaults: { _controller: "ServiceBundle:Category:update" }
+    methods:  [POST, PUT]
+
+category_delete:
+    path:     /category/delete/{id}/
+    defaults: { _controller: "ServiceBundle:Category:delete" }
+    methods:  [POST, DELETE]
+
+category_change:
+    path:     /category/change/
+    defaults: { _controller: "ServiceBundle:Category:change" }

@@ -1,0 +1,51 @@
+client:
+    path:     /
+    defaults: { _controller: "ServiceBundle:Client:index" }
+
+client_show:
+    path:     /{id}/show
+    defaults: { _controller: "ServiceBundle:Client:show" }
+    
+client_show_order:
+    path:     /{id}/showOrder
+    defaults: { _controller: "ServiceBundle:Client:showOrder" }    
+
+client_new:
+    path:     /new
+    defaults: { _controller: "ServiceBundle:Client:new" }
+
+client_create:
+    path:     /createee
+    defaults: { _controller: "ServiceBundle:Client:create" }
+
+client_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ServiceBundle:Client:edit" }
+
+client_filter_date_creation:
+    path:     /buscar/porFechaCreacion
+    defaults: { _controller: "ServiceBundle:Client:filterClientsByCreationDate" }
+    
+client_update:
+    path:     /{id}/update
+    defaults: { _controller: "ServiceBundle:Client:update" }
+    methods:  [POST, PUT]
+    
+client_delete_all:
+    path:     /eliminar/todos
+    defaults: { _controller: "ServiceBundle:Client:deleteAll" }
+
+
+client_export:
+    path:     /export/clients
+    defaults: { _controller: "ServiceBundle:Client:exportClients" }
+
+client_import:
+    path:     /import/clients
+    defaults: { _controller: "ServiceBundle:Client:importClientsExcel" }
+
+
+client_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ServiceBundle:Client:delete" }
+    methods:  [POST, DELETE]

@@ -1,0 +1,35 @@
+stock:
+    path:     /categories
+    defaults: { _controller: "ServiceBundle:Stock:index" }
+
+stock_selected:
+    path:     /selected
+    defaults: { _controller: "ServiceBundle:Stock:stockSelected" }
+    
+saveStockData:
+    path:     /saveStockData
+    defaults: { _controller: "ServiceBundle:Stock:saveStockData" }    
+    
+provider_stock:
+    path:     /processingStock
+    defaults: { _controller: "ServiceBundle:Stock:processingStock" }
+
+providers_index:
+    path:     /providers
+    defaults: { _controller: "ServiceBundle:Stock:providers" }
+
+remove_stock_product:
+    path:     /remove
+    defaults: { _controller: "ServiceBundle:Stock:removeStockProduct" }
+    
+    
+stocsk_by_category:
+    path:     /{id}
+    defaults: { _controller: "ServiceBundle:Stock:stocksByCategory" }
+    
+stocking_product:
+    path:     /
+    defaults: { _controller: "ServiceBundle:Stock:stockingProducts" }
+
+    
+

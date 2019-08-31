@@ -1,0 +1,30 @@
+gender:
+    path:     /
+    defaults: { _controller: "ServiceBundle:Gender:index" }
+
+gender_show:
+    path:     /{id}/show
+    defaults: { _controller: "ServiceBundle:Gender:show" }
+
+gender_new:
+    path:     /new
+    defaults: { _controller: "ServiceBundle:Gender:new" }
+
+gender_create:
+    path:     /create
+    defaults: { _controller: "ServiceBundle:Gender:create" }
+    methods:  POST
+
+gender_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ServiceBundle:Gender:edit" }
+
+gender_update:
+    path:     /{id}/update
+    defaults: { _controller: "ServiceBundle:Gender:update" }
+    methods:  [POST, PUT]
+
+gender_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ServiceBundle:Gender:delete" }
+    methods:  [POST, DELETE]

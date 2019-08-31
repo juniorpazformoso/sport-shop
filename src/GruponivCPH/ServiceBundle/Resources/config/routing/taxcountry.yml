@@ -1,0 +1,30 @@
+taxcountry:
+    path:     /
+    defaults: { _controller: "ServiceBundle:TaxCountry:index" }
+
+taxcountry_show:
+    path:     /{id}/show
+    defaults: { _controller: "ServiceBundle:TaxCountry:show" }
+
+taxcountry_new:
+    path:     /new
+    defaults: { _controller: "ServiceBundle:TaxCountry:new" }
+
+taxcountry_create:
+    path:     /create
+    defaults: { _controller: "ServiceBundle:TaxCountry:create" }
+    methods:  POST
+
+taxcountry_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ServiceBundle:TaxCountry:edit" }
+
+taxcountry_update:
+    path:     /{id}/update
+    defaults: { _controller: "ServiceBundle:TaxCountry:update" }
+    methods:  [POST, PUT]
+
+taxcountry_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ServiceBundle:TaxCountry:delete" }
+    methods:  [POST, DELETE]

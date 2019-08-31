@@ -1,0 +1,100 @@
+service_homepage:
+    path:     /
+    defaults: { _controller: ServiceBundle:Default:index }
+    
+site_product_detail:
+    path:     /producto/detalle/{id}
+    defaults: { _controller: "ServiceBundle:Site:productDetail" }
+    
+site_notices:
+    path:     /noticias
+    defaults: { _controller: "ServiceBundle:Site:notices" }
+
+
+site_paypal_ipn_notification:
+   path:     /ipn_handler
+   defaults: { _controller: "ServiceBundle:Site:ipnNotificationPaypal" }
+    
+site_paypal_compra_exitosa:
+    path:     /compraexito
+    defaults: { _controller: "ServiceBundle:Site:compraExitosa" }
+    
+    
+site_area_test_mail:
+    path:     /prueba/correo
+    defaults: { _controller: "ServiceBundle:Site:areaTestEmail" }
+    
+
+    
+site_tpv_payment_unsuccess:
+    path:     /tpv/payment/unsuccess
+    defaults: { _controller: "ServiceBundle:Site:tpvPaymentUnsuccess" }
+    
+    
+site_tpv_payment_success:
+    path:     /tpv/payment/success
+    defaults: { _controller: "ServiceBundle:Site:tpvPaymentSuccess" }
+    
+    
+site_tpv_notification:
+    path:     /tpv/payment/notification
+    defaults: { _controller: "ServiceBundle:Site:notificationTPV" }
+
+site_notices_category:
+    path:     /noticias/cagtegory/{id}
+    defaults: { _controller: "ServiceBundle:Site:noticesByCategories" }
+    
+site_about-us:
+    path:     /quienes-somos
+    defaults: { _controller: "ServiceBundle:Site:aboutUs" }
+    
+site_search:
+    path:     /busqueda
+    defaults: { _controller: "ServiceBundle:Site:search" }
+    
+    
+site_technology:
+    path:     /tecnologia
+    defaults: { _controller: "ServiceBundle:Site:technology" }
+
+site_effective_final_shop:
+    path:     /compra/efectivo/{id}
+    defaults: { _controller: "ServiceBundle:Site:finalEffectiveInfo" }
+    
+    
+site_repayment_final_shop:
+    path:     /compra/reembolso/{id}
+    defaults: { _controller: "ServiceBundle:Site:finalRepaymentInfo" }
+
+site_term_services:
+    path:     /terminosycondiciones
+    defaults: { _controller: "ServiceBundle:Site:termService" }
+    
+    
+site_storages:
+    path:     /tiendas
+    defaults: { _controller: "ServiceBundle:Site:storages" }        
+    
+    
+site_contact:
+    path:     /contacto
+    defaults: { _controller: "ServiceBundle:Site:contact" }
+    
+    
+site_product_category:
+    path:     /palas/{slug}
+    defaults: { _controller: "ServiceBundle:Site:productsCategory" }
+    
+
+site_all_products:
+    path:     /all/products
+    defaults: { _controller: "ServiceBundle:Site:allProducts" }
+    
+site_product_category_mosaico:
+    path:     /palas/mosaico/{slug}
+    defaults: { _controller: "ServiceBundle:Site:productsCategoryMosaico" }    
+
+
+site_final_shop_cart:
+    path:     /carrito/cofirmarCompra
+    defaults: { _controller: "ServiceBundle:Site:finalShopCart" }

@@ -1,0 +1,3 @@
+report_invoice:
+    path:     /invoice
+    defaults: { _controller: "ServiceBundle:Report:sells" }

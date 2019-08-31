@@ -1,0 +1,24 @@
+add_to_cart:
+    path:     /cartaProducto
+    defaults: { _controller: "ServiceBundle:Cart:addToCart" }
+    
+list_shopping_cart:
+    path:     /todosProductos/carrito
+    defaults: { _controller: "ServiceBundle:Cart:listShoppingCart" }    
+    
+load_cart:
+    path:     /cargar/carrito
+    defaults: { _controller: "ServiceBundle:Cart:shoppingCartHeader" }  
+
+update_quantity_product:
+    path:     /actualizarCantidadProducto
+    defaults: { _controller: "ServiceBundle:Cart:updateQuantityProduct" }
+    
+site_total_price:
+    path:     /precioTotal
+    defaults: { _controller: "ServiceBundle:Cart:totalAmountCart" }
+    
+global_info_cart:
+    path:     /carrito/informacionGlobal
+    defaults: { _controller: "ServiceBundle:Cart:globalInfo" }  
+    

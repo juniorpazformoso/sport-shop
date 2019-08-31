@@ -1,0 +1,30 @@
+notice:
+    path:     /
+    defaults: { _controller: "ServiceBundle:Notice:index" }
+
+notice_show:
+    path:     /{id}/show
+    defaults: { _controller: "ServiceBundle:Notice:show" }
+
+notice_new:
+    path:     /new
+    defaults: { _controller: "ServiceBundle:Notice:new" }
+
+notice_create:
+    path:     /create
+    defaults: { _controller: "ServiceBundle:Notice:create" }
+    methods:  POST
+
+notice_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ServiceBundle:Notice:edit" }
+
+notice_update:
+    path:     /{id}/update
+    defaults: { _controller: "ServiceBundle:Notice:update" }
+    methods:  [POST, PUT]
+
+notice_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ServiceBundle:Notice:delete" }
+    methods:  [POST, DELETE]

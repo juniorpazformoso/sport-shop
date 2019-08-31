@@ -1,0 +1,30 @@
+questionticket:
+    path:     /
+    defaults: { _controller: "ServiceBundle:QuestionTicket:index" }
+
+questionticket_show:
+    path:     /{id}/show
+    defaults: { _controller: "ServiceBundle:QuestionTicket:show" }
+
+questionticket_new:
+    path:     /new
+    defaults: { _controller: "ServiceBundle:QuestionTicket:new" }
+
+questionticket_create:
+    path:     /create
+    defaults: { _controller: "ServiceBundle:QuestionTicket:create" }
+    methods:  POST
+
+questionticket_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ServiceBundle:QuestionTicket:edit" }
+
+questionticket_update:
+    path:     /{id}/update
+    defaults: { _controller: "ServiceBundle:QuestionTicket:update" }
+    methods:  [POST, PUT]
+
+questionticket_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ServiceBundle:QuestionTicket:delete" }
+    methods:  [POST, DELETE]

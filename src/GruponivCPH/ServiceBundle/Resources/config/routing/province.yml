@@ -1,0 +1,30 @@
+province:
+    path:     /
+    defaults: { _controller: "ServiceBundle:Province:index" }
+
+province_show:
+    path:     /{id}/show
+    defaults: { _controller: "ServiceBundle:Province:show" }
+
+province_new:
+    path:     /new
+    defaults: { _controller: "ServiceBundle:Province:new" }
+
+province_create:
+    path:     /create
+    defaults: { _controller: "ServiceBundle:Province:create" }
+    methods:  POST
+
+province_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ServiceBundle:Province:edit" }
+
+province_update:
+    path:     /{id}/update
+    defaults: { _controller: "ServiceBundle:Province:update" }
+    methods:  [POST, PUT]
+
+province_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ServiceBundle:Province:delete" }
+    methods:  [POST, DELETE]

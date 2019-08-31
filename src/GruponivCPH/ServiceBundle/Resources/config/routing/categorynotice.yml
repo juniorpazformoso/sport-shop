@@ -1,0 +1,30 @@
+categorynotice:
+    path:     /
+    defaults: { _controller: "ServiceBundle:CategoryNotice:index" }
+
+categorynotice_show:
+    path:     /{id}/show
+    defaults: { _controller: "ServiceBundle:CategoryNotice:show" }
+
+categorynotice_new:
+    path:     /new
+    defaults: { _controller: "ServiceBundle:CategoryNotice:new" }
+
+categorynotice_create:
+    path:     /create
+    defaults: { _controller: "ServiceBundle:CategoryNotice:create" }
+    methods:  POST
+
+categorynotice_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ServiceBundle:CategoryNotice:edit" }
+
+categorynotice_update:
+    path:     /{id}/update
+    defaults: { _controller: "ServiceBundle:CategoryNotice:update" }
+    methods:  [POST, PUT]
+
+categorynotice_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ServiceBundle:CategoryNotice:delete" }
+    methods:  [POST, DELETE]

@@ -1,0 +1,30 @@
+templateemail:
+    path:     /
+    defaults: { _controller: "ServiceBundle:TemplateEmail:index" }
+
+templateemail_show:
+    path:     /{id}/show
+    defaults: { _controller: "ServiceBundle:TemplateEmail:show" }
+
+templateemail_new:
+    path:     /new
+    defaults: { _controller: "ServiceBundle:TemplateEmail:new" }
+
+templateemail_create:
+    path:     /create
+    defaults: { _controller: "ServiceBundle:TemplateEmail:create" }
+    methods:  POST
+
+templateemail_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ServiceBundle:TemplateEmail:edit" }
+
+templateemail_update:
+    path:     /{id}/update
+    defaults: { _controller: "ServiceBundle:TemplateEmail:update" }
+    methods:  [POST, PUT]
+
+templateemail_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ServiceBundle:TemplateEmail:delete" }
+    methods:  [POST, DELETE]

@@ -1,0 +1,30 @@
+freeshippingzone:
+    path:     /
+    defaults: { _controller: "ServiceBundle:ZoneSend:index" }
+
+freeshippingzone_show:
+    path:     /{id}/show
+    defaults: { _controller: "ServiceBundle:ZoneSend:show" }
+
+freeshippingzone_new:
+    path:     /new
+    defaults: { _controller: "ServiceBundle:ZoneSend:new" }
+
+freeshippingzone_create:
+    path:     /create
+    defaults: { _controller: "ServiceBundle:ZoneSend:create" }
+    methods:  POST
+
+freeshippingzone_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ServiceBundle:ZoneSend:edit" }
+
+freeshippingzone_update:
+    path:     /{id}/update
+    defaults: { _controller: "ServiceBundle:ZoneSend:update" }
+    methods:  [POST, PUT]
+
+freeshippingzone_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ServiceBundle:ZoneSend:delete" }
+    methods:  [POST, DELETE]
