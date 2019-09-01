@@ -1,0 +1,241 @@
+{% extends '::base_metronic_struct.html.twig' %}
+
+{% block rootmenuclient %}
+    class="start active open"
+{% endblock %}
+
+{% block rootmenunclientaux %}
+    <span class="selected"></span>
+{% endblock %}
+
+{% block rootmenuclientarrow %}
+    open
+{% endblock %}
+
+{% block rootmenuaddress %} class="active" {% endblock %}
+
+
+{% block render %}
+
+    <div class="page-content">
+    <!-- BEGIN PAGE HEADER-->
+    <h3 class="page-title">
+        Detalles <small>{{ entity.client }}</small>
+    </h3>
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a href="{{ path('service_backend_admin') }}">Inicio</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a href="{{ path('addressclient') }}">Direcciones</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                {{ entity.client }}
+            </li>
+        </ul>
+    </div>
+    <!-- END PAGE HEADER-->
+    <div class="clearfix">
+    </div>
+
+    <!-- BEGIN PAGE CONTENT-->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tabbable tabbable-custom boxless tabbable-reversed">
+                <div class="tab-content">
+                    <div class="portlet-body form">
+                        <!-- BEGIN FORM-->
+                        <div class="form-horizontal" role="form">
+                            <div class="form-body">
+                                <h3 class="form-section">Detalles - {{ entity.client }}</h3>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3"><strong>Dirección </strong></label>
+                                            <div class="col-md-9">
+                                                <p class="control-label" style="text-align: left">
+                                                    {{ entity.address }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                                
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3"><strong>Código postal </strong></label>
+                                            <div class="col-md-9">
+                                                <p class="control-label" style="text-align: left">
+                                                    {{ entity.postalCode }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                
+                                <!--/row-->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3"><strong>Localidad </strong></label>
+                                            <div class="col-md-9 control-label" style="text-align: left">
+                                                {{ entity.location }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                            
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3"><strong>Provincia </strong></label>
+                                            <div class="col-md-9 control-label" style="text-align: left">
+                                                {{ entity.province }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                            
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3"><strong>Comunidad </strong></label>
+                                            <div class="col-md-9 control-label" style="text-align: left">
+                                                {{ entity.community }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                            
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3"><strong>Población </strong></label>
+                                            <div class="col-md-9 control-label" style="text-align: left">
+                                                {{ entity.town }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                            
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3"><strong>Ciudad </strong></label>
+                                            <div class="col-md-9 control-label" style="text-align: left">
+                                                {{ entity.city }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                            
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3"><strong>País </strong></label>
+                                            <div class="col-md-9 control-label" style="text-align: left">
+                                                {{ entity.country }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                            
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3"><strong>Empresa </strong></label>
+                                            <div class="col-md-9 control-label" style="text-align: left">
+                                                {{ entity.enterprise }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-offset-3 col-md-9 record_actions">
+                                                <table>
+                                                    <tr>
+                                                        <th><a href="{{ path('addressclient_edit', { 'id': entity.id }) }}" class="btn btn-sm yellow" style="margin-right: 5px">
+                                                                Editar <i class="fa fa-edit"></i> </a></th>
+                                                        <th hidden="hidden">
+                                                            {{ form(delete_form, {'attr': {'id': 'delete_form' }}) }}
+                                                        </th>
+                                                        <th>
+                                                            <a class="btn btn-sm red" data-toggle="modal" href="#static"> Eliminar </a>
+                                                            <div id="static" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                                                            <h4 class="modal-title">Confirmación</h4>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <p>
+                                                                            <h4>¿Está seguro que desea eliminar la dirección?</h4>
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" data-dismiss="modal" class="btn default">Cancelar</button>
+                                                                            <button type="button" data-dismiss="modal" class="btn red" onclick="deleteConfirmation()">Eliminar</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </th>
+                                                        <th><a href="{{ path('addressclient') }}" class="btn btn-sm default" style="margin-left: 5px">
+                                                                Regresar  </a></th>
+                                                    </tr>
+
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END FORM-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- END PAGE CONTENT-->
+
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+
+    <script language="JavaScript">
+        function deleteConfirmation(){
+            var formulario = document.getElementById('delete_form');
+            formulario.submit();
+        }
+    </script>
+{% endblock %}
+
+
