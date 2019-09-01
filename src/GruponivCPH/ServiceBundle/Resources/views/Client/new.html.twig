@@ -1,0 +1,260 @@
+{% extends '::base_metronic_struct.html.twig' %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/bootstrap-summernote/summernote.css')}}">    
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/select2/select2.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/bootstrap-toastr/toastr.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css')}}"/>
+    <!-- END PAGE LEVEL STYLES -->
+{% endblock %}
+
+
+{% block rootmenuclient %}
+    class="start active open"
+{% endblock %}
+
+{% block rootmenuclientaux %}
+    <span class="selected"></span>
+{% endblock %}
+
+{% block rootmenuclientarrow %}
+    open
+{% endblock %}
+
+{% block rootmenuclienti %} class="active" {% endblock %}
+
+{% block render %}
+
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
+        <h3 class="page-title">
+            Clientes
+            <small>Nuevo cliente</small>
+        </h3>
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="{{ path('service_backend_admin') }}">Inicio</a>
+                    <i class="fa fa-angle-right"></i>
+                </li>
+                <li>
+                    <a href="{{ path('client') }}">Clientes</a>
+                </li>
+            </ul>
+        </div>
+        <!-- END PAGE HEADER-->
+        <!-- BEGIN PAGE CONTENT-->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tabbable tabbable-custom boxless tabbable-reversed">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_0">
+                            <div class="portlet light bg-inverse">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="icon-equalizer font-red-sunglo"></i>
+                                        <span class="caption-subject font-red-sunglo bold uppercase">Nuevo cliente</span>
+                                        <span class="caption-helper"></span>
+                                    </div>
+                                    <div id="wait" style="float: right;display: none" class="progress progress-indeterminate">
+                                        <div class="win-ring small"></div>
+                                    </div>
+                                </div>
+                                <div class="portlet-body form">
+                                    <!-- BEGIN FORM-->
+                                    {#<form action="{{ path('admin_news_create') }}"
+                                          method="post" {{ form_enctype(form) }} class="form-horizontal">#}
+                                    {{ form_start(form, {'attr': {'class': 'form-horizontal','id':'form_sample_1', novalidate : 'novalidate' }}) }}
+                                    <div class="alert alert-danger display-hide">
+                                        <button class="close" data-close="alert"></button>
+                                        El formulario contiene algunos errores. Por favor revise los avisos en rojo.
+                                    </div>
+                                    <div class="form-body">
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Nombre<span class="required"> *</span></label>
+                                            
+                                            <div class="col-md-6">
+                                                {{ form_widget(form.name, { 'attr': {
+                                                    'class' : 'form-control tags',
+                                                    'required' : 'required',
+                                                    'maxlength' : 60
+                                                    } }) }}
+                                                    {{ form_errors(form.name) }}                                                    
+                                            </div>
+                                        </div>
+                                        
+                                    
+                                            
+                                    
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Apellidos<span class="required"> *</span></label>
+                                            
+                                            <div class="col-md-6">
+                                                {{ form_widget(form.lastName, { 'attr': {
+                                                    'class' : 'form-control tags',
+                                                    'required' : 'required',
+                                                    'maxlength' : 60
+                                                    } }) }}
+                                                    {{ form_errors(form.lastName) }}                                                    
+                                            </div>
+                                        </div>
+                                            
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Dni/nif</label>
+                                            
+                                            <div class="col-md-6">
+                                                {{ form_widget(form.dni_nif, { 'attr': {
+                                                    'class' : 'form-control tags',
+                                                    'required' : 'required',
+                                                    'maxlength' : 60
+                                                    } }) }}
+                                                    {{ form_errors(form.dni_nif) }}                                                    
+                                            </div>
+                                        </div>
+                                            
+                                        {% set i = 0 %}
+                                        {% set label = '' %}
+                                        {% for passwordField in form.password %}
+                                            {% if i == 0 %}
+                                                {% set i = 1 %}
+                                                {% set label = 'Contraseña' %}
+                                            {% else %}
+                                                {% set label = 'Repita contraseña' %}
+                                            {% endif %}
+
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3">{{ label }} <span class="required"> *</span>
+                                                </label>
+                                                <div class="col-sm-6"> 
+                                                    {{ form_widget(passwordField, { 'attr': {
+                                                        'class' : 'form-control tags',
+                                                        'required' : 'required',
+                                                        'maxlength' : 60
+                                                        } }) }}
+
+                                                </div>
+                                            </div>
+
+                                        {% endfor %}
+
+                                        
+                                        
+                                            
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Género<span class="required"> *</span></label>
+                                            
+                                            <div class="col-md-6">
+                                                {{ form_widget(form.gender, { 'attr': {
+                                                    'class' : 'form-control tags',
+                                                    'required' : 'required',
+                                                    'maxlength' : 60
+                                                    } }) }}
+                                                    {{ form_errors(form.gender) }}                                                    
+                                            </div>
+                                        </div>
+                                            
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Correo<span class="required"> *</span></label>
+                                            
+                                            <div class="col-md-6">
+                                                {{ form_widget(form.email, { 'attr': {
+                                                    'class' : 'form-control tags',
+                                                    'required' : 'required',
+                                                    'maxlength' : 60
+                                                    } }) }}
+                                                    {{ form_errors(form.email) }}                                                    
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Edad</label>
+                                            
+                                            <div class="col-md-6">
+                                                {{ form_widget(form.age, { 'attr': {
+                                                    'class' : 'form-control tags',
+                                                    'required' : 'required',
+                                                    'maxlength' : 60
+                                                    } }) }}
+                                                    {{ form_errors(form.age) }}                                                    
+                                            </div>
+                                        </div>
+                                        
+                                            
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Activo</label>
+                                            <div class="col-md-9">
+                                                {{ form_widget(form.active, { 'attr': {
+                                                    'class' : 'make-switch',
+                                                    'data-size' : 'normal'
+                                                } }) }}
+                                            </div>
+                                        </div>
+                                            
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Rol</label>
+                                            <div class="col-md-6">
+                                                {{ form_widget(form.role, { 'attr': {
+                                                    'class' : 'form-control',
+                                                    'data-size' : 'normal'
+                                                } }) }}
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                    <div class="form-actions">
+                                        <div class="row">
+                                            <div class="col-md-offset-3 col-md-4">
+                                                {{ form_widget(form.submit, { 'attr': {
+                                                'class' : 'btn green',
+                                                'label' : 'Crear'
+                                                } }) }}
+                                                <a href="{{ path('client') }}"
+                                                   class="btn default">Cancelar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{ form_errors(form) }}
+                                    {{ form_end(form) }}
+                                    {#</form>#}
+                                    <!-- END FORM-->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- END PAGE CONTENT-->
+    </div>
+
+    </div>
+
+    <!-- END CONTENT -->
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/bootstrap-toastr/toastr.min.js')}}"></script>
+    <script src="{{ asset('web/bundles/metronic/global/plugins/bootstrap-summernote/summernote.min.js')}}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/select2/select2.min.js')}}"></script>    
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js')}}"></script>
+    <script src="{{ asset('web/bundles/admin/validations/client.js')}}"></script>
+    
+    <script>
+        jQuery(document).ready(function () {
+                              
+        });
+    </script>
+    
+{% endblock %}

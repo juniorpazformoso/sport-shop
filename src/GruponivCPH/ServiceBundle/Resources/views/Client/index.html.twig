@@ -1,0 +1,416 @@
+{% extends '::base_metronic_struct.html.twig' %}
+
+{% block stylesheet %}
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/global/datetimepicker/bootstrap-datetimepicker.min.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/global/filtertable/filtertable.css') }}"/>
+    <!-- END PAGE LEVEL STYLES -->
+{% endblock %}
+
+{% block rootmenuclient %}
+    class="start active open"
+{% endblock %}
+
+{% block rootmenunclientaux %}
+    <span class="selected"></span>
+{% endblock %}
+
+{% block rootmenuclientarrow %}
+    open
+{% endblock %}
+
+{% block rootmenuclienti %} class="active" {% endblock %}
+
+{% block render %}
+
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
+        <h3 class="page-title">
+            Inicio <small>Clientes</small>
+        </h3>
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="{{ path('service_backend_admin') }}">Inicio</a>
+                    <i class="fa fa-angle-right"></i>
+                </li>
+                <li>
+                    <a href="#">Clientes</a>
+                </li>
+            </ul>
+        </div>
+        <!-- END PAGE HEADER-->
+        <div class="clearfix">
+        </div>
+
+        <!-- BEGIN PAGE CONTENT-->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet box blue-chambray">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-sitemap"></i>Clientes
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        {% for flashMessage in app.session.flashbag.get('notice') %}
+                            <div class="alert alert-success box">
+                                {{ flashMessage }}
+                            </div>
+                            <div class="clearfix"></div>
+                        {% endfor %}
+
+                        <div class="table-toolbar">
+                            <div class="row">
+                                <div class="">
+                                    <div class="btn-group">
+                                        <div class="col-md-6 col-xs-12">
+                                            <a href="{{ path('client_new') }}" class="btn green" style="margin-right: 10px;">
+                                                Adicionar <i class="fa fa-plus"></i>
+                                            </a>
+
+                                            <a id="deleteAll" href="javascript:void(0);" class="btn red"  style="margin-right: 10px;">
+                                                Eliminar <i class="fa fa-trash-o"></i>
+                                            </a>
+
+                                            <!--
+                                            <a id="importExcel" href="javascript:void(0);" class="btn yellow" style="margin-right: 10px;">
+                                                Importar  <i class="fa fa-openid"></i>
+                                            </a>
+                                            -->
+
+                                            <a  href="{{ path('client_export') }}" class="btn blue" style="margin-right: 10px;">
+                                                Exportar  <i class="fa fa-openid"></i>
+                                            </a>
+
+                                            <form enctype="multipart/form-data" action="{{ path('client_import') }}" method="POST" style="display: none;" id="formImportExcel">
+                                                <input name="fileToUpload" type="file" id="fileToUpload"/>
+                                                <input type="submit" value="Send File" />
+                                            </form>
+                                        </div>
+
+                                        <div class="col-md-6 col-xs-12">
+
+                                            {{ form_start(form_range, {'attr': {'class': 'form-horizontal', novalidate : 'novalidate' }}) }}
+
+
+                                            <div class="form-group  col-md-6" style="position: relative; bottom: 10px;">
+                                                <label class="control-label">Fecha Inicio<span class="required"> *</span></label>
+
+                                                <div class="">
+                                                    <div class='input-group date' id='datetimepicker1'>
+                                                        {{form_widget(form_range.startDate)}}
+                                                        <span class="input-group-addon">
+                                                            <span class="fa fa-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="form-group  col-md-6" style="position: relative; bottom: 10px;">
+                                                <label class="control-label">Fecha fin<span class="required"> *</span></label>
+
+                                                <div class="">
+                                                    <div class='input-group date' id='datetimepicker2'>
+                                                        {{form_widget(form_range.endDate)}}
+                                                        <span class="input-group-addon">
+                                                            <span class="fa fa-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-4" style="position: relative; bottom: 16px; right: 0px;">
+
+                                                {{ form_widget(form_range.submit, { 'attr': {
+                                                'class' : 'btn green',
+                                                'label' : 'Buscar'
+                                                } }) }}
+
+                                            </div>
+
+                                        </div>
+
+                                        {{ form_end(form_range) }}
+
+
+                                        <!--
+                                        <a href="#" class="btn blue">
+                                            Importar Excel<i class="fa fa-openid"></i>
+                                        </a>
+                                        -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <form action="{{ path('client_delete_all') }}" method="POST" id="clientsExport">
+                            <div class="table-responsive">
+                                <table class="datatable table table-striped table-bordered table-hover table-clients filter">
+                                    <thead>
+                                        <tr>
+                                            <th>
+
+                                            </th>
+
+                                            <th>
+                                                <span class="sorted">Id</span>
+                                            </th>
+
+                                            <th>
+                                                <span class="sorted">Sexo</span>
+                                            </th>
+
+                                            <th>
+                                                <span class="sorted">Nombre</span>
+                                            </th>
+
+                                            <th>
+                                                <span class="sorted">Apellidos</span>
+                                            </th>
+
+                                            <!--
+                                            <th>
+                                                Direcciones
+                                            </th>
+                                            -->
+
+                                            <th>
+                                                <span class="sorted">Correo</span>
+                                            </th>
+
+                                            <th>
+                                                <span class="sorted">Edad</span>
+                                            </th>
+
+                                            <th>
+                                                Activado
+                                            </th>
+
+                                            <th>
+                                                Tienda
+                                            </th>
+
+                                            <th style="text-align: center; width: 430px;">
+                                                Acciones
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+
+                                        {% for entity in entities %}
+                                            <tr class="odd gradeX">
+                                                <td>
+                                                    <input type="checkbox" value="{{ entity.id }}" name="clients[]"/>
+                                                </td>
+
+                                                <td>
+                                                    {{ entity.id }}
+                                                </td>
+
+                                                <td>
+                                                    {{ entity.gender.sex }}
+                                                </td>
+
+                                                <td>
+                                                    {{ entity.name }}
+                                                </td>
+
+                                                <td>
+                                                    {{ entity.lastName }}
+                                                </td>
+
+                                                <!--
+                                                <td>
+                                                    {% for address in entity.address  %}
+                                                        {{ address.postalCode }} - {{ address.city }} - {{ address.country }} {{ address.address }}<br><br>
+                                                    {% endfor %}
+                                                </td>
+                                                -->
+
+                                                <td>
+                                                    {{ entity.email }}
+                                                </td>
+
+                                                <td>
+                                                    {{ entity.age }}
+                                                </td>
+
+                                                <td>
+                                                    {% if entity.active %}
+                                                        Si
+                                                    {% else %}
+                                                        No
+                                                    {% endif %}
+                                                </td>
+
+                                                <td>
+                                                    {{ entity.storage }}
+                                                </td>
+
+
+                                                <td>
+                                                    <!--
+                                                    <div class="actions btn-set">
+                                                        <table>
+                                                            <tr>
+                                                                <th><a href="{{ path('client_show', { 'id': entity.id }) }}" class="btn btn-sm blue" data-toggle="modal">Detalle <i class="fa fa-search-plus"></i></a></th>
+                                                                <th><a href="{{ path('client_edit', { 'id': entity.id }) }}" class="btn btn-sm yellow" data-toggle="modal">Editar <i class="fa fa-pencil"></i></a></th>
+                                                                <th><a class="btn btn-sm red" data-toggle="modal" href="#static{{ entity.id }}"> Eliminar </a></th>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                    -->
+                                                    <a href="{{ path('client_show', { 'id': entity.id }) }}" class="btn btn-sm blue">Detalle <i class="fa fa-search-plus"></i></a>
+                                                    <a href="{{ path('client_edit', { 'id': entity.id }) }}" class="btn btn-sm yellow">Editar <i class="fa fa-pencil"></i></a>
+                                                    <a class="btn btn-sm red" data-toggle="modal" href="#static{{ entity.id }}"> Eliminar </a>
+
+
+
+                                                    <div id="static{{ entity.id }}" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                                                    <h4 class="modal-title">Confirmación</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <p>
+                                                                    <h4>¿Está seguro que desea eliminar el cliente {{ entity.id }}?</h4>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" data-dismiss="modal" class="btn default">Cancelar</button>
+                                                                    <button type="button" data-dismiss="modal" class="btn red" onclick="deleteConfirmation('delete_form_{{ entity.id }}')">Eliminar</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
+
+                        {% set cont = 0 %}
+                        {% for entity in entities %}
+                            {{ aaData[cont]['action'] | raw }}                            
+                            {% set cont = cont + 1%}
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- END EXAMPLE TABLE PORTLET-->
+            </div>
+        </div>
+        <!-- END PAGE CONTENT-->
+
+    </div>
+
+
+{% endblock %}
+
+{% block javascript %}
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js') }}"></script>
+
+    <script type="text/javascript"  src="{{ asset('web/bundles/global/datetimepicker/moment.min.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('web/bundles/global/datetimepicker/moment-with-locales.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('web/bundles/global/datetimepicker/bootstrap-datetimepicker.min.js') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('web/bundles/global/datetimepicker/bootstrap-datetimepicker.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('web/bundles/global/filtertable/filtertable.js') }}"></script>
+
+
+
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="{{ asset('web/bundles/metronic/admin/pages/scripts/table-managed.js') }}"></script>
+    <script>
+        function deleteConfirmation(name) {
+            var formulario = document.getElementById(name);
+            formulario.submit();
+        }
+
+
+        $("#deleteAll").click(function () {
+            $("#clientsExport").submit()
+        })
+
+
+        $("#importExcel").click(function ()
+        {
+            $("#fileToUpload").trigger('click')
+        })
+
+
+        $("#fileToUpload").change(function () {
+            $("#formImportExcel").submit();
+        })
+
+        $('#datetimepicker1').datetimepicker({format: 'DD/MM/YYYY', locale: 'es'})
+        $('#datetimepicker2').datetimepicker({format: 'DD/MM/YYYY', locale: 'es'})
+
+        $("#datetimepicker1").on("dp.change", function (e) {
+            $("#datetimepicker2").data("DateTimePicker").minDate(e.date)
+        })
+        
+
+        $(".table-clients").filtertable()
+        
+        $(function (){
+                
+                var table = $('.datatable');
+
+            // begin first table
+            table.dataTable({
+                "ordering": false,
+                "lengthMenu": [
+                    [15, 20, -1],
+                    [15, 20, "Todo"] // change per page values here
+                ],
+                // set the initial value
+                "pageLength": 15,
+                "pagingType": "bootstrap_full_number",
+                "language": {
+                    "sProcessing": "Procesando...",
+                    "lengthMenu": "  _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar: ",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+
+                    }
+                }
+
+
+            });
+    })
+    </script>
+{% endblock %}
+

@@ -1,0 +1,395 @@
+{% extends '::base_metronic_struct.html.twig' %}
+
+{% block stylesheet %}
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css') }}"/>
+    <!-- END PAGE LEVEL STYLES -->
+    
+    <style>
+        #DataTables_Table_0_filter{
+            display: none;
+        }
+    </style>
+{% endblock %}
+
+{% block rootmenuclient %}
+    class="start active open"
+{% endblock %}
+
+{% block rootmenunclientaux %}
+    <span class="selected"></span>
+{% endblock %}
+
+{% block rootmenuclientarrow %}
+    open
+{% endblock %}
+
+{% block rootmenuclienti %} class="active" {% endblock %}
+
+
+{% block render %}
+
+    <div class="page-content">
+    <!-- BEGIN PAGE HEADER-->
+    <h3 class="page-title">
+        Detalles <small>{{ entity.name }} {{ entity.lastName }}</small>
+    </h3>
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a href="{{ path('service_backend_admin') }}">Inicio</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a href="{{ path('client') }}">Clientes</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                {{ entity.name }} {{ entity.lastName }}
+            </li>
+        </ul>
+    </div>
+    <!-- END PAGE HEADER-->
+    <div class="clearfix">
+    </div>
+
+    <!-- BEGIN PAGE CONTENT-->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tabbable tabbable-custom boxless tabbable-reversed">
+                <div class="tab-content">
+                    <div class="portlet-body form">
+                        <!-- BEGIN FORM-->
+                        <div class="form-horizontal" role="form">
+                            <div class="form-body">
+                                <h3 class="form-section">Detalles - {{ entity.name }} {{ entity.lastName }}</h3>
+                                <div class="col-md-7">
+                                    
+                                    
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3"><strong>Tratamiento </strong></label>
+                                            <div class="col-md-9">
+                                                <p class="control-label" style="text-align: left">
+                                                    {{ entity.gender.name }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                
+                                                
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3"><strong>Sexo </strong></label>
+                                            <div class="col-md-9">
+                                                <p class="control-label" style="text-align: left">
+                                                    {{ entity.gender.sex }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                
+                                    
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3"><strong>Nombre </strong></label>
+                                            <div class="col-md-9">
+                                                <p class="control-label" style="text-align: left">
+                                                    {{ entity.name }} {{ entity.lastName }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                
+                                                
+                                    {% if entity.address %}
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3"><strong>Direcciones </strong></label>
+                                                <div class="col-md-9">
+                                                    <p class="control-label" style="text-align: left">
+                                                        {% for address in entity.address  %}
+                                                            {{ address.postalCode }} - {{ address.city }} - {{ address.country }} {{ address.address }}<br><br>
+                                                        {% endfor %}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                                
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3"><strong>Edad </strong></label>
+                                            <div class="col-md-9">
+                                                <p class="control-label" style="text-align: left">
+                                                    {{ entity.age }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3"><strong>Correo </strong></label>
+                                            <div class="col-md-9">
+                                                <p class="control-label" style="text-align: left">
+                                                    {{ entity.email }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                                
+                                                
+                                        
+                                    <div class="clearfix"></div>
+                                    <h3 style="margin-top: 30px;">Pedidos válidos y no válidos</h3>
+                                    
+                                    <div class="table-responsive">
+                                    <table class="datatable table table-bordered table-striped">
+                                        <thead>
+                                            <th>
+                                                Id
+                                            </th>
+                                            
+                                            <th>
+                                                Fecha
+                                            </th>
+                                            
+                                            <th style="width: 4%;">
+                                                
+                                            </th>
+                                        </thead>
+                                        
+                                        <tbody>
+                                            {% for order in entity.orderClients %}
+                                                <tr>
+                                                    <td>
+                                                        {{ order.id }}
+                                                    </td>
+                                                    
+                                                    <td>
+                                                        {{ order.creationDate | date('d-m-Y') }}
+                                                    </td>
+                                                    
+                                                    <td>
+                                                        <a href="{{ path('client_show_order', { 'id': entity.id }) }}" class="btn btn-sm blue">Detalle <i class="fa fa-search-plus"></i></a>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                        
+                                        
+                                    <h3 style="margin-top: 30px;">Carritos de compra</h3>
+                                    
+                                    <div class="table-responsive">
+                                    <table class="datatable table table-bordered table-striped">
+                                        <thead>
+                                            <th>
+                                                Id
+                                            </th>
+                                            
+                                            <th style="width: 17%;">
+                                                Fecha
+                                            </th>
+                                            
+                                            <th>
+                                                Productos
+                                            </th>
+                                            
+                                            <th>
+                                                Total
+                                            </th>
+                                        </thead>
+                                        
+                                        <tbody>
+                                            {% for order in entity.orderClients %}
+                                                {% set total = 0 %}
+                                                <tr>
+                                                    <td>
+                                                        {{ order.id }}
+                                                    </td>
+                                                    
+                                                    <td>
+                                                        {{ order.creationDate | date('d-m-Y') }}
+                                                    </td>
+                                                    
+                                                    <td>
+                                                        <table class="table table-bordered">
+                                                             <thead>
+                                                                <th>
+                                                                    Imagen
+                                                                </th>
+                                                                <th>
+                                                                    Nombre
+                                                                </th>
+                                                                <th>
+                                                                    Cantidad
+                                                                </th>
+                                                                <!--
+                                                                <th>
+                                                                    Precio producto
+                                                                </th>
+                                                                -->
+                                                                <th>
+                                                                    Total
+                                                                </th>
+                                                            </thead>
+                                                            {% for orderProduct in order.products %}
+                                                                
+                                                                <tr>
+                                                                    <td>
+                                                                        <img style="width: auto; height: 40px;" src="{{ asset('web/uploads/') ~ orderProduct.product.image }}" alt="" />
+                                                                    </td>
+                                                                    
+                                                                    <td>
+                                                                        {{ orderProduct.product.name }}
+                                                                    </td>
+                                                                    
+                                                                    <td>
+                                                                        {{ orderProduct.count }}
+                                                                    </td>
+                                                                    <!-- 
+                                                                    <td>
+                                                                        €{{ orderProduct.product.price }}
+                                                                    </td>
+                                                                    -->
+                                                                    <td>
+                                                                        €{{ orderProduct.count * orderProduct.product.price }}
+                                                                        {% set total = total + orderProduct.count * orderProduct.product.price %}
+                                                                    </td>
+                                                                </tr>
+                                                            {% endfor %}
+                                                        </table>
+                                                    </td>
+                                                    
+                                                    <td>
+                                                        €{{ total }}
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                   
+                                    <h3 style="margin-top: 30px;">Productos comprados</h3>
+                                    
+                                    <div class="table-responsive">
+                                        <table class="datatable table table-bordered">
+                                            <thead>
+                                                <th>
+                                                    Foto
+                                                </th>
+
+                                                <th>
+                                                    Nombre
+                                                </th>
+
+                                                <th>
+                                                    Fecha
+                                                </th>
+                                            </thead>
+
+                                            <tbody>
+                                                {% for orderClient in entity.orderClients %}
+                                                    {% for orderProduct in orderClient.products %}
+                                                        <tr>
+                                                            <td>
+                                                                <img style="width: auto; height: 40px;" src="{{ asset('web/uploads/') ~ orderProduct.product.image }}"/>
+                                                            </td>
+
+                                                            <td>
+                                                                {{ orderProduct.product.name }}
+                                                            </td>
+
+                                                            <td>
+                                                                {{ orderClient.creationDate | date('d-m-Y') }}
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                                
+                                    
+                                    <!--/span-->
+                                </div>
+                                                
+                                <div class="col-md-5">
+                                    
+                                    
+                                                
+                                    
+                                    <!--/span-->
+                                </div>
+                                                
+                                
+                                                
+                                
+                            </div>
+                                                
+                            <div class="clearfix"></div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-offset-6 col-md-9 record_actions">
+                                                <table>
+                                                    <tr>
+                                                        <th><a href="{{ path('client_edit', { 'id': entity.id }) }}" class="btn btn-sm yellow" style="margin-right: 5px">
+                                                                Editar <i class="fa fa-edit"></i> </a></th>
+                                                        <th hidden="hidden">
+                                                            {{ form(delete_form, {'attr': {'id': 'delete_form' }}) }}
+                                                        </th>
+                                                        
+                                                        <th><a href="{{ path('client') }}" class="btn btn-sm default" style="margin-left: 5px">
+                                                                Regresar  </a></th>
+                                                    </tr>
+
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END FORM-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- END PAGE CONTENT-->
+
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js') }}"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="{{ asset('web/bundles/metronic/admin/pages/scripts/table-managed.js') }}"></script>
+    
+    <script>
+        jQuery(document).ready(function() {
+            TableManaged.init();
+        });
+    </script>
+{% endblock %}
+
+
