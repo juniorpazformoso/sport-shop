@@ -1,0 +1,164 @@
+{% extends '::base_metronic_struct.html.twig' %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/bootstrap-summernote/summernote.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css')}}"/>
+    
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/bootstrap-select/bootstrap-select.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/select2/select2.css')}}"/>
+    <link rel="st" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/jquery-multi-select/css/multi-select.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/bootstrap-toastr/toastr.css')}}"/>
+    <!-- END PAGE LEVEL STYLES -->
+{% endblock %}
+
+{% block rootmenusbanners %}
+    class="start active open"
+{% endblock %}
+
+{% block rootmenusbannersaux %}
+    <span class="selected"></span>
+{% endblock %}
+
+{% block render %}
+
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <!-- BEGIN PAGE HEADER-->
+            <h3 class="page-title">
+                Banners
+                <small>Modificar Banner</small>
+            </h3>
+            <div class="page-bar">
+                <ul class="page-breadcrumb">
+                    <li>
+                        <i class="fa fa-home"></i>
+                        <a href="{{ path('service_backend_admin') }}">Inicio</a>
+                        <i class="fa fa-angle-right"></i>
+                    </li>
+                    <li>
+                        <a href="{{ path('banner') }}">Banners</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- END PAGE HEADER-->
+            <!-- BEGIN PAGE CONTENT-->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tabbable tabbable-custom boxless tabbable-reversed">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab_0">
+                                <div class="portlet light bg-inverse">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="icon-equalizer font-red-sunglo"></i>
+                                            <span class="caption-subject font-red-sunglo bold uppercase">Banners</span>
+                                            <span class="caption-helper"></span>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body form">
+                                        <!-- BEGIN FORM-->
+                                        {#<form action="{{ path('admin_news_create') }}"
+                                              method="post" {{ form_enctype(form) }} class="form-horizontal">#}
+                                        {{ form_start(form, {'attr': {'class': 'form-horizontal','id':'form_sample_1', novalidate : 'novalidate' }}) }}
+                                        
+                                        <div class="form-body">
+                                                <div class="form-group">
+                                                    <label class="col-md-2 control-label">Foto<span class="required"></span></label>
+                                                    <div class="col-md-10">
+                                                        <div class="fileinput fileinput-exists" data-provides="fileinput">
+                                                            <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
+                                                                 <img src="{{ asset('web/uploads/') ~ entity.image }}" alt=""/>
+                                                            </div>
+                                                            <div>
+                                                                <span class="btn default btn-file">
+                                                                    <span class="fileinput-new">
+                                                                        Seleccionar ...
+                                                                    </span>
+                                                                    <span class="fileinput-exists">
+                                                                    Cambiar </span>
+                                                                    {{ form_widget(form.pictureFile) }}
+                                                                    {{ form_errors(form.pictureFile) }}
+                                                                </span>                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                                
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">Url<span class="required"> *</span></label>
+                                                <div class="col-md-10">
+                                                    {{ form_widget(form.url, { 'attr': {
+                                                    'class' : 'form-control tags',
+                                                    } }) }}
+                                                    {{ form_errors(form.url) }}
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">Estado<span class="required"> *</span></label>
+                                                <div class="col-md-10">
+                                                    {{ form_widget(form.status, { 'attr': {
+                                                    'class' : 'form-control tags',
+                                                    } }) }}
+                                                    {{ form_errors(form.status) }}
+                                                </div>
+                                            </div>
+                                            
+                                            
+                                        </div>
+                                            
+                                        <div class="form-actions">
+                                            <div class="row">
+                                                <div class="col-md-offset-2 col-md-4">
+                                                    {{ form_widget(form.submit, { 'attr': {
+                                                    'class' : 'btn green',
+                                                    'label' : 'Modificar'
+                                                    } }) }}
+                                                    <a href="{{ path('banner') }}"
+                                                       class="btn default">Cancelar</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {{ form_errors(form) }}
+                                    {{ form_end(form) }}
+                                    {#</form>#}
+                                    <!-- END FORM-->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- END PAGE CONTENT-->
+        </div>
+
+    </div>
+    <!-- END CONTENT -->
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="{{ asset('web/bundles/metronic/global/plugins/bootstrap-summernote/summernote.min.js')}}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/bootstrap-select/bootstrap-select.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/select2/select2.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/jquery-multi-select/js/jquery.multi-select.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
+
+    <script src="{{ asset('web/bundles/metronic/admin/pages/scripts/components-editors.js')}}"></script>
+    <script src="{{ asset('web/bundles/metronic/admin/pages/scripts/components-dropdowns.js')}}"></script>
+    <script src="{{ asset('web/bundles/metronic/admin/pages/scripts/form-validation.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/bootstrap-toastr/toastr.min.js')}}"></script>
+    <script src="{{ asset('web/bundles/admin/validations/banner.js')}}"></script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+
+{% endblock %}
