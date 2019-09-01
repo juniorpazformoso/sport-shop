@@ -1,0 +1,338 @@
+{% extends '::base_metronic_struct.html.twig' %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/bootstrap-summernote/summernote.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css')}}"/>
+    <link href="{{ asset('web/bundles/metronic/global/plugins/jquery-file-upload/css/jquery.fileupload.css') }}" rel="stylesheet"/>
+    
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/jquery-multi-select/css/multi-select.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/bootstrap-toastr/toastr.css')}}"/>
+    
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/jquery-tags-input/jquery.tagsinput.css')}}"/>
+    
+    <style>
+        #gruponivcph_servicebundle_product_tags_tagsinput{
+            width: 100% !important;
+        }
+    </style>
+    <!-- END PAGE LEVEL STYLES -->
+{% endblock %}
+
+
+
+{% block rootmenusend %}
+    class="start active open"
+{% endblock %}
+
+{% block rootmenusendaux %}
+    <span class="selected"></span>
+{% endblock %}
+
+{% block rootmenusendarrow %}
+    open
+{% endblock %}
+
+{% block rootmenutransport %} class="active" {% endblock %}
+
+
+{% block render %}
+
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <!-- BEGIN PAGE HEADER-->
+            <h3 class="page-title">
+                Transportista
+                <small>Modificar</small>
+            </h3>
+            <div class="page-bar">
+                <ul class="page-breadcrumb">
+                    <li>
+                        <i class="fa fa-home"></i>
+                        <a href="{{ path('service_backend_admin') }}">Inicio</a>
+                        <i class="fa fa-angle-right"></i>
+                    </li>
+                    <li>
+                        <a href="{{ path('carrier') }}">Transportista</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- END PAGE HEADER-->
+            <!-- BEGIN PAGE CONTENT-->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tabbable tabbable-custom boxless tabbable-reversed">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab_0">
+                                <div class="portlet light bg-inverse">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="icon-equalizer font-red-sunglo"></i>
+                                            <span class="caption-subject font-red-sunglo bold uppercase">Transportista</span>
+                                            <span class="caption-helper"></span>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body form">
+                                        
+                                        <!-- BEGIN FORM-->
+                                        
+                                        {{ form_start(form, {'attr': {'class': 'form-horizontal','id':'form_sample_1', novalidate : 'novalidate' }}) }}
+                                        
+                                        <div class="form-body">
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <div class="tabbable tabs-reversed">
+                                                        <ul class="nav nav-tabs">
+                                                            <li class="active">
+                                                                <a href="#tab_6_1" data-toggle="tab" style="vertical-align: middle; ">
+                                                                    Parámetros generales
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#tab_6_2" data-toggle="tab">
+                                                                    Lugar y gastos de envío
+                                                                </a>
+                                                            </li>
+                                                            
+                                                            <li>
+                                                                <a href="#tab_6_3" data-toggle="tab">
+                                                                    Tamaño y peso
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                        <div class="tab-content">
+                                                            <div class="tab-pane active col-md-10" id="tab_6_1">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">Nombre del transportista<span class="required"> *</span></label>
+                                                                    <div class="col-md-9">
+                                                                        {{ form_widget(form.name, { 'attr': {
+                                                                        'class' : 'form-control tags',
+                                                                        } }) }}
+                                                                        {{ form_errors(form.name) }}
+                                                                    </div>
+                                                                </div>
+                                                                    
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">Tiempo de tránsito<span class="required"> *</span></label>
+                                                                    <div class="col-md-9">
+                                                                        {{ form_widget(form.transitTime, { 'attr': {
+                                                                        'class' : 'form-control tags',
+                                                                        'data-placeholder' : 'Seleccionar ...',
+                                                                        } }) }}
+                                                                        {{ form_errors(form.transitTime) }}
+                                                                    </div>
+                                                                </div>
+                                                                    
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">Grado de velocidad<span class="required"> *</span></label>
+                                                                    <div class="col-md-9">
+                                                                        {{ form_widget(form.speedRating, { 'attr': {
+                                                                        'class' : 'form-control tags',
+                                                                        'data-placeholder' : 'Seleccionar ...',
+                                                                        } }) }}
+                                                                        {{ form_errors(form.speedRating) }}
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">Logo<span class="required"> *</span></label>
+                                                                    <div class="col-md-9">
+                                                                        <div class="fileinput fileinput-exists" data-provides="fileinput">
+                                                                            <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
+                                                                                <img src="{{ asset('web/uploads/') ~ entity.logo }}"/>
+                                                                                     
+                                                                            </div>
+                                                                            <div>
+                                                                                <span class="btn default btn-file">
+                                                                                    <span class="fileinput-new">
+                                                                                        Seleccionar ...
+                                                                                    </span>
+                                                                                    <span class="fileinput-exists">
+                                                                                    Cambiar </span>
+                                                                                    {{ form_widget(form.logoFile) }}
+                                                                                    {{ form_errors(form.logoFile) }}
+                                                                                </span>
+
+                                                                                <a id="deletePrincipal" name="deletePrincipal" href="#" class="btn red fileinput-exists" data-dismiss="fileinput">
+                                                                                    Eliminar </a>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                    
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">Url de seguimiento<span class="required"> *</span></label>
+                                                                    <div class="col-md-9">
+                                                                        {{ form_widget(form.urlTracking, { 'attr': {
+                                                                        'class' : 'form-control tags',
+                                                                        'data-placeholder' : 'Seleccionar ...',
+                                                                        } }) }}
+                                                                        {{ form_errors(form.urlTracking) }}
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                            <div class="tab-pane fade col-md-10" id="tab_6_2">
+                                                                
+                                                                <div class="form-group" id="show_accordion">
+                                                                    <label class="control-label col-md-3">Envío gratis</label>
+                                                                    <div class="col-md-9">
+                                                                        {{ form_widget(form.freeShipping, { 'attr': {
+                                                                            'class' : 'make-switch',
+                                                                            'data-size' : 'normal'
+                                                                        } }) }}
+                                                                    </div>
+                                                                </div>
+                                                                    
+                                                                <div class="form-group" id="show_accordion">
+                                                                    <label class="control-label col-md-3">Facturación</label>
+                                                                    <div class="col-md-9">
+                                                                        {{ form_widget(form.billing, { 'attr': {
+                                                                            'class' : 'form-control',
+                                                                            'data-size' : 'normal'
+                                                                        } }) }}
+                                                                    </div>
+                                                                </div>
+                                                                    
+                                                                <div class="form-group" id="show_accordion">
+                                                                    <label class="control-label col-md-3">Impuestos país</label>
+                                                                    <div class="col-md-9">
+                                                                        {{ form_widget(form.taxCountry, { 'attr': {
+                                                                            'class' : 'form-control',
+                                                                            'data-size' : 'normal'
+                                                                        } }) }}
+                                                                    </div>
+                                                                </div>
+                                                                    
+                                                                <div class="form-group" id="show_accordion">
+                                                                    <label class="control-label col-md-3">Impuesto zona</label>
+                                                                    <div class="col-md-9">
+                                                                        {{ form_widget(form.taxZone, { 'attr': {
+                                                                            'class' : 'form-control',
+                                                                            'data-size' : 'normal'
+                                                                        } }) }}
+                                                                    </div>
+                                                                </div>
+                                                                    
+                                                                <h3 style="color:red;">Falta la definición de precios por zona en rangos</h3>
+                                                                
+                                                                    
+                                                            </div>
+                                                            <div class="tab-pane fade col-md-10" id="tab_6_3">
+                                                                
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">Anchura máxima del paquete ({{ localUnit.dimensionUnit }})<span class="required"> *</span></label>
+                                                                    <div class="col-md-9">
+                                                                        {{ form_widget(form.maximumPackageWidth, { 'attr': {
+                                                                        'class' : 'form-control tags',
+                                                                        'data-placeholder' : 'Seleccionar ...',
+                                                                        } }) }}
+                                                                        {{ form_errors(form.maximumPackageWidth) }}
+                                                                    </div>
+                                                                </div>
+                                                                    
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">Altura máxima del paquete ({{ localUnit.dimensionUnit }})<span class="required"> *</span></label>
+                                                                    <div class="col-md-9">
+                                                                        {{ form_widget(form.maximumPackageHeight, { 'attr': {
+                                                                        'class' : 'form-control tags',
+                                                                        'data-placeholder' : 'Seleccionar ...',
+                                                                        } }) }}
+                                                                        {{ form_errors(form.maximumPackageHeight) }}
+                                                                    </div>
+                                                                </div>
+                                                                    
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">Profundidad máxima del paquete ({{ localUnit.dimensionUnit }})<span class="required"> *</span></label>
+                                                                    <div class="col-md-9">
+                                                                        {{ form_widget(form.maximumDepthPackage, { 'attr': {
+                                                                        'class' : 'form-control tags',
+                                                                        'data-placeholder' : 'Seleccionar ...',
+                                                                        } }) }}
+                                                                        {{ form_errors(form.maximumDepthPackage) }}
+                                                                    </div>
+                                                                </div>
+                                                                    
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">Peso máximo del paquete ({{ localUnit.weightUnit }})<span class="required"> *</span></label>
+                                                                    <div class="col-md-9">
+                                                                        {{ form_widget(form.maximumPackageWeight, { 'attr': {
+                                                                        'class' : 'form-control tags',
+                                                                        'data-placeholder' : 'Seleccionar ...',
+                                                                        } }) }}
+                                                                        {{ form_errors(form.maximumPackageWeight) }}
+                                                                    </div>
+                                                                </div>
+                                                               
+                                                            </div>
+                                                                                
+                                                    
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        </div>
+                                        </div>
+                                        <div class="form-actions">
+                                            <div class="row">
+                                                <div class="col-md-offset-3 col-md-4">
+                                                    {{ form_widget(form.submit, { 'attr': {
+                                                    'class' : 'btn green',
+                                                    'label' : 'Crear'
+                                                    } }) }}
+                                                    <a href="{{ path('carrier') }}"
+                                                       class="btn default">Cancelar</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        {{ form_errors(form) }}
+                                        {{ form_end(form) }}
+                                        {#</form>#}
+                                        <!-- END FORM-->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- END PAGE CONTENT-->
+        </div>
+
+    </div>
+                                        
+    
+    <!-- END CONTENT -->
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="{{ asset('web/bundles/metronic/global/plugins/bootstrap-summernote/summernote.min.js')}}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/bootstrap-select/bootstrap-select.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/select2/select2.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/jquery-multi-select/js/jquery.multi-select.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js')}}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/bootstrap-toastr/toastr.css')}}"/>
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/bootstrap-toastr/toastr.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/jquery-tags-input/jquery.tagsinput.min.js')}}"></script>
+    <script src="{{ asset('web/bundles/admin/validations/product.js')}}"></script>
+    
+    <!-- END PAGE LEVEL SCRIPTS -->
+
+    <script>
+        jQuery(document).ready(function () {
+            
+            
+            
+        });
+    </script>
+
+{% endblock %}
