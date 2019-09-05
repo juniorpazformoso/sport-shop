@@ -1,0 +1,137 @@
+{% extends '::base_metronic_struct.html.twig' %}
+
+
+{% block rootmenustechnoly %}
+    class="start active open"
+{% endblock %}
+
+{% block menustechnolysaux %}
+    <span class="selected"></span>
+{% endblock %}
+
+
+{% block render %}
+
+    <div class="page-content">
+    <!-- BEGIN PAGE HEADER-->
+    <h3 class="page-title">
+        Detalles <small>{{ entity.title }}</small>
+    </h3>
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a href="{{ path('service_backend_admin') }}">Inicio</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a href="{{ path('snippet') }}">Páginas</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                {{ entity.title }}
+            </li>
+        </ul>
+    </div>
+    <!-- END PAGE HEADER-->
+    <div class="clearfix">
+    </div>
+
+    <!-- BEGIN PAGE CONTENT-->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tabbable tabbable-custom boxless tabbable-reversed">
+                <div class="tab-content">
+                    <div class="portlet-body form">
+                        <!-- BEGIN FORM-->
+                        <div class="form-horizontal" role="form">
+                            <div class="form-body">
+                                <h3 class="form-section">Detalles - {{ entity.title }}</h3>
+                                <div class="row">
+                                    
+                                                
+                                    
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3"><strong>Título </strong></label>
+                                            <div class="col-md-9">
+                                                <p class="control-label" style="text-align: left">
+                                                    {{ entity.title }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3"><strong>Contenido </strong></label>
+                                            <div class="col-md-9">
+                                                <div class="control-label well" style="text-align: left">
+                                                    {% autoescape false %}
+                                                        {{ entity.content }}
+                                                    {% endautoescape %}
+                                                    
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                                
+                                
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-offset-6 col-md-9 record_actions">
+                                                <table>
+                                                    <tr>
+                                                        <th><a href="{{ path('snippet_edit', { 'id': entity.id }) }}" class="btn btn-sm yellow" style="margin-right: 5px">
+                                                                Editar <i class="fa fa-edit"></i> </a></th>
+                                                        <th hidden="hidden">
+                                                            {{ form(delete_form, {'attr': {'id': 'delete_form' }}) }}
+                                                        </th>
+                                                        
+                                                        <th><a href="{{ path('snippet') }}" class="btn btn-sm default" style="margin-left: 5px">
+                                                                Regresar  </a></th>
+                                                    </tr>
+
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END FORM-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- END PAGE CONTENT-->
+
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+
+    <script language="JavaScript">
+        function deleteConfirmation(){
+            var formulario = document.getElementById('delete_form');
+            formulario.submit();
+        }
+    </script>
+{% endblock %}
+
+
