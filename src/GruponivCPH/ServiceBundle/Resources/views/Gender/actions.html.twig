@@ -1,0 +1,14 @@
+<div class="actions btn-set">
+    <table>
+        <tr>
+            <th><a href="{{ path('gender_edit', { 'id': entity_id }) }}" class="btn btn-sm yellow" data-toggle="modal">Editar <i class="fa fa-pencil"></i></a></th>
+            <th hidden="hidden">
+                {{ form(delete_form, {'attr': {'id': 'delete_form_' ~ entity_id }}) }}
+            </th>
+            <th>
+                {% set form_name = 'delete_form_' ~ entity_id %}
+                <a class="btn btn-sm red" data-toggle="modal" href="#static{{ entity_id }}"> Eliminar </a>
+            </th>
+        </tr>
+    </table>
+</div>
