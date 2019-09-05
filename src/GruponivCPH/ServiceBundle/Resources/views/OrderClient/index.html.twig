@@ -1,0 +1,290 @@
+{% extends '::base_metronic_struct.html.twig' %}
+
+{% block stylesheet %}
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/global/filtertable/filtertable.css') }}"/>
+    <!-- END PAGE LEVEL STYLES -->
+{% endblock %}
+
+{% block rootmenuorderclients %}
+    class="start active open"
+{% endblock %}
+
+{% block rootmenuorderclientsaux %}
+    <span class="selected"></span>
+{% endblock %}
+
+
+{% block render %}
+
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
+        <h3 class="page-title">
+            Inicio <small>Pedidos</small>
+        </h3>
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="{{ path('service_backend_admin') }}">Inicio</a>
+                    <i class="fa fa-angle-right"></i>
+                </li>
+                <li>
+                    <a href="#">Pedidos</a>
+                </li>
+            </ul>
+        </div>
+        <!-- END PAGE HEADER-->
+        <div class="clearfix">
+        </div>
+
+        <!-- BEGIN PAGE CONTENT-->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet box blue-chambray">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-sitemap"></i>Pedidos
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        {% for flashMessage in app.session.flashbag.get('notice') %}
+                            <div class="alert alert-success box">
+                                {{ flashMessage }}
+                            </div>
+                            <div class="clearfix"></div>
+                        {% endfor %}
+                        <div class="table-toolbar">
+                            <div class="row">
+                                <div class="">
+                                    <div class="btn-group">
+                                        <div class="col-xs-12">
+                                            <a id="deleteAll" href="javascript:void(0);" class="btn red"  style="margin-right: 10px;">
+                                                Eliminar <i class="fa fa-trash-o"></i>
+                                            </a>
+                                            
+                                            <a  href="{{ path('orderclient_export') }}" class="btn blue" style="margin-right: 10px;">
+                                                Exportar  <i class="fa fa-openid"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <form action="{{ path('orderclients_delete_all') }}" method="POST" id="orderClientsExport">
+                            <table class="datatable table table-striped table-bordered table-hover table-orderclients filter">
+                                <thead>
+                                <tr>
+                                    <th>
+
+                                    </th>
+
+                                    <th>
+                                       <span class="sorted">Id</span>
+                                    </th>
+
+                                    <th>
+                                       <span class="sorted">Cliente</span>
+                                    </th>
+
+                                    <th>
+                                        <span class="sorted sort-date" id="createSort">Fecha</span>                                     
+                                    </th>
+
+                                    <th>
+                                        <span class="sorted">Método de pago</span>
+                                    </th>
+
+                                    <th>
+                                        <span class="sorted">Estado</span>
+                                    </th>
+
+                                    <th>
+                                        <span class="sorted number">Total</span>                                        
+                                    </th>
+
+                                    <th style="text-align: center">
+                                        Acciones
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                
+                                {% for entity in entities %}
+                                    <tr class="odd gradeX">
+
+                                        <td>
+                                            <input type="checkbox" value="{{ entity.id }}" name="orderClients[]"/>
+                                        </td>
+
+                                        <td>
+                                            {{ entity.identifier }}
+                                            <span style="display: none;">{{ entity.txnid }}</span>
+                                        </td>
+
+                                        <td>
+                                            {{ entity.client }}
+                                        </td>
+
+                                        <td data-date="{{ entity.creationDate | date("Y-m-d H:i:s") }}">
+                                            {{ entity.creationDate | date('d-m-Y') }}
+                                        </td>
+
+                                        <td>
+                                            {{ entity.paymentMethod }}
+                                        </td>
+
+
+                                        {% if entity.status == "Preparación en curso" %}
+                                            {% set classColor = "state-preparation-order" %}
+                                        {% elseif entity.status == "Enviado" %}
+                                            {% set classColor = "state-send-order" %}
+                                        {% elseif entity.status == "Entregado" %}
+                                            {% set classColor = "state-send-deliver" %}
+                                        {% elseif entity.status == "Cancelado" %}
+                                            {% set classColor = "state-send-cancel" %}
+                                        {% elseif entity.status == "Pendiente" %}
+                                            {% set classColor = "state-pending" %}
+                                        {% endif %}
+                                        
+                                        <td class="state {{ classColor }}">                                            
+                                            {{ entity.status }}
+                                        </td>
+
+                                        <td data-number="{{ entity.total }}"> 
+                                            €{{ entity.total }}
+                                        </td>
+
+                                        <td style="width: 26%">
+                                            <a href="{{ path('orderclient_show', { 'id': entity.id }) }}" class="btn btn-sm blue">Detalle <i class="fa fa-search-plus"></i></a>
+                                            <a href="{{ path('orderclient_edit', { 'id': entity.id }) }}" class="btn btn-sm yellow">Estado <i class="fa fa-pencil"></i></a>
+                                            <a class="btn btn-sm red" data-toggle="modal" href="#static{{ entity.id }}"> Eliminar </a>
+                                            
+                                            <div id="static{{ entity.id }}" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                                            <h4 class="modal-title">Confirmación</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>
+                                                            <h4>¿Está seguro que desea eliminar el pedido {{ entity.id }}?</h4>
+                                                            </p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" data-dismiss="modal" class="btn default">Cancelar</button>
+                                                            <button type="button" data-dismiss="modal" class="btn red" onclick="deleteConfirmation('delete_form_{{ entity.id }}')">Eliminar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </form>
+                                
+                        {% set cont = 0 %}
+                        {% for entity in entities %}
+                            {{ aaData[cont]['action'] | raw }}
+                            
+                            {% set cont = cont + 1%}
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- END EXAMPLE TABLE PORTLET-->
+            </div>
+        </div>
+        <!-- END PAGE CONTENT-->
+
+    </div>
+
+
+{% endblock %}
+
+{% block javascript %}
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js') }}"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="{{ asset('web/bundles/metronic/admin/pages/scripts/table-managed.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('web/bundles/global/filtertable/filtertable.js') }}"></script>
+    
+    <script>
+        
+        
+        
+        $("#deleteAll").click(function () {
+            $("#orderClientsExport").submit()
+        })
+        
+        function deleteConfirmation(name){
+            
+            
+            var formulario = document.getElementById(name);
+            formulario.submit();
+        }
+
+        
+        
+        $(function (){
+                
+                var table = $('.datatable');
+
+        // begin first table
+        table.dataTable({
+            "ordering": false,
+            "lengthMenu": [
+                [15, 20, -1],
+                [15, 20, "Todo"] // change per page values here
+            ],
+            // set the initial value
+            "pageLength": 15,
+            "pagingType": "bootstrap_full_number",
+            "language": {
+                "sProcessing": "Procesando...",
+                "lengthMenu": "  _MENU_ registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
+                "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix": "",
+                "sSearch": "Buscar: ",
+                "sUrl": "",
+                "sInfoThousands": ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast": "Último",
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "oAria": {
+                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+
+                }
+            }
+
+
+        });
+    })
+
+        
+        $(".table-orderclients").filtertable()
+        $("#createSort").trigger("click")
+        
+    </script>
+{% endblock %}
+

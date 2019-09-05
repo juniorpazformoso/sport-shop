@@ -1,0 +1,250 @@
+{% extends '::base_metronic_struct.html.twig' %}
+
+{% block stylesheet %}
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css') }}"/>
+    <!-- END PAGE LEVEL STYLES -->
+    
+    <style>
+        #DataTables_Table_0_filter{
+            display: none;
+        }
+    </style>
+{% endblock %}
+
+{% block rootmenuorderclients %}
+    class="start active open"
+{% endblock %}
+
+{% block rootmenuorderclientsaux %}
+    <span class="selected"></span>
+{% endblock %}
+
+
+{% block render %}
+
+    <div class="page-content">
+    <!-- BEGIN PAGE HEADER-->
+    <h3 class="page-title">
+        Detalles <small>{{ entity.identifier }}</small>
+    </h3>
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a href="{{ path('service_backend_admin') }}">Inicio</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a href="{{ path('client') }}">Pedido</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                {{ entity.identifier }}
+            </li>
+        </ul>
+    </div>
+    <!-- END PAGE HEADER-->
+    <div class="clearfix">
+    </div>
+
+    <!-- BEGIN PAGE CONTENT-->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tabbable tabbable-custom boxless tabbable-reversed">
+                <div class="tab-content">
+                    <div class="portlet-body form">
+                        <!-- BEGIN FORM-->
+                        <div class="form-horizontal" role="form">
+                            <div class="form-body">
+                                <h3 class="form-section">Detalles - {{ entity.identifier }} </h3>
+                                <div class="col-md-12">
+                                    <h3>Datos del cliente</h3>
+                                    
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2"><strong>Nombre y Apellidos </strong></label>
+                                            <div class="col-md-8">
+                                                <p class="control-label" style="text-align: left">
+                                                    {{ entity.client.name }} {{ entity.client.lastName }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                
+                                                
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2"><strong>Sexo </strong></label>
+                                            <div class="col-md-8">
+                                                <p class="control-label" style="text-align: left">
+                                                    {{ entity.client.gender.sex }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2"><strong>Correo </strong></label>
+                                            <div class="col-md-8">
+                                                <p class="control-label" style="text-align: left">
+                                                    {{ entity.client.email }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                                
+                                                
+                                        
+                                    <div class="clearfix"></div>
+                                    
+                                    <h3>Datos del pedido</h3>
+                                    
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2"><strong>Fecha </strong></label>
+                                            <div class="col-md-8">
+                                                <p class="control-label" style="text-align: left">
+                                                    {{ entity.creationDate | date('d-m-Y') }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2"><strong>Método de pago </strong></label>
+                                            <div class="col-md-8">
+                                                <p class="control-label" style="text-align: left">
+                                                    {{ entity.paymentMethod }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2"><strong>Estado</strong></label>
+                                            <div class="col-md-8">
+                                                <p class="control-label" style="text-align: left">
+                                                    {{ entity.status }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2"><strong>Total </strong></label>
+                                            <div class="col-md-8">
+                                                <p class="control-label" style="text-align: left">
+                                                    €{{ entity.total }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                
+                                    <h3 style="margin-top: 30px;">Productos comprados</h3>
+                                    
+                                    <div class="table-responsive">
+                                        <table class="datatable table table-bordered">
+                                            <thead>
+                                                <th>
+                                                    Foto
+                                                </th>
+
+                                                <th>
+                                                    Nombre
+                                                </th>
+
+                                            </thead>
+
+                                            <tbody>
+                                                
+                                                {% for orderProduct in entity.products %}
+                                                    <tr>
+                                                        <td>
+                                                            <img style="width: auto; height: 40px;" src="{{ asset('web/uploads/') ~ orderProduct.product.image }}"/>
+                                                        </td>
+
+                                                        <td>
+                                                            {{ orderProduct.product.name }}
+                                                        </td>
+
+                                                    </tr>
+                                                {% endfor %}
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                                
+                                    
+                                    <!--/span-->
+                                </div>
+                                                
+                                                
+                                
+                                                
+                                
+                            </div>
+                                                
+                            <div class="clearfix"></div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-9 record_actions">
+                                                <table>
+                                                    <tr>
+                                                        
+                                                        
+                                                        <th><a href="{{ path('orderclient') }}" class="btn btn-sm default" style="margin-left: 5px">
+                                                                Regresar  </a></th>
+                                                    </tr>
+
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END FORM-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- END PAGE CONTENT-->
+
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js') }}"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="{{ asset('web/bundles/metronic/admin/pages/scripts/table-managed.js') }}"></script>
+    
+    <script>
+        jQuery(document).ready(function() {
+            TableManaged.init();
+        });
+    </script>
+{% endblock %}
+
+

@@ -1,0 +1,15 @@
+<div class="actions btn-set">
+    <table>
+        <tr>
+            
+            
+            
+            <th hidden="hidden">
+                {{ form(delete_form, {'attr': {'id': 'delete_form_' ~ entity_id }}) }}
+            </th>
+            <th>
+                {% set form_name = 'delete_form_' ~ entity_id %}                
+            </th>
+        </tr>
+    </table>
+</div>
