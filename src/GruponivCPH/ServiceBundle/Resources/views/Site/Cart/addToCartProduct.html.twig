@@ -1,0 +1,182 @@
+
+<style>
+    .modal-dialog{
+        width: 75%;
+    }
+
+    .modal-dialog .btn{
+        background-color: #ebebeb !important;
+        color: gray;
+    }
+
+    .modal-dialog input[type="text"], .modal-dialog input[type="password"], 
+    .modal-dialog input[type="date"], .modal-dialog input[type="datetime"], .modal-dialog input[type="email"], .modal-dialog input[type="number"], 
+    .modal-dialog input[type="search"], .modal-dialog input[type="tel"], .modal-dialog input[type="time"], .modal-dialog input[type="url"], textarea{
+        background: white !important;
+    }
+
+    .modal-dialog .img-column-shop{
+        width: 9%;
+    }
+
+    .modal-dialog .shop-title{
+        font-size: 1.8em !important;
+    }
+
+
+    @media(max-width: 770px)
+    {
+        .modal-dialog .img-column-shop{
+            width: 80% !important;
+        }
+
+        .modal-dialog{
+            width: 96%;
+        }
+    }
+</style>
+
+
+<br><br><br>                                     
+<div class="carousel products  row" data-columns="4" data-navigation="true">
+    <div style="float: left;">
+        <article itemscope  class="product-image-cart item post small-6 medium-4 columns post-1634 product type-product status-publish has-post-thumbnail product_cat-linea-europea product_cat-linea-europa product_tag-101 product_tag-38-mm product_tag-europa product_tag-linea-europea product_tag-palas-europa product_tag-profesional shipping-taxable product-type-simple product-cat-linea-europea product-cat-linea-europa product-tag-2016 product-tag-38-mm product-tag-europa product-tag-linea-europea product-tag-palas-europa product-tag-profesional instock">
+            <figure>
+                <a href="{{ path('site_product_detail', {'id' : product.id }) }}">
+                    <div class="product-image">
+                        <img width="200" height="270"  src="{{ asset('web/uploads/') ~ product.imageHover }}"  class="attachment-shop_catalog size-shop_catalog"/>
+                    </div>
+                    <div class="product-image">
+                        <img width="200" height="270"  src="{{ asset('web/uploads/') ~ product.image }}" class="attachment-shop_catalog size-shop_catalog"/>
+                    </div>			
+                </a>
+            </figure>
+
+            <div class="post-title">
+                <aside class="post_categories">
+                    <!--
+                    {% for category in product.categories %}
+                        {% if product.categories | length == loop.index %}
+                            <a href="#" rel="tag">{{ category.title }}</a>
+                        {% else %}
+                            <a href="#" rel="tag">{{ category.title }}</a>, 
+                        {% endif %}
+                    {% endfor %}
+                    -->
+                    Palas Dabber
+                </aside>
+                <h3><a href="#">{{ product.name }}</a></h3>
+
+            </div>
+        </article><!-- end product -->
+    </div>
+
+    <div>
+        <h4 class="price-font">Precio: €{{ product.price }}</h4>
+
+        <div class="title description-font">Descripción</div>
+        {% autoescape false %}
+            {{ product.shortDescription }}
+        {% endautoescape %}
+    </div>
+
+
+</div>
+
+<div style="padding-left: 20px; padding-right: 20px;">
+    <div class="pull-left">
+        <h4>Total: <span>€ <span class="total-product-price">{{ shoppingcart.ammount }}</span></span></h4>
+        <h3>                    
+            Resumen Pedido
+
+        </h3>
+
+    </div>
+
+    <div class="pull-right">
+        <h3>
+            
+            <a href="{{ path('site_final_shop_cart') }}" class="shopnow">Comprar ahora</a>
+        </h3>
+    </div>
+
+
+    <div class="table-responsive">
+        <table class="shoppingcart-table table table-bordered">
+            <!--
+        <thead>
+            <tr>
+                <th style="width: 8%;">Foto</th>
+                <th style="width: 35%;">Nombre</th>
+                <th style="width: 5%;">Precio ($)</th>
+                <th style="width: 1%;">Cantidad</th>
+                
+            </tr>
+        </thead>
+            -->
+            <tbody>
+                {% for producto in shoppingcart.getProducts() %}
+                    <tr class="product-row-{{ producto.id }}">
+                        <td class="img-column-shop">
+                            <div class="carousel products  row" data-columns="4" data-navigation="true">
+
+
+
+
+                                <article itemscope  class="product-image-cart-table item post small-6 medium-4 columns post-1634 product type-product status-publish has-post-thumbnail product_cat-linea-europea product_cat-linea-europa product_tag-101 product_tag-38-mm product_tag-europa product_tag-linea-europea product_tag-palas-europa product_tag-profesional shipping-taxable product-type-simple product-cat-linea-europea product-cat-linea-europa product-tag-2016 product-tag-38-mm product-tag-europa product-tag-linea-europea product-tag-palas-europa product-tag-profesional instock">
+                                    <figure>
+                                        <a href="{{ path('site_product_detail', {'id' : producto.id }) }}">
+                                            <div class="product-image">
+                                                <img width="200" height="270"  src="{{ asset('web/uploads/') ~ producto.fotoHover }}"  class="attachment-shop_catalog size-shop_catalog"/>
+                                            </div>
+                                            <div class="product-image">
+                                                <img width="200" height="270"  src="{{ asset('web/uploads/') ~ producto.foto }}" class="attachment-shop_catalog size-shop_catalog"/>
+                                            </div>			
+                                        </a>
+
+                                    </figure>
+                                </article>
+
+                            </div>
+                        </td>
+                        <td style="vertical-align: middle; width: 35%;">
+                            <h3 class="shop-title">
+                                {{ producto.nombre }}
+                            </h3>
+                        </td>
+                        <td style="vertical-align: middle; width: 5%;">
+                            <h4>
+                                €<span id="visible-product-price-{{ producto.id }}">{{ producto.ammount }}</span>
+                            </h4>
+                        </td>
+                        <td  style="width: 1px; vertical-align: middle; width: 1%;">
+                            <span id="product-info-{{ producto.id }}" data-product-price="{{ producto.precio }}" data-product-id="{{ producto.id }}" data-quantity="{{ producto.count}}"></span>
+                            <div class="input-group input-group-sm" style="width: 130px;"> 
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default btn-number cart_quantity_down" data-type="minus" data-product-id="{{ producto.id }}"> 
+                                        <i class="fa fa-minus"></i> 
+                                    </button> 
+                                </span> 
+                                <input type="text" autocomplete="off" class="form-control input-number text-center" value="{{ producto.count}}" id="txtQuantity-{{ producto.id }}"> 
+                                <span class="input-group-btn"> 
+                                    <button type="button" class="btn btn-default btn-number cart_quantity_up" data-type="plus" data-product-id="{{ producto.id }}"> 
+                                        <i class="fa fa-plus"></i> 
+                                    </button> 
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <!--
+            <tfoot style="padding: 0; margin: 0;">
+                <tr style="padding: 0; margin: 0;">
+                    <td colspan="2">Total:</td>
+                    <td style="padding: 0; margin: 0;">{{ shoppingcart.ammount }}</td>
+                    <td style="padding: 0; margin: 0;">{{ shoppingcart.count }}</td>                    
+                </tr>
+            </tfoot>
+            -->
+        </table>    
+    </div>
+</div>

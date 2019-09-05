@@ -1,0 +1,120 @@
+{% extends '::base_frontend_struct.html.twig' %}
+
+
+{% block stylesheet %}
+    {{ parent() }}
+    
+	<style>
+	* {
+	  -webkit-box-sizing: border-box;
+	     -moz-box-sizing: border-box;
+		  box-sizing: border-box;
+	}
+
+	
+        
+        .item-1{
+            padding-top: 30px !important;            
+        }
+        
+        .item-2{
+            padding-top: 90px !important;
+        }
+        
+        .item-3{
+            padding-top: 70px !important;
+        }
+        
+
+	.item.thumbnail { position: relative; top: 10px !important; background:#cfcfcf }
+	.item.medium { position: relative; top: 50px !important; background: #A6E392}
+	.item.large { position: relative; top: 20px !important; background: #D092E3}
+	</style>
+    
+        <link rel='stylesheet' id='rs-plugin-settings-css'  href="{{ asset('/web/bundles/frontend/plugins/slider/css/settings.css-rev=4.3.3&ver=4.4.9.css') }}" type='text/css' media='all' />
+    <link rel='stylesheet' id='contact-form-7-css'  href="{{ asset('/web/bundles/frontend/plugins/slider/css/styles.css-ver=4.3.css') }}"  type='text/css' media='all' />
+{% endblock %}
+
+{% block render %}
+    
+    <div class="container">
+        <table class="shoppingcart-table table table-bordered">
+        <thead>
+            <tr>
+                <th style="width:15%;">Foto</th>
+                <th style="width:50%;">Nombre</th>
+                <th style="width:10%;">Precio ($)</th>
+                <th style="width:10%;">Cantidad</th>
+                <th style="width:15%;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for producto in shoppingcart.getProducts() %}
+                <tr>
+                    <td>
+                        <article itemscope  class="post small-6 medium-4 columns post-1634 product type-product status-publish has-post-thumbnail product_cat-linea-europea product_cat-linea-europa product_tag-101 product_tag-38-mm product_tag-europa product_tag-linea-europea product_tag-palas-europa product_tag-profesional shipping-taxable product-type-simple product-cat-linea-europea product-cat-linea-europa product-tag-2016 product-tag-38-mm product-tag-europa product-tag-linea-europea product-tag-palas-europa product-tag-profesional instock">
+                            <figure>
+                                    <a href="{{ path('site_product_detail', {'id' : producto.id }) }}">
+                                        <div class="product-image">
+                                            <img width="270" height="340"  src="{{ asset('web/uploads/') ~ producto.foto }}"  class="attachment-shop_catalog size-shop_catalog"/>
+                                        </div>
+                                        <div class="product-image">
+                                            <img width="270" height="340"  src="{{ asset('web/uploads/') ~ producto.foto }}" class="attachment-shop_catalog size-shop_catalog"/>
+                                        </div>			
+                                    </a>
+
+                            </figure>
+
+
+                        </article><!-- end product -->
+                    </td>
+                    <td>
+                        <h2>{{ producto.nombre }}</h2>
+                    </td>
+                    <td>
+                        {{ producto.ammount }}
+                    </td>
+                    <td>
+                        {{ producto.count }}
+                    </td>
+                    <td>
+                        <a href="#">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">Total:</td>
+                <td>{{ shoppingcart.ammount }}</td>
+                <td>{{ shoppingcart.count }}</td>
+                <td>
+                    {% if shoppingcart.count>0 %}
+                    <div class="add-cart">
+                        <h4>
+                            <a href="#">Comprar ahora</a>
+                        </h4>
+                    </div>
+                    {% endif %}
+                </td>
+            </tr>
+        </tfoot>
+    </table>    
+    </div>
+    
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+
+    
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/masonry.pkgd.min.js')}}"></script>
+    <script type='text/javascript' src="{{ asset('/web/bundles/frontend/plugins/slider/js/jquery.js' )}}"></script>
+    <script type='text/javascript' src="{{ asset('/web/bundles/frontend/plugins/slider/js/jquery.themepunch.plugins.min.js') }}"></script>
+    <script type='text/javascript' src="{{ asset('/web/bundles/frontend/plugins/slider/js/jquery.themepunch.revolution.min.js') }}"></script>
+    
+    <script>
+        
+            
+</script>
+{% endblock %}

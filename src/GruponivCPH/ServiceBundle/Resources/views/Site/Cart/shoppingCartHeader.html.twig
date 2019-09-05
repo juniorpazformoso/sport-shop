@@ -1,0 +1,45 @@
+<div id="shopping-cart-wrapper">
+    <div class="cart-tab visible">
+
+
+        <div class="cart">
+            <div class="col-md-12">
+                <h6 class="pull-left">Resumen pedido</h6>
+                <hr>
+            </div>
+
+            <div class="clearfix"></div>
+            <div class="cart-items" itemscope>
+                <ul style="list-style: none;">                        
+                    {% for producto in shoppingcart.getProducts() %}
+                        <li class="clearfix image-shop-container product-cart-list-{{ producto.id }}">
+                            <div class="pull-left">
+                                <img src="{{ asset('web/uploads/') ~ producto.foto }}" class="shop-image">
+                                <h4 class="title-prod" itemprop="name">{{ producto.nombre }}</h4>                                    
+                                <h5 class="prod-quati">{{ producto.count }}x</h5>
+                            </div>
+
+                            <div class="pull-right">                                    
+                                <h6 class="prod-price"><b>{{ producto.precio }}</b><span class="fa fa-euro"></span></h6>
+                                <a href="javascript:void(0);" class="deleteProductProduct" data-product-id="{{ producto.id }}">
+                                    <span class="fa fa-trash-o" style="font-size: 20px; position: relative; top: 10px; padding-right: 10px;">
+                                        
+                                    </span>
+                                </a>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+                
+                
+                <a href="{{ path('site_final_shop_cart') }}" class="btn btn-primary shopnow pull-right" style="position: relative; right: 20px;">Comprar ahora</a>
+                <div class="clearfix"></div>
+            </div>  
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+</div>
+<div class="clearfix"></div>
+    
