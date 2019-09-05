@@ -1,0 +1,56 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>EmailSender</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ entity.name }}</td>
+            </tr>
+            <tr>
+                <th>Sender</th>
+                <td>{{ entity.sender }}</td>
+            </tr>
+            <tr>
+                <th>Colorbase</th>
+                <td>{{ entity.colorBase }}</td>
+            </tr>
+            <tr>
+                <th>Colorbackground</th>
+                <td>{{ entity.colorBackground }}</td>
+            </tr>
+            <tr>
+                <th>Backgroundcolorbody</th>
+                <td>{{ entity.backgroundColorBody }}</td>
+            </tr>
+            <tr>
+                <th>Textcolorbody</th>
+                <td>{{ entity.textColorBody }}</td>
+            </tr>
+            <tr>
+                <th>Textpage</th>
+                <td>{{ entity.textPage }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('emailsender') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('emailsender_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

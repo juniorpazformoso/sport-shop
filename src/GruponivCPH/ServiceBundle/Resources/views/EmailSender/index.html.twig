@@ -1,0 +1,53 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>EmailSender list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Sender</th>
+                <th>Colorbase</th>
+                <th>Colorbackground</th>
+                <th>Backgroundcolorbody</th>
+                <th>Textcolorbody</th>
+                <th>Textpage</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('emailsender_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.name }}</td>
+                <td>{{ entity.sender }}</td>
+                <td>{{ entity.colorBase }}</td>
+                <td>{{ entity.colorBackground }}</td>
+                <td>{{ entity.backgroundColorBody }}</td>
+                <td>{{ entity.textColorBody }}</td>
+                <td>{{ entity.textPage }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('emailsender_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('emailsender_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('emailsender_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}
