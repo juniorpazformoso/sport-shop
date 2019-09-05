@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>LocalUnit</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Weightunit</th>
+                <td>{{ entity.weightUnit }}</td>
+            </tr>
+            <tr>
+                <th>Distanceunit</th>
+                <td>{{ entity.distanceUnit }}</td>
+            </tr>
+            <tr>
+                <th>Volumenunit</th>
+                <td>{{ entity.volumenUnit }}</td>
+            </tr>
+            <tr>
+                <th>Dimensionunit</th>
+                <td>{{ entity.dimensionUnit }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('localunit') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('localunit_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}
