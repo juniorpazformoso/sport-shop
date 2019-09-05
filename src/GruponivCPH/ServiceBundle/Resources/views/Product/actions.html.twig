@@ -1,0 +1,16 @@
+<div class="actions btn-set">
+    <table>
+        <tr>
+            <th><a title="Cargar Imagenes del producto" href="{{ path('product_images', {'id' : entity_id}) }}" class="btn btn-sm blue"><i class="fa fa-picture-o"></i></a></th>
+            <th><a title="Eliminar imagenes del producto" href="{{ path('product_remove_all', {'id' : entity_id }) }}" class="btn btn-sm purple"><i class="fa fa-image"></i></a></th>
+            <th><a title="Editar" href="{{ path('product_edit', { 'id': entity_id }) }}" class="btn btn-sm yellow" data-toggle="modal"><i class="fa fa-pencil"></i></a></th>
+            <th hidden="hidden">
+                {{ form(delete_form, {'attr': {'id': 'delete_form_' ~ entity_id }}) }}
+            </th>
+            <th>
+                {% set form_name = 'delete_form_' ~ entity_id %}
+                <a title="Eliminar" class="btn btn-sm red" data-toggle="modal" href="#static{{ entity_id }}"><i class="fa fa-trash-o"></i></a>
+            </th>
+        </tr>
+    </table>
+</div>

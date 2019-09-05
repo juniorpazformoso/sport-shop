@@ -1,0 +1,67 @@
+{% extends '::base_metronic_struct.html.twig' %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link href="{{ asset('web/bundles/global/jquery.filer/css/jquery.filer.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('web/bundles/global/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css') }}" rel="stylesheet" type="text/css" />
+    
+    <style>
+        .jFiler-item-trash-action{
+            display: none;
+        }
+    </style>
+    <!-- END PAGE LEVEL STYLES -->
+{% endblock %}
+
+
+{% block rootmenucatalog %}
+    class="start active open"
+{% endblock %}
+
+{% block rootmenucatalogoaux %}
+    <span class="selected"></span>
+{% endblock %}
+
+{% block rootmenucatalogoarrow %}
+    open
+{% endblock %}
+
+{% block rootmenuproduct %} class="active" {% endblock %}
+
+{% block render %}
+
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        
+        <div class="page-content">           
+            <h3 style="text-align: center;">La secuencia de fotos es organizada por orden alfabetico segun nombres de las fotos.</h3>
+            <br>
+            <div class="clearfix"></div>
+            <br><br>
+            <input type="file" name="files[]" id="filer_input2" multiple="multiple">
+        </div>
+        <div class="clearfix"></div>
+        
+        
+       
+
+    </div>
+    <!-- END CONTENT -->
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    
+    <script>
+        var upload = "{{ path('product_images_upload', {'idProduct' : product.id}) }}"
+        var removeUrl = "{{ path('product_delete_image') }}"
+    </script>
+    
+    <script src="{{ asset('web/bundles/global/jquery.filer/js/jquery.filer.js?v=1.0.5')}}" type="text/javascript"></script>
+    <script src="{{ asset('web/bundles/global/jquery.filer/js/custom.js?v=1.0.5')}}" type="text/javascript"></script>
+    
+    <!-- END PAGE LEVEL SCRIPTS -->
+
+{% endblock %}

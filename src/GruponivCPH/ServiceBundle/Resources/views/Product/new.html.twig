@@ -1,0 +1,386 @@
+{% extends '::base_metronic_struct.html.twig' %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/bootstrap-summernote/summernote.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css')}}"/>
+    <link href="{{ asset('web/bundles/metronic/global/plugins/jquery-file-upload/css/jquery.fileupload.css') }}" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/bootstrap-select/bootstrap-select.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/select2/select2.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/jquery-multi-select/css/multi-select.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/bootstrap-toastr/toastr.css')}}"/>    
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/jquery-tags-input/jquery.tagsinput.css')}}"/>
+    
+    <style>
+        #gruponivcph_servicebundle_product_tags_tagsinput{
+            width: 100% !important;
+        }
+    </style>
+    <!-- END PAGE LEVEL STYLES -->
+{% endblock %}
+
+
+{% block rootmenucatalog %}
+    class="start active open"
+{% endblock %}
+
+{% block rootmenucatalogoaux %}
+    <span class="selected"></span>
+{% endblock %}
+
+{% block rootmenucatalogoarrow %}
+    open
+{% endblock %}
+
+{% block rootmenuproduct %} class="active" {% endblock %}
+
+{% block render %}
+
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <!-- BEGIN PAGE HEADER-->
+            <h3 class="page-title">
+                Productos
+                <small>Nuevo</small>
+            </h3>
+            <div class="page-bar">
+                <ul class="page-breadcrumb">
+                    <li>
+                        <i class="fa fa-home"></i>
+                        <a href="{{ path('service_backend_admin') }}">Inicio</a>
+                        <i class="fa fa-angle-right"></i>
+                    </li>
+                    <li>
+                        <a href="{{ path('product') }}">Productos</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- END PAGE HEADER-->
+            <!-- BEGIN PAGE CONTENT-->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tabbable tabbable-custom boxless tabbable-reversed">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab_0">
+                                <div class="portlet light bg-inverse">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="icon-equalizer font-red-sunglo"></i>
+                                            <span class="caption-subject font-red-sunglo bold uppercase">Productos</span>
+                                            <span class="caption-helper"></span>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body form">
+                                        
+                                        <!-- BEGIN FORM-->
+                                        
+                                        {{ form_start(form, {'attr': {'class': 'form-horizontal','id':'form_sample_1', novalidate : 'novalidate' }}) }}
+                                        
+                                        <div class="form-body">
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <div class="tabbable tabs-reversed">
+                                                        <ul class="nav nav-tabs">
+                                                            <li class="active">
+                                                                <a href="#tab_6_1" data-toggle="tab" style="vertical-align: middle; ">
+                                                                    General
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#tab_6_2" data-toggle="tab">
+                                                                    Asociaciones
+                                                                </a>
+                                                            </li>
+                                                            
+                                                            <li>
+                                                                <a href="#tab_6_3" data-toggle="tab">
+                                                                    Imagenes efecto
+                                                                </a>
+                                                            </li>
+                                                            
+                                                            <li>
+                                                                <a href="#tab_6_4" data-toggle="tab">
+                                                                    Video Detalle
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                        <div class="tab-content">
+                                                            <div class="tab-pane active col-md-10" id="tab_6_1">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">Nombre<span class="required"> *</span></label>
+                                                                    <div class="col-md-9">
+                                                                        {{ form_widget(form.name, { 'attr': {
+                                                                        'class' : 'form-control tags',
+                                                                        } }) }}
+                                                                        {{ form_errors(form.name) }}
+                                                                    </div>
+                                                                </div>
+                                                                    
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">Descripción breve<span class="required"> *</span></label>
+                                                                    <div class="col-md-9">
+                                                                        {{ form_widget(form.shortDescription, { 'attr': {
+                                                                        'class' : 'form-control tags',
+                                                                        } }) }}
+                                                                        {{ form_errors(form.shortDescription) }}
+                                                                    </div>
+                                                                </div>
+                                                                    
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">Detalles<span class="required"> *</span></label>
+                                                                    <div class="col-md-9">
+                                                                        {{ form_widget(form.description, { 'attr': {
+                                                                        'class' : 'form-control tags',
+                                                                        } }) }}
+                                                                        {{ form_errors(form.description) }}
+                                                                    </div>
+                                                                </div>
+                                                                    
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">Precio base<span class="required"> *</span></label>
+                                                                    <div class="col-md-9">
+                                                                        {{ form_widget(form.basePrice, { 'attr': {
+                                                                        'class' : 'form-control tags',
+                                                                        } }) }}
+                                                                        {{ form_errors(form.basePrice) }}
+                                                                    </div>
+                                                                </div>
+                                                                    
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">Precio final<span class="required"> *</span></label>
+                                                                    <div class="col-md-9">
+                                                                        {{ form_widget(form.price, { 'attr': {
+                                                                        'class' : 'form-control tags',
+                                                                        } }) }}
+                                                                        {{ form_errors(form.price) }}
+                                                                    </div>
+                                                                </div>
+                                                                    
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">Cantidad<span class="required"> *</span></label>
+                                                                    <div class="col-md-9">
+                                                                        {{ form_widget(form.count, { 'attr': {
+                                                                        'class' : 'form-control tags',
+                                                                        } }) }}
+                                                                        {{ form_errors(form.count) }}
+                                                                    </div>
+                                                                </div>
+                                                                    
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">Referencia<span class="required"> *</span></label>
+                                                                    <div class="col-md-9">
+                                                                        {{ form_widget(form.ref, { 'attr': {
+                                                                        'class' : 'form-control tags',
+                                                                        } }) }}
+                                                                        {{ form_errors(form.ref) }}
+                                                                    </div>
+                                                                </div>
+                                                                    
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">Puntuación<span class="required"> *</span></label>
+                                                                    <div class="col-md-9">
+                                                                        {{ form_widget(form.ranking, { 'attr': {
+                                                                        'class' : 'form-control tags',
+                                                                        } }) }}
+                                                                        {{ form_errors(form.ranking) }}
+                                                                    </div>
+                                                                </div>
+                                                                    
+                                                                <div class="form-group" id="show_accordion">
+                                                                    <label class="control-label col-md-3">Mostrar en Home</label>
+                                                                    <div class="col-md-9">
+                                                                        {{ form_widget(form.visibleInHome, { 'attr': {
+                                                                            'class' : 'make-switch',
+                                                                            'data-size' : 'normal'
+                                                                        } }) }}
+                                                                    </div>
+                                                                </div>
+                                                                    
+                                                                <div class="form-group" id="show_accordion">
+                                                                    <label class="control-label col-md-3">Colocar en sección</label>
+                                                                    <div class="col-md-9">
+                                                                        {{ form_widget(form.sectionProduct, { 'attr': {
+                                                                            'class' : 'form-control tags',
+                                                                        } }) }}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="tab-pane fade col-md-10" id="tab_6_2">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">Categorías</label>
+                                                                    <div class="col-md-9">
+                                                                        {{ form_widget(form.categories, { 'attr': {
+                                                                        'class' : 'form-control tags select2me',
+                                                                        'data-placeholder' : 'Seleccionar ...',
+                                                                        } }) }}
+                                                                        {{ form_errors(form.categories) }}
+                                                                    </div>
+                                                                </div>
+                                                                    
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">Tags</label>
+                                                                    <div class="col-md-9">
+                                                                        {{ form_widget(form.tags, { 'attr': {
+                                                                        'class' : 'form-control tags',
+                                                                        'data-placeholder' : 'Seleccionar ...',
+                                                                        } }) }}
+                                                                        {{ form_errors(form.tags) }}
+                                                                    </div>
+                                                                </div>
+                                                                    
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">Productos relacionados</label>
+                                                                    <div class="col-md-9">
+                                                                        {{ form_widget(form.relateProduct, { 'attr': {
+                                                                        'class' : 'form-control tags select2me',
+                                                                        'data-placeholder' : 'Seleccionar ...',
+                                                                        } }) }}
+                                                                        {{ form_errors(form.relateProduct) }}
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                
+                                                            </div>
+                                                            <div class="tab-pane fade col-md-10" id="tab_6_3">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-2 col-md-offset-1 control-label">Foto<span class="required"></span></label>
+                                                                    <div class="">
+                                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                            <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
+
+                                                                            </div>
+                                                                            <div>
+                                                                                <span class="btn default btn-file">
+                                                                                    <span class="fileinput-new">
+                                                                                        Seleccionar ...
+                                                                                    </span>
+                                                                                    <span class="fileinput-exists">
+                                                                                    Cambiar </span>
+                                                                                    {{ form_widget(form.pictureFile) }}
+                                                                                    {{ form_errors(form.pictureFile) }}
+                                                                                </span>
+
+                                                                                <a id="deletePrincipal" name="deletePrincipal" href="#" class="btn red fileinput-exists" data-dismiss="fileinput">
+                                                                                    Eliminar </a>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <div class="form-group">
+                                                                    <label class="col-md-2 col-md-offset-1 control-label">Foto sobre<span class="required"></span></label>
+                                                                    <div class="">
+                                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                            <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
+
+                                                                            </div>
+                                                                            <div>
+                                                                                <span class="btn default btn-file">
+                                                                                    <span class="fileinput-new">
+                                                                                        Seleccionar ...
+                                                                                    </span>
+                                                                                    <span class="fileinput-exists">
+                                                                                    Cambiar </span>
+                                                                                    {{ form_widget(form.pictureHoverFile) }}
+                                                                                    {{ form_errors(form.pictureHoverFile) }}
+                                                                                </span>
+
+                                                                                <a id="deletePrincipal" name="deletePrincipal" href="#" class="btn red fileinput-exists" data-dismiss="fileinput">
+                                                                                    Eliminar </a>
+
+                                                                            </div>
+                                                                        </div>
+                                                    
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                                                
+                                                    <div class="tab-pane fade col-md-10" id="tab_6_4">
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label">Url Youtube</label>
+                                                            <div class="col-md-9">
+                                                                {{ form_widget(form.video, { 'attr': {
+                                                                'class' : 'form-control tags',
+                                                                'data-placeholder' : 'Seleccionar ...',
+                                                                } }) }}
+                                                                {{ form_errors(form.video) }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        </div>
+                                        </div>
+                                        <div class="form-actions">
+                                            <div class="row">
+                                                <div class="col-md-offset-3 col-md-4">
+                                                    {{ form_widget(form.submit, { 'attr': {
+                                                    'class' : 'btn green',
+                                                    'label' : 'Crear'
+                                                    } }) }}
+                                                    <a href="{{ path('product') }}"
+                                                       class="btn default">Cancelar</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        {{ form_errors(form) }}
+                                        {{ form_end(form) }}
+                                        {#</form>#}
+                                        <!-- END FORM-->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- END PAGE CONTENT-->
+        </div>
+
+    </div>
+    <!-- END CONTENT -->
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="{{ asset('web/bundles/metronic/global/plugins/bootstrap-summernote/summernote.min.js')}}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/bootstrap-select/bootstrap-select.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/select2/select2.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/jquery-multi-select/js/jquery.multi-select.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js')}}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/bootstrap-toastr/toastr.css')}}"/>
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/bootstrap-toastr/toastr.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/jquery-tags-input/jquery.tagsinput.min.js')}}"></script>
+    <script src="{{ asset('web/bundles/admin/validations/product.js')}}"></script>
+    
+    <!-- END PAGE LEVEL SCRIPTS -->
+
+    <script>
+        jQuery(document).ready(function () {
+            $("#gruponivcph_servicebundle_product_tags").tagsInput();
+            
+            $('#gruponivcph_servicebundle_product_shortDescription').summernote(
+            {
+                height: 200
+            })
+            
+            $('#gruponivcph_servicebundle_product_description').summernote(
+            {
+                height: 300
+            })
+            
+            
+        });
+    </script>
+
+{% endblock %}
