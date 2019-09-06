@@ -1,0 +1,64 @@
+{% extends '::base_frontend_struct.html.twig' %}
+
+
+{% block stylesheet %}
+    {{ parent() }}
+
+    <link rel='stylesheet' href="{{ asset('web/bundles/frontend/css/js_composer.css-ver=4.3.2.css')}}"  type='text/css' media='all' />
+{% endblock %}
+
+{% block render %}
+    <div id="breadcrumbs">
+        <div class="row">
+            <div class="small-12 columns">
+                <div class="main-header">
+                    <div class="row">
+                        <div class="small-12 medium-6 columns">
+                            <h1>
+                                Términos y Condiciones					
+                            </h1>
+                        </div>
+                        <div class="small-12 medium-6 columns hide-for-small">
+
+                            <aside class="breadcrumb"><a href="{{ path('service_homepage') }}">Pagina principal</a><span>/</span>Términos y Condiciones</aside>				</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+
+
+    <div role="main"><div class="row ">
+            <section class="content-padding small-12 medium-9 columns">
+
+                <div class="post-content">
+                    {% autoescape false %}
+                        <div class='row'>
+                            {{ content }}
+                        </div>
+                    {% endautoescape %}
+                </div>
+            </section>
+
+            <aside class="sidebar small-12 medium-3 columns">
+                <div id="facebooklikebox-4" class="widget cf widget_FacebookLikeBox">
+                    {{ render(controller('ServiceBundle:Site:facebookPage', {'dataTabs' : "timeline"})) }}
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/jquery.flexslider-min.js')}}"></script>
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/jquery.sharrre.min.js')}}"></script>
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/jquery.sharrre.min.js')}}"></script>
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/js_composer_front.js')}}"></script>
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/waypoints.min.js')}}"></script>
+{% endblock %}
