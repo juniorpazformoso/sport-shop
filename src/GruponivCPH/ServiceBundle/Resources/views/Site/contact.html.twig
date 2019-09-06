@@ -1,0 +1,245 @@
+{% extends '::base_frontend_struct.html.twig' %}
+
+
+{% block stylesheet %}
+    {{ parent() }}
+
+    <style>
+        /* Buttons */
+
+        .btn,
+        .button,
+        input[type=submit],
+        .comment-reply-link {
+            font-family: 'Lato';
+            font-size: 14px;
+            line-height: 14px;
+            font-weight: 300;
+            padding: 13px 20px;
+            margin: 0 0 3px;
+            display: inline-block;
+            cursor: pointer;
+            border: 1px solid transparent;
+            outline: 0;
+            color: #fff;
+            background: #222;
+            text-transform: uppercase;
+            text-shadow: none !important;
+            text-align: center;
+            -moz-border-radius: 0;
+            -webkit-border-radius: 0;
+            border-radius: 0;
+            -moz-transition: all 0.4s ease-in-out;
+            -o-transition: all 0.4s ease-in-out;
+            -webkit-transition: all 0.4s ease-in-out;
+            transition: all 0.4s ease-in-out;
+            -moz-box-shadow: none;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+        }
+        .btn i,
+        .button i,
+        input[type=submit] i,
+        .comment-reply-link i {
+            font-size: 13px;
+            display: inline-block;
+            margin-left: 5px;
+        }
+        .btn:hover,
+        .button:hover,
+        input[type=submit]:hover,
+        .comment-reply-link:hover {
+            color: #fff;
+            text-shadow: none;
+            background: #10b4aa;
+        }
+        .btn:active,
+        .button:active,
+        input[type=submit]:active,
+        .comment-reply-link:active {
+            -moz-transform: translateY(2px);
+            -ms-transform: translateY(2px);
+            -webkit-transform: translateY(2px);
+            transform: translateY(2px);
+        }
+        .btn.small, .btn#submit,
+        .button.small,
+        .button#submit,
+        input[type=submit].small,
+        input[type=submit]#submit,
+        .comment-reply-link.small,
+        .comment-reply-link#submit {
+            font-size: 12px;
+            font-weight: 300;
+            padding: 13px 13px 12px;
+            line-height: 12px;
+        }
+        .btn.large,
+        .button.large,
+        input[type=submit].large,
+        .comment-reply-link.large {
+            font-size: 16px;
+            line-height: 16px;
+            padding: 17px 30px;
+        }
+        .btn.right,
+        .button.right,
+        input[type=submit].right,
+        .comment-reply-link.right {
+            float: right;
+        }
+        .btn.white,
+        .button.white,
+        input[type=submit].white,
+        .comment-reply-link.white {
+            background: #fff;
+            border: 1px solid #dcdcdc;
+            color: #222;
+        }
+    </style>
+{% endblock %}
+
+{% block render %}
+    <div id="breadcrumbs">
+        <div class="row">
+            <div class="small-12 columns">
+                <div class="main-header">
+                    <div class="row">
+                        <div class="small-12 medium-6 columns">
+                            <h1>
+                                Contacto					
+                            </h1>
+                        </div>
+                        <div class="small-12 medium-6 columns hide-for-small">
+
+                            <aside class="breadcrumb"><a href="{{ path('service_homepage') }}">Pagina principal</a><span>/</span>Contacto</aside>				</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div role="main"><div class="row ">
+            <section class="small-12 columns ">
+                <article class="post post-102 page type-page status-publish hentry" id="post-102">
+                    <div class="post-content">
+                        <div id="" class="row vc_row-fluid ">
+                            <div class="medium-12 small-12  columns ">
+
+                                <div class="wpb_text_column wpb_content_element ">
+                                    <div class="wpb_wrapper">
+                                        <!--
+                                                <p>
+                                                
+                                                    <iframe src="https://maps.google.com.ar/maps/ms?msa=0&amp;msid=205065032699854054560.0004f700e9e47c242b39a&amp;ie=UTF8&amp;t=m&amp;ll=-34.964818,-57.970862&amp;spn=0.012309,0.051498&amp;z=15&amp;iwloc=0004f700ed9bc50ed2a5e&amp;output=embed" width="100%" height="350" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe><br>
+                        <small>Ver <a style="color: #0000ff; text-align: left;" href="https://maps.google.com.ar/maps/ms?msa=0&amp;msid=205065032699854054560.0004f700e9e47c242b39a&amp;ie=UTF8&amp;t=m&amp;ll=-34.964818,-57.970862&amp;spn=0.012309,0.051498&amp;z=15&amp;iwloc=0004f700ed9bc50ed2a5e&amp;source=embed">Dabber Fábrica</a> en un mapa ampliado</small></p>
+                                        -->
+
+                                    </div> 
+                                </div> 
+                            </div> 
+                        </div><div id="" class="row vc_row-fluid ">
+                            <div class="medium-4 small-12  columns ">
+                                <aside class="gap cf" style="height:40px;"></aside>
+                                <div class="wpb_text_column wpb_content_element ">
+                                    <div class="wpb_wrapper">
+
+                                        {% autoescape false %}
+                                            {{ contentDabberEspanna }}
+                                        {% endautoescape %}
+
+                                    </div> 
+                                </div> <aside class="gap cf" style="height:30px;"></aside>
+                                <div class="wpb_text_column wpb_content_element ">
+                                    <div class="wpb_wrapper">
+                                        <div class="large_title upper-text">Síguenos</div>
+                                        {{ render(controller('ServiceBundle:Site:socialContact')) }}
+
+                                    </div>
+                                </div> 
+                            </div>
+
+                            <div class="medium-4 small-12  columns">
+
+                                <div class="wpb_text_column wpb_content_element ">
+                                    <div class="wpb_wrapper">
+                                        <div class="large_title ">FORMULARIO</div>
+
+                                    </div> 
+                                </div> <div role="form" class="wpcf7" id="wpcf7-f11-p102-o1" lang="es-ES" dir="ltr">
+                                    <div class="screen-reader-response"></div>
+
+                                    <!--<form action="/wp/contacto/#wpcf7-f11-p102-o1" method="post" class="wpcf7-form" novalidate="novalidate">-->
+                                    {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
+                                    <div style="display: none;">
+
+                                    </div>
+                                    <p>Nombre (requerido)<br>
+                                        <span class="wpcf7-form-control-wrap your-name">
+                                            {{ form_widget(form.name ) }}
+
+                                        </span> </p>
+                                    <p>E-mail (requerido)<br>
+                                        <span class="wpcf7-form-control-wrap your-email">
+                                            {{ form_widget(form.email ) }}
+                                        </span> </p>
+                                    <p>Asunto<br>
+                                        <span class="wpcf7-form-control-wrap your-subject">
+                                            {{ form_widget(form.subject ) }}
+                                        </span> </p>
+                                    <p>Mensaje<br>
+                                        <span class="wpcf7-form-control-wrap your-message">
+                                            {{ form_widget(form.message ) }}
+                                        </span> </p>
+                                    <p>
+                                        <input type="submit" value="Enviar" class="wpcf7-form-control wpcf7-submit"><img class="ajax-loader" src="http://dabbersport.com/wp/wp-content/plugins/contact-form-7/images/ajax-loader.gif" alt="Enviando..." style="visibility: hidden;"></p>
+                                    <div class="wpcf7-response-output wpcf7-display-none"></div>
+                                    {{ form_end(form)}}
+                                </div>
+                            </div> 
+                        </div><div id="" class="row vc_row-fluid ">
+                            <div class="medium-12 small-12  columns ">
+                                <aside class="gap cf" style="height:50px;"></aside>
+                            </div> 
+                        </div>
+                        <div class="medium-2 small-12  columns ">
+
+                            <div class="wpb_text_column wpb_content_element ">
+                                <div class="wpb_wrapper">
+                                    <p></p>
+
+                                </div> 
+                            </div> 
+                        </div> 
+
+                        <div class="medium-6 small-12  columns ">
+
+                            <div class="wpb_text_column wpb_content_element ">
+                                <div class="wpb_wrapper">
+                                    <p></p>
+
+                                </div> 
+                            </div> 
+                        </div>
+                        <div id="" class="row vc_row-fluid ">
+                            <div class="medium-12 small-12  columns ">
+                                <aside class="gap cf" style="height:50px;"></aside>
+                            </div> 
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/jquery.flexslider-min.js')}}"></script>
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/jquery.sharrre.min.js')}}"></script>
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/magnific-popup/jquery.magnific-popup.min.js')}}"></script>
+{% endblock %}
