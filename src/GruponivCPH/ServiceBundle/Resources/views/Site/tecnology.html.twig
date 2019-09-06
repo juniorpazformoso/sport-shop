@@ -1,0 +1,65 @@
+{% extends '::base_frontend_struct.html.twig' %}
+
+
+{% block stylesheet %}
+    {{ parent() }}
+    
+{% endblock %}
+
+{% block render %}
+    <div role="main">
+        <div class="row ">
+            <section class="small-12 columns ">
+                <article class="post post-504 page type-page status-publish hentry" id="post-504">
+		    <div class="post-content">
+		    	<div id="" class="row vc_row-fluid ">
+                            <div class="medium-12 small-12  columns ">
+                                <aside class="gap cf" style="height:30px;"></aside>
+                            </div>  
+                        </div>
+                        
+                        <div id="" class="row vc_row-fluid ">
+                            {% for tech in technologies %}
+                                {% if technologies | length == loop.index %}
+                                    <div class="medium-3 small-12  columns" style="clear: both;">
+                                {% else %}
+                                    <div class="medium-3 small-12  columns">
+                                {% endif %}
+                                    <div class="iconbox top type1 animation right-to-left">
+                                        <span class="img">
+                                            <img width="200" height="200"  src="{{ asset('web/uploads/') ~ tech.image}}" 
+                                                 class="attachment-full size-full" alt="">
+                                        </span>
+                                        <div class="content">
+
+                                            <div class="title">{{ tech.title }}</div>
+                                            <div>
+                                                {% autoescape false %}
+                                                    {{ tech.content }}
+                                                {% endautoescape %}
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div> 
+                            {% endfor %}
+                            <div class="clearfix"></div>
+                            
+                        
+                        </div>
+                    </div>
+
+
+		  </article>
+            </section>
+	</div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/jquery.flexslider-min.js')}}"></script>
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/jquery.sharrre.min.js')}}"></script>
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/magnific-popup/jquery.magnific-popup.min.js')}}"></script>
+{% endblock %}
