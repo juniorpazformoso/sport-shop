@@ -1,0 +1,410 @@
+{% extends '::base_frontend_struct.html.twig' %}
+
+
+{% block stylesheet %}
+    {{ parent() }}
+    
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/bootstrap-toastr/toastr.css')}}"/>
+    
+    
+{% endblock %}
+
+{% block render %}
+
+
+    <style>
+        .finalshop{
+            width: 100%;
+        }
+
+        .finalshop .btn{
+            background-color: #ebebeb !important;
+            color: gray;
+        }
+
+        .finalshop input[type="text"], .finalshop input[type="password"], 
+        .finalshop input[type="date"], .finalshop input[type="datetime"], 
+        .finalshop input[type="email"], .finalshop input[type="number"], 
+        .finalshop input[type="search"], .finalshop input[type="tel"], 
+        .finalshop input[type="time"], .finalshop input[type="url"], textarea{
+            background: white !important;
+        }
+
+        .finalshop .img-column-shop{
+            width: 9%;
+        }
+
+        .finalshop .shop-title{
+            font-size: 1.8em !important;
+        }
+
+
+        @media(max-width: 770px)
+        {
+            .finalshop .img-column-shop{
+                width: 80% !important;
+            }
+
+            .finalshop{
+                width: 100%;
+            }
+        }
+        
+        .column-product{
+            padding-right: 0 !important;            
+        }
+        
+        .column-data{
+            padding-left: 0 !important;
+        }
+        
+        .container-padding{
+            padding-left: 0;
+            padding-right: 0;
+        }
+        
+        
+        
+        
+        /*
+        div.iradio_square-blue:nth-child(3)
+        {
+            position: relative;
+            top: 36px;
+            right: 85px;
+        }
+        
+        div.iradio_square-blue:nth-child(5)
+        {
+            position: relative;
+            top: 76px;
+            right: 185px;
+        }
+        
+        
+        #gruponivcph_servicebundle_orderclient_paymentMethod{
+           position: relative;   
+        }
+        label[for="gruponivcph_servicebundle_orderclient_paymentMethod_1"]{
+            position: absolute;
+            top: 44px;
+            left: 28px;
+        }
+        
+        label[for="gruponivcph_servicebundle_orderclient_paymentMethod_2"]{
+            position: absolute;
+            left: 28px;
+            top: 85px;            
+        }
+        */
+        /*
+        label[for="gruponivcph_servicebundle_orderclient_paymentMethod_0"]{
+            padding-right: 74%;
+        }
+        
+        label[for="gruponivcph_servicebundle_orderclient_paymentMethod_1"]{
+            padding-right: 30%;
+        }
+        
+        label[for="gruponivcph_servicebundle_orderclient_paymentMethod_2"]{
+            padding-right: 30%;
+        }
+        */
+        
+    </style>
+
+
+    <br><br><br>         
+    <div class="container container-padding">
+      
+            <div class="col-md-4 column-data">
+   
+
+                {{ form_start(form, {'attr': {'class': 'form-horizontal','id':'form_create_client', 'novalidate' : 'novalidate' }}) }}
+                <div class="well">
+                    <h4>Métodos de pago</h4>
+                    <h4>
+                        <div>
+                            <br>
+                            
+                            {% if is_granted('ROLE_CLIENTE') %}
+                                <div class="form-group paypal-method pull-left">                                
+                                    <input type="radio" name="paymentMethod" value="PayPal" checked/>
+                                    <label>
+                                        <img width="150" src="{{ asset('web/files/paypal.png') }}"  alt="slide-max-d5"  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                                    </label>
+                                </div>              
+                            {% endif %}
+                            
+                            
+
+                            {% if is_granted('ROLE_TIENDA') %}
+                                <div class="form-group effec-method">                             
+                                    <input type="radio" name="paymentMethod" value="Efectivo"/>
+                                    <label>Efectivo</label>
+                                </div>
+                            {% endif %}
+                            
+                            {% if is_granted('ROLE_CLIENTE') %}
+                                <div class="form-group tpv-method pull-right">                                
+                                    <input type="radio" name="paymentMethod" value="TPV" style="position: relative; bottom: 61px;"/>
+                                    <img width="150" src="{{ asset('web/files/tpv.png') }}"  
+                                         style="position: relative; bottom: 55px;">
+                                </div>
+                            {% endif %}
+                            <div class="clearfix"></div>
+
+							<!--
+                            <div class="form-group repayment-method">                                
+                                <input type="radio" name="paymentMethod" value="Reembolso"/>
+                                <label>Reembolso</label>
+                            </div>
+							-->
+                            
+                        </div>
+                        
+                    </h4>
+                    <br>
+                </div>
+
+                <div class="well">
+                    
+                    <div class="account_creation">
+                        
+
+                        <div class="{% if form.postalCode.vars.valid==false %}has-error{% endif %}">
+                            <label class="control-label">Código Postal <sup>*</sup></label>
+
+                            {{ form_widget(form.postalCode, { 'attr': {
+                                        'required' : 'required',
+                                        'maxlength' : 60
+                                        } }) }}
+                            {% if form.postalCode.vars.valid==false %}
+                                <span class="help-block">{{ form_errors(form.postalCode)}}</span>
+                            {% endif %}
+
+                        </div>
+
+                        <div class="{% if form.city.vars.valid==false %}has-error{% endif %}">
+                            <label class="control-label">Ciudad <sup>*</sup></label>
+
+                            {{ form_widget(form.city, { 'attr': {
+                                        'required' : 'required',
+                                        'maxlength' : 60
+                                        } }) }}
+                            {% if form.city.vars.valid==false %}
+                                <span class="help-block">{{ form_errors(form.city)}}</span>
+                            {% endif %}
+
+                        </div>
+
+
+                        <div class="{% if form.country.vars.valid==false %}has-error{% endif %}">
+                            <label class="control-label">País <sup>*</sup></label>
+
+                            {{ form_widget(form.country, { 'attr': {
+                                        'required' : 'required',
+                                        'class' : 'form-control',
+                                        'maxlength' : 60
+                                        } }) }}
+                            {% if form.country.vars.valid==false %}
+                                <span class="help-block">{{ form_errors(form.country)}}</span>
+                            {% endif %}
+
+                        </div>
+                        <br>
+
+                        <div class="{% if form.mobilePhone.vars.valid==false %}has-error{% endif %}">
+                            <label class="control-label">Teléfono movil <sup>*</sup></label>
+
+                            {{ form_widget(form.mobilePhone, { 'attr': {
+                                        'required' : 'required',
+                                        'maxlength' : 60
+                                        } }) }}
+                            {% if form.mobilePhone.vars.valid==false %}
+                                <span class="help-block">{{ form_errors(form.mobilePhone)}}</span>
+                            {% endif %}
+
+                        </div>
+                            
+                        <div style="display: none;">
+                            {{ form_widget(form.status) }}
+                        </div>
+
+                        <div class="{% if form.landline.vars.valid==false %}has-error{% endif %}">
+                            <label class="control-label">Teléfono fijo <sup>*</sup></label>
+
+                            {{ form_widget(form.landline, { 'attr': {
+                                        'required' : 'required',
+                                        'maxlength' : 60
+                                        } }) }}
+                            {% if form.landline.vars.valid==false %}
+                                <span class="help-block">{{ form_errors(form.landline)}}</span>
+                            {% endif %}
+
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+      
+                    
+                    
+            <div class="col-md-8 column-product">
+                
+                <div class="finalshop">
+                    <div style="padding-left: 20px; padding-right: 20px;">
+
+                        <h4>Total: <span>€ <span class="total-product-price">{{ shoppingcart.ammount }}</span></span></h4>
+                    </div>
+
+
+                    <div class="table-responsive">
+                        <table class="shoppingcart-table table table-bordered">
+                            <!--
+                        <thead>
+                            <tr>
+                                <th style="width: 8%;">Foto</th>
+                                <th style="width: 35%;">Nombre</th>
+                                <th style="width: 5%;">Precio ($)</th>
+                                <th style="width: 1%;">Cantidad</th>
+        
+                            </tr>
+                        </thead>
+                            -->
+                            <tbody>
+                                {% for producto in shoppingcart.getProducts() %}
+                                    <tr class="product-row-{{ producto.id }}">
+                                        <td class="img-column-shop">
+                                            <div class="carousel products  row" data-columns="4" data-navigation="true">
+                                                <article itemscope  class="product-image-cart-table item post small-6 medium-4 columns post-1634 product type-product status-publish has-post-thumbnail product_cat-linea-europea product_cat-linea-europa product_tag-101 product_tag-38-mm product_tag-europa product_tag-linea-europea product_tag-palas-europa product_tag-profesional shipping-taxable product-type-simple product-cat-linea-europea product-cat-linea-europa product-tag-2016 product-tag-38-mm product-tag-europa product-tag-linea-europea product-tag-palas-europa product-tag-profesional instock">
+                                                    <figure>
+                                                        <a href="{{ path('site_product_detail', {'id' : producto.id }) }}">
+                                                            <div class="product-image">
+                                                                <img width="200" height="270"  src="{{ asset('web/uploads/') ~ producto.fotoHover }}"  class="attachment-shop_catalog size-shop_catalog"/>
+                                                            </div>
+                                                            <div class="product-image">
+                                                                <img width="200" height="270"  src="{{ asset('web/uploads/') ~ producto.foto }}" class="attachment-shop_catalog size-shop_catalog"/>
+                                                            </div>			
+                                                        </a>
+
+                                                    </figure>
+                                                </article>
+
+                                            </div>
+                                        </td>
+                                        <td style="vertical-align: middle; width: 35%;">
+                                            <h3 class="shop-title">
+                                                {{ producto.nombre }}
+                                            </h3>
+                                        </td>
+                                        <td style="vertical-align: middle; width: 5%;">
+                                            <h4>
+                                                €<span id="visible-product-price-{{ producto.id }}">{{ producto.ammount }}</span>
+                                            </h4>
+                                        </td>
+                                        <td  style="width: 1px; vertical-align: middle; width: 1%;">
+                                            <span id="product-info-{{ producto.id }}" data-product-price="{{ producto.precio }}" data-product-id="{{ producto.id }}" data-quantity="{{ producto.count}}"></span>
+                                            <div class="input-group input-group-sm" style="width: 130px;"> 
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-default btn-number cart_quantity_down" data-type="minus" data-product-id="{{ producto.id }}"> 
+                                                        <i class="fa fa-minus"></i> 
+                                                    </button> 
+                                                </span> 
+                                                <input type="text" autocomplete="off" class="form-control input-number text-center" value="{{ producto.count}}" id="txtQuantity-{{ producto.id }}"> 
+                                                <span class="input-group-btn"> 
+                                                    <button type="button" class="btn btn-default btn-number cart_quantity_up" data-type="plus" data-product-id="{{ producto.id }}"> 
+                                                        <i class="fa fa-plus"></i> 
+                                                    </button> 
+                                                </span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+
+                        </table>    
+                    </div>
+                
+            </div>
+                    </div>
+        </div>
+    
+
+    <div class="clearfix"></div>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    
+    
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/bootstrap-toastr/toastr.min.js')}}"></script>
+    
+    <script>
+        $("#gruponivcph_servicebundle_orderclient_country").val("ES")
+        
+        /*
+        $("input").iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue',
+            increaseArea: '20%'
+        })
+        */
+        
+        
+        
+        
+        {% if not siteOptions.paypalActive %}
+            $(".paypal-method").hide()            
+        {% endif %}
+            
+        {% if not siteOptions.tpvActive %}
+            $(".tpv-method").hide()
+        {% endif %}
+            
+        {% if not siteOptions.rePaymentActive %}
+            $(".repayment-method").hide()            
+        {% endif %}
+            
+        {% if not siteOptions.effectiveActive %}
+            $(".effec-method").hide()            
+        {% endif %}
+            
+        $("form").submit(function (){
+
+            var message = ""
+           
+            if($("#gruponivcph_servicebundle_orderclient_postalCode").val() == "")
+            {
+                message = message + "<div>- Indique el código postal</div>"
+            }
+            
+            if($("#gruponivcph_servicebundle_orderclient_city").val() == "")
+            {
+                message = message + "<div>- Indique la ciudad</div>"
+            }
+            
+            if($("#gruponivcph_servicebundle_orderclient_mobilePhone").val() == "")
+            {
+                message = message + "<div>- Indique el teléfono movil</div>"
+            }
+            
+            if($("#gruponivcph_servicebundle_orderclient_landline").val() == "")
+            {
+                message = message + "<div>- Indique el teléfono fijo</div>"
+            }
+            
+            if(message != "")
+            {
+
+                toastr.error(message)
+
+                return false
+            }
+
+            return true
+            
+        })
+        
+    </script>
+{% endblock %}
