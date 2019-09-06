@@ -1,0 +1,19 @@
+{% if dataTabs %}
+    <div class="fb-page" data-href="{{ siteOption.socialFacebookUrl }}"  data-tabs="timeline" 
+         data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+        <blockquote cite="{{ siteOption.socialFacebookUrl }}" class="fb-xfbml-parse-ignore">
+            <a href="{{ siteOption.socialFacebookUrl }}">
+                Facebook
+            </a>
+        </blockquote>
+    </div>
+{% else %}
+    <div class="fb-page" data-href="{{ siteOption.socialFacebookUrl }}" data-width="260"
+         data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+        <blockquote cite="{{ siteOption.socialFacebookUrl }}" class="fb-xfbml-parse-ignore">
+            <a href="{{ siteOption.socialFacebookUrl }}">
+                Facebook
+            </a>
+        </blockquote>
+    </div>
+{% endif %}
