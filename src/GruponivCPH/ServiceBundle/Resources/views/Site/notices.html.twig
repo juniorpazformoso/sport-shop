@@ -1,0 +1,105 @@
+{% extends '::base_frontend_struct.html.twig' %}
+
+
+{% block stylesheet %}
+    {{ parent() }}
+    
+{% endblock %}
+
+{% block render %}
+    <div id="breadcrumbs">
+        <div class="row">
+            <div class="small-12 columns">
+		<div class="main-header">
+                    <div class="row">
+                        <div class="small-12 medium-6 columns">
+                            <h1>
+                                Noticias					
+                            </h1>
+                        </div>
+                        <div class="small-12 medium-6 columns hide-for-small">
+
+                            <aside class="breadcrumb">
+                                <a href="{{ path('service_homepage') }}">Pagina principal
+                                </a>
+                                <span>/</span>Blog
+                            </aside>
+                        </div>
+                    </div>
+		</div>
+            </div>
+        </div>
+    </div>
+
+    <div role="main">
+        <div class="row">
+            <section class="small-12 medium-8 columns cf blog-section">
+
+            {% for noticeData in notices %}
+                <article class="post post-1441 type-post status-publish format-standard has-post-thumbnail hentry category-mundo-padel" id="post-1441">
+
+                    <aside class="post-meta cf">
+                        <ul>
+                            <li><i class="fa fa-user"></i><a href="#" title="Entradas de admin" rel="author">admin</a></li>
+                            <li><i class="fa fa-calendar"></i>{{ noticeData.date }}</li>
+                            <li><a href="#"  class="postcommentcount" ><i class="fa fa-comment"></i> 0 Comentarios</a></li>
+                            <li><i class="fa fa-folder-open"></i> <a href="{{ path('site_notices_category', {'id' : noticeData.notice.category.id }) }}">{{ noticeData.notice.category }}</a></li>
+                        </ul>
+                    </aside>
+                    <div class="post-title">
+                        <h2>
+                            <a href="{{ path('site_notices_category', {'id' : noticeData.notice.category.id }) }}"  title="{{ noticeData.notice.title }}">
+                                {{ noticeData.notice.title }}
+                            </a>
+                        </h2>
+                    </div>
+                    <div class="post-content">
+                        {% autoescape false %}
+                            {{ noticeData.notice.description }}
+                        {% endautoescape %}
+                    </div>
+                </article>
+            {% endfor %}
+
+                <!--
+                <aside class="pagination"><ul class="">
+                        <li>
+                            <span class='current'>1</span>
+                        </li>
+                        <li>
+                            <a href="index-71.htm" tppabs="http://dabbersport.com/wp/blog/page/2/">
+                                2
+                            </a>
+                        </li>  
+                </aside>
+                -->
+            </section>
+            <aside class="sidebar small-12 medium-4 columns">
+                <!--
+                <div id="search-2" class="widget cf widget_search">
+                    <form method="get" id="searchform" action="">
+                        <fieldset>
+                            <input name="s" type="text" id="s" placeholder="Buscar" class="twelve">
+                        </fieldset>
+                    </form>
+                </div>
+                -->
+                <div id="facebooklikebox-4" class="widget cf widget_FacebookLikeBox">
+                    {{ render(controller('ServiceBundle:Site:facebookPage', {'dataTabs' : "timeline"})) }}
+                </div>
+            </aside>
+
+        </div>
+    </div>
+  	  
+  	  
+  	  
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/jquery.flexslider-min.js')}}"></script>
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/jquery.sharrre.min.js')}}"></script>
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/magnific-popup/jquery.magnific-popup.min.js')}}"></script>
+{% endblock %}
