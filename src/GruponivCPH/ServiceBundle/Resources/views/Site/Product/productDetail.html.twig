@@ -1,0 +1,335 @@
+{% extends '::base_frontend_struct.html.twig' %}
+
+
+{% block stylesheet %}
+    {{ parent() }}
+
+    <link rel='stylesheet' href="{{ asset('web/bundles/frontend/js/magnific-popup/magnific-popup.css')}}"  type='text/css' media='all' />
+    <link rel='stylesheet' href="{{ asset('web/bundles/frontend/css/buttons.css')}}"  type='text/css' media='all' />
+{% endblock %}
+
+{% block render %}
+    <div class="modal fade" id="modal-add-to-cart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <br>
+                </div>
+
+                <div class="body">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div role="main">
+
+        <div class="row">
+            <div class="small-12 columns">
+
+
+                <article itemscope itemtype="http://schema.org/Product" 
+                         id="product-1634" class="post product-page post-1634 product type-product">	
+                    <div class="row">    
+                        <div class="small-12 columns">
+
+                        </div>
+                        <div class="small-12 medium-6 columns">        
+                            <div class="product-images">
+                                <div id="product-images" class="flexslider" data-zoom="false">
+                                    <ul class="slides" rel="gallery">
+                                        {% for productImg in productImages %}
+                                            <li itemprop="image" class="easyzoom">
+                                                <a href="{{ asset('web/uploads/productImages/')  ~  productImg.image }}" itemprop="image">
+                                                    <img src="{{ asset('web/uploads/productImages/') ~  productImg.image }}" 
+                                                         title="Dabber Prisma DC6" /></a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+
+                                <div id="product-nav" class="flexslider">
+                                    <ul class="slides">
+                                        {% set firstImage = "" %}
+                                        {% for productImg in productImages %}
+                                            {% if loop.index == 1 %}
+                                                {% set firstImage = asset('web/uploads/productImages/') ~  productImg.image  %}
+                                            {% endif %}
+                                            <li>
+                                                <img  src="{{ asset('web/uploads/productImages/') ~ productImg.image }}" 
+                                                      width="106" height="117" title="dabber_prisma_02" data-variation-color="" />
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div><!-- end product images -->	    
+
+
+
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="small-12 medium-6 columns product-information">
+                            <!--
+                                       <div class="product_nav">
+                                               <a href="index-19.htm" tppabs="http://dabbersport.com/wp/producto/dabber-conic/" rel="prev" data-id="1627"><i class="fa fa-angle-left"></i></a>	  			  	</div>
+            
+                                   <header class="post-title">
+                       <aside class="post_categories">BACK TO  <a href="index-5.htm" tppabs="http://dabbersport.com/wp/categoria-producto/linea-europea/" rel="tag">Línea europea</a>, <a href="index-18.htm" tppabs="http://dabbersport.com/wp/categoria-producto/linea-europa/" rel="tag">Palas Europa</a></aside>
+                            -->
+
+                            <h1 itemprop="name" class="entry-title">
+                                <div class="pull-left">
+                                    {{ product.name }}
+                                </div>
+
+                                <div class="pull-right">
+                                    <div id="rank-init">
+                                    </div>
+                                </div>
+                            </h1>
+
+                            <div class="clearfix"></div>
+                            
+                                <div class="section-buy" style='margin-top: 6px;'>
+                                    <div class="pull-left">
+                                        <div class="price">
+                                            {{ product.price }}€
+                                        </div>
+                                    </div>
+
+                                    <div class="pull-right">
+
+
+                                        <div style="width: 200px; float:left; margin-right: 10px;">
+                                            
+                                                <div id="spinner1">
+
+                                                    <div class="input-group input-small">
+                                                        <span style="position: relative; right: 72px; top: 7px;">CANTIDAD</span>
+                                                        {% set quantityProduct = 1 %}
+
+                                                        {% if shoppingproduct %}
+                                                            {% set quantityProduct = shoppingproduct.count %}
+                                                        {% endif %}
+
+                                                        <input id="txtQuantityDetail-{{ product.id }}"  style="padding: 12px;" value="{{ quantityProduct }}" type="text" class="spinner-input spinner-input-product-count form-control" maxlength="30000" readonly>
+                                                        <span id="product-info-{{ product.id }}" data-product-price="{{ product.price }}" data-product-id="{{ product.id }}" data-quantity="{{ quantityProduct }}"></span>
+
+                                                        <div class="spinner-buttons input-group-btn btn-group-vertical">
+                                                            <button  type="button" class="btn spinner-up spinner-down-plus btn-xs blue cart_pdetail_quantity_up" data-product-id="{{ product.id }}">
+                                                                <b><span class="plus-icon">+</span></b>
+                                                            </button>
+                                                            <button type="button" class="btn spinner-down spinner-down-minus btn-xs blue cart_pdetail_quantity_down" data-product-id="{{ product.id }}">
+                                                                <b><span class="minus-icon">-</span></b>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            
+                                        </div>
+
+
+                                        
+                                        <a href="javascript:void(0);" class="shop-button btn btn-defaut btn-default-price" data-product_id="{{ product.id }}" >
+                                            Comprar
+                                        </a>
+                                        
+                                    </div>
+
+                                </div>
+                            
+                            <div class="clearfix"></div>     
+
+                            <!--</header>-->
+                            <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+
+                                <p itemprop="price" class="price single_variation large"></p>
+                                <meta itemprop="priceCurrency" content="CLP" />
+                                <link itemprop="availability" href="http://schema.org/InStock" />
+
+                            </div>
+
+                            <div class="woocommerce-tabs">
+                                <ul class="accordion">
+
+                                    <li class="iption_tab">
+                                        <div class="title">Descripción</div>
+                                        <div class="content" style="font-size: 16px;">
+                                            {% autoescape false %}
+                                                {{ product.shortDescription }}
+                                            {% endautoescape %}
+                                        </div>
+                                    </li>
+
+                                </ul>
+
+                                {% if product.video %}
+                                    <iframe width="100%" height="315" src="{{ product.video }}" frameborder="0" allowfullscreen=""></iframe>
+                                {% endif %}
+
+                            </div>
+
+
+
+
+                            <aside id="product_share" data-img="{{ firstImage }}">
+                                <div class="row">
+                                    <div class="small-3 columns">
+                                        Compartir		
+                                    </div>
+                                    <div class="small-9 columns">
+                                        <span class="placeholder" data-url="{{ url('site_product_detail', {'id' : product.id }) }}" data-text="{{ product.name }}"></span>
+                                    </div>
+                                </div>
+                            </aside>
+
+
+
+                            <div class="product_meta">
+                                {% if product.categories | length > 0%}
+                                    <p>
+                                        <span class="posted_in">Categorias: 
+                                            {% for category in product.categories %}
+                                                {% if loop.index == (product.categories | length )%}
+                                                    <a href="#"  rel="tag">{{ category.title }}</a>.
+                                                {% else %}
+                                                    <a href="#"  rel="tag">{{ category.title }}</a>,
+                                                {% endif %}                        
+                                            {% endfor %}                
+                                        </span>	
+                                    </p>
+                                {% endif %}
+                                <p>
+                                    {% if tags %}
+                                        <span class="tagged_as">Tags:
+                                            {% for tag in tags %}
+                                                {% if loop.index == (tags | length )%}
+                                                    <a href="#" rel="tag">{{ tag }}</a>.
+                                                {% else %}
+                                                    <a href="#" rel="tag">{{ tag }}</a>,
+                                                {% endif %}
+                                            {% endfor %}
+                                        </span>
+                                    {% endif %}
+                                </p>
+                                <!--
+                                <span class="tagged_as">Tags: <a href="index-80.htm" rel="tag">2016</a>, <a href="index-92.htm" tppabs="http://dabbersport.com/wp/etiqueta-producto/38-mm/" rel="tag">38 mm</a>, <a href="index-87.htm" tppabs="http://dabbersport.com/wp/etiqueta-producto/europa/" rel="tag">europa</a>, <a href="index-93.htm" tppabs="http://dabbersport.com/wp/etiqueta-producto/linea-europea/" rel="tag">linea europea</a>, <a href="index-90.htm" tppabs="http://dabbersport.com/wp/etiqueta-producto/palas-europa/" rel="tag">palas europa</a>, <a href="index-94.htm" tppabs="http://dabbersport.com/wp/etiqueta-producto/profesional/" rel="tag">profesional</a>.</span>	</p>
+                                -->
+
+                            </div>
+
+
+                            {% autoescape false %}
+                                {{ product.description }}
+                            {% endautoescape %}     
+
+                            <div class="related products">
+
+                                <h2>Otros colores</h2>
+
+                                <div class="products row" data-equal=">.product">
+                                    {% for prod in product.relateProduct %}
+                                        <article class="small-6 medium-4 columns post-1455 product type-product status-publish has-post-thumbnail product_cat-coleccion-palas product_cat-linea-europea product_cat-linea-europa shipping-taxable product-type-simple product-cat-coleccion-palas product-cat-linea-europea product-cat-linea-europa instock">
+                                            <figure>
+                                                <a href="{{ path('site_product_detail', {'id' : prod.id }) }}">
+
+                                                    <div class="product-image">
+                                                        <img width="270" height="340" src="{{ asset('web/uploads/') ~ prod.imageHover }}" 
+                                                             class="attachment-shop_catalog size-shop_catalog" alt="{{ prod.name }}" />
+                                                    </div>
+                                                    <div class="product-image">
+                                                        <img width="270" height="340" src="{{ asset('web/uploads/') ~ prod.image }}" 
+                                                             class="attachment-shop_catalog size-shop_catalog" alt="{{ prod.name }}" />
+                                                    </div>	
+                                                </a>
+                                            </figure>
+
+                                            <div class="post-title">
+                                                <h3><a href="{{ path('site_product_detail', {'id' : product.id }) }}">{{ prod.name }}</a></h3>
+                                            </div>
+                                        </article><!-- end product -->
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div><!-- end row -->
+                    <meta itemprop="url" content="{{ url('site_product_detail', {'id' : product.id }) }}" />
+                </article><!-- #product-1634 -->	
+
+
+
+            </div>
+            <div class="medium-6 small-12  columns animation left-to-right">
+                <aside class="banner  type4 " style="background-repeat: no-repeat !important; min-height:192px; background: transparent url('{{ asset('web/uploads/left-box.jpg')}}'); padding:45px;" ><div class="divcontent">
+                        <h1 style="font-weight: 900;"><span style="color: #ffffff; text-transform: uppercase;">Gama Elite</span></h1>
+                        <p><a class="btn white small " href="{{ path("site_product_category_mosaico", {'slug': 'nivel_elite'}) }}">VER COLECCIÓN</a></div><div class="divstyle"></div></aside><aside class="gap cf" style="height:25px;"></aside>
+            </div>
+
+            <div class="medium-6 small-12  columns animation right-to-left">
+                <aside class="banner  type4 " style="background-repeat: no-repeat !important; min-height:192px; background: transparent url('{{ asset('web/uploads/right-box.jpg')}}'); padding:45px;" ><div class="divcontent">
+                        <h1 style="font-weight: 900;"><span style="color: #ffffff; text-transform: uppercase;">Gama profesional</span></h1>
+                        <p><a class="btn white small " href="{{ path("site_product_category_mosaico", {'slug': 'nivel_profesional'}) }}">VER COLECCIÓN</a></div><div class="divstyle"></div></aside><aside class="gap cf" style="height:25px;"></aside>
+            </div>  
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+
+
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/jquery.flexslider-min.js')}}"></script>
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/jquery.sharrre.min.js')}}"></script>
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/magnific-popup/jquery.magnific-popup.min.js')}}"></script>
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/jquery.raty-fa.js')}}"></script>
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/spinner.min.js')}}"></script>
+    <script type='text/javascript' src="{{ asset('/web/bundles/frontend/js/jquery.owl.carousel.min.js') }}"></script>
+    
+    <script type='text/javascript' src="{{ asset('/web/bundles/frontend/js/cartDetailProduct.js') }}"></script>
+    
+    <script>
+        $("#rank-init").raty({readOnly: true, score: "{{ product.ranking }}"})
+        
+        $(".shop-button").click(function () {
+
+        var id = $(this).attr("data-product_id")
+        
+        {% if is_granted("IS_AUTHENTICATED_FULLY") %}                    
+                
+            $.ajax({
+                url: urlShop,
+                data: {id: id},
+                type: "POST",
+                dataType: "html",
+                success: function (data) {
+                    loadCar()
+                    $("#modal-add-to-cart .body").empty()
+                    $("#modal-add-to-cart .body").append(data)
+                    $("#txtQuantityDetail-" + id).val(1)
+
+                    var $modal = $("#modal-add-to-cart")
+
+                    $modal.modal()
+
+                }
+            })
+        {% else %}
+            location.href = "{{ path('service_init_account') }}"
+        {% endif %}
+    })
+        //$('#spinner1').spinner()
+        /*
+        $(".cart_quantity_up").click(function (){
+            alert("casa")
+        })
+        */
+    </script>
+
+{% endblock %}
