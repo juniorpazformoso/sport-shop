@@ -1,0 +1,26 @@
+{% extends '::base_frontend_struct.html.twig' %}
+
+
+{% block stylesheet %}
+    {{ parent() }}
+    
+{% endblock %}
+
+{% block render %}
+    <div class='row'>
+ {% autoescape false %}
+        {{ content }}
+    {% endautoescape %}
+    </div>
+    <div class='clearfix'></div>
+  	  
+  	  
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/jquery.flexslider-min.js')}}"></script>
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/jquery.sharrre.min.js')}}"></script>
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/magnific-popup/jquery.magnific-popup.min.js')}}"></script>
+{% endblock %}
