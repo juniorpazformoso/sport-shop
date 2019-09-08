@@ -1,0 +1,139 @@
+{% extends '::base_frontend_struct.html.twig' %}
+
+
+{% block stylesheet %}
+    {{ parent() }}
+    <link href="{{ asset('web/bundles/frontend/css/clientaccount.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block render %}
+    <div class="row" id="my-account">
+        <section id="center_column" class="col-md-12">
+            <div id="breadcrumbs">
+<div class="row">
+	<div class="small-12 columns">
+		<div class="main-header">
+			<div class="row">
+                            <div class="small-12 medium-6 columns">
+                                    <h1>
+                                        Bienvenido
+                                    </h1>
+                            </div>
+                            <div class="small-12 medium-6 columns hide-for-small">
+				
+                            <aside class="breadcrumb"><a href="{{ path('service_homepage') }}">Pagina principal</a><span>/</span>Contacto</aside>				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+            
+            <div class="col-md-12">
+                <h1 class="page-heading">
+                    Mi cuenta
+                </h1>
+                <p class="info-account">
+                    Bienvenido a su cuenta. Aquí usted puede administrar toda su información personal y los pedidos.
+                </p>
+            </div>
+           <div class="addresses-lists">
+               <div class="col-xs-12 col-sm-6 col-lg-4">
+                   <ul class="myaccount-link-list">
+                       <!--
+                       <li>
+                           <a href="https://www.technologysport.com/tienda/es/direccion" title="Añadir mi primera dirección">
+                               <i class="fa fa-building"></i>
+                               <span>
+                                   Añadir mi primera dirección
+                               </span>
+                           </a>
+                       </li>
+                       -->
+                       <li>
+                           <a href="{{ path('account_personal_data') }}" title="Información">
+                               <i class="fa fa-user"></i>
+                               <span>Mis datos personales</span>
+                           </a>
+                       </li>
+                       
+                       <li><a href="{{ path('service_address_client') }}" title="Direcciones">
+                               <i class="fa fa-building"></i>
+                               <span>Mis direcciones</span>
+                           </a>
+                       </li>
+                       
+                       <li>
+                           
+                           <a href="{{ path('service_history_client') }}" title="Pedidos">
+                               <i class="fa fa-list-ol"></i>
+                               <span>
+                                   Historial y detalle del pedido
+                               </span>
+                           </a>
+                       </li>
+                       
+                       <!--
+                       <li>
+                           <a href="#" title="Devoluciones de mercancía">
+                               <i class="fa fa-refresh"></i>
+                               <span>Mis devoluciones</span>
+                           </a>
+                       </li>
+                       -->
+                       
+                       <li>
+                           <a href="{{ path('tickets_client') }}" title="Atención cliente">
+                               <i class="fa fa-list-alt"></i>
+                               <span>Atención al cliente</span>
+                           </a>
+                       </li>
+                   </ul>
+               </div>
+               <div class="col-xs-12 col-sm-6 col-lg-4">
+                   <ul class="myaccount-link-list">
+                       <!--
+                       <li>
+                           <a href="https://www.technologysport.com/tienda/es/descuento" title="Cupones">
+                            <i class="fa fa-barcode"></i>
+                            <span>Mis vales</span></a></li>
+                       -->
+                       
+                       <!--
+                            <li class="loyalty"> 
+                                <a href="https://www.technologysport.com/tienda/es/module/loyalty/default?process=summary" title="Mis puntos recompensa" rel="nofollow">
+                                    <i class="fa fa-flag"></i>
+                                    <span>Mis puntos recompensa</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.technologysport.com/tienda/es/module/giftcertificate/gifts" title="Check gifts that you bought">
+                                    <i class="icon-gift"></i>
+                                    <span>Gifts that I bought</span>
+                                </a>
+                            </li>
+                       -->
+                   </ul>
+               </div>
+           </div>
+           <div class="clearfix"></div>
+           <ul class="footer_links clearfix">
+               <li class="pull-left">
+                   <a class="btn btn-outline button button-small btn-sm" href="{{ path('service_homepage') }}" title="Inicio">
+                       <span>
+                           <i class="fa fa-home"></i> Inicio</span>
+                   </a>
+               </li>
+           </ul> 
+            
+        </section>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/jquery.flexslider-min.js')}}"></script>
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/jquery.sharrre.min.js')}}"></script>
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/magnific-popup/jquery.magnific-popup.min.js')}}"></script>
+{% endblock %}

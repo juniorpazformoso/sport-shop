@@ -1,0 +1,120 @@
+{% extends '::base_frontend_struct.html.twig' %}
+
+
+{% block stylesheet %}
+    {{ parent() }}
+    <link href="{{ asset('web/bundles/frontend/css/clientaccount.css') }}" rel="stylesheet" type="text/css"/>
+
+    <style>
+        .finalshop .img-column-shop{
+            width: 14%;
+        }
+
+        .finalshop .shop-title{
+            font-size: 1.8em !important;
+        }
+
+
+        @media(max-width: 770px)
+        {
+            .finalshop .img-column-shop{
+                width: 50% !important;
+            }
+
+            .finalshop{
+                width: 100%;
+            }
+        }
+
+    </style>
+{% endblock %}
+
+{% block render %}
+
+    <div class="row" id="authentication"> 
+        <section id="center_column" class="col-md-12">
+            <div id="breadcrumbs">
+                <div class="row">
+                    <div class="small-12 columns">
+                        <div class="main-header">
+                            <div class="row">
+                                <div class="small-12 medium-6 columns">
+                                    <h1>
+                                        Mis pedidos					
+                                    </h1>
+                                </div>
+                                <div class="small-12 medium-6 columns hide-for-small">
+                                    <aside class="breadcrumb"><a href="{{ path('service_homepage') }}">Pagina principal</a>/
+                                        <a href="{{ path('service_account_client')}}">Mi cuenta</a>
+                                        <span>/</span>Autenticación</aside>				
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            
+            <div class="col-md-8">
+                <div style="padding-left: 20px; padding-right: 20px;">
+
+                    <h4>Total: <span>€ <span class="total-product-price">{{ orderClient.total }}</span></span></h4>
+                </div>
+                <br>
+
+
+                <div class="finalshop table-responsive">
+                    <table class="shoppingcart-table table table-bordered">
+
+                        <tbody>
+                            {% for orderProduct in orderClient.products %}
+                                <tr class="product-row-{{ orderProduct.product.id }}">
+                                    <td class="img-column-shop">
+                                        <div class="products" data-columns="4" data-navigation="true">
+                                            <article itemscope  class="product-image-cart-table item post small-6 medium-4 columns post-1634 product type-product status-publish has-post-thumbnail product_cat-linea-europea product_cat-linea-europa product_tag-101 product_tag-38-mm product_tag-europa product_tag-linea-europea product_tag-palas-europa product_tag-profesional shipping-taxable product-type-simple product-cat-linea-europea product-cat-linea-europa product-tag-2016 product-tag-38-mm product-tag-europa product-tag-linea-europea product-tag-palas-europa product-tag-profesional instock">
+                                                <figure>
+                                                    <a href="{{ path('site_product_detail', {'id' : orderProduct.product.id }) }}">
+                                                        <div class="product-image">
+                                                            <img width="200" height="270"  src="{{ asset('web/uploads/') ~ orderProduct.product.imageHover }}"  class="attachment-shop_catalog size-shop_catalog"/>
+                                                        </div>
+                                                        <div class="product-image">
+                                                            <img width="200" height="270"  src="{{ asset('web/uploads/') ~ orderProduct.product.image }}" class="attachment-shop_catalog size-shop_catalog"/>
+                                                        </div>			
+                                                    </a>
+
+                                                </figure>
+                                            </article>
+
+                                        </div>
+                                    </td>
+                                    <td style="vertical-align: middle; width: 35%;">
+                                        <h3 class="shop-title">
+                                            {{ orderProduct.product.name }}
+                                        </h3>
+                                    </td>
+                                    <td style="vertical-align: middle; width: 5%; text-align: center;">
+                                        <h4>
+                                            €{{ orderProduct.product.price }}
+                                        </h4>
+                                    </td>
+                                    <td  style="width: 1px; vertical-align: middle; width: 4%; text-align: center;">
+                                        <h4>
+                                            {{ orderProduct.count }}
+                                        </h4>
+
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+
+                    </table>  
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <div class="clearfix"></div>
+
+{% endblock %}

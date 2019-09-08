@@ -1,0 +1,105 @@
+{% extends '::base_frontend_struct.html.twig' %}
+
+
+{% block stylesheet %}
+    {{ parent() }}
+    
+    <link href="{{ asset('web/bundles/global/icheck/skins/square/blue.css') }}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/bootstrap-toastr/toastr.css')}}"/>
+    
+    <style>
+        #gruponivcph_servicebundle_client_gender label{
+            padding-right: 20px;
+        }
+    </style>
+{% endblock %}
+
+{% block render %}
+   
+    <div class="row" id="authentication"> 
+       <section id="center_column" class="col-md-12">
+            <div id="breadcrumbs">
+                <div class="row">
+                    <div class="small-12 columns">
+                        <div class="main-header">
+                            <div class="row">
+                                <div class="small-12 medium-6 columns">
+                                    <h1>
+                                        Crear ticket			
+                                    </h1>
+                                </div>
+                                <div class="small-12 medium-6 columns hide-for-small">
+                                    <aside class="breadcrumb">
+                                        <a href="{{ path('service_homepage') }}">Pagina principal</a>/
+                                        <a href="{{ path('service_account_client')}}">Mi cuenta</a>/
+                                        <a href="{{ path('tickets_client')}}">Atención al cliente</a>
+                                    </aside>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                                
+            {{ form_start(form, {'attr': {'class': 'form-horizontal','id':'form_create_client', 'novalidate' : 'novalidate' }}) }}
+                <div class="account_creation">
+                    <h3 class="page-subheading">
+                        Nuevo ticket
+                    </h3>
+                    
+                    <div class="form-group {% if form.subjet.vars.valid==false %}has-error{% endif %}">
+                        <label class="control-label col-sm-4">Asunto <sup>*</sup>
+                        </label>
+                        <div class="col-sm-6"> 
+                            {{ form_widget(form.subjet, { 'attr': {
+                                'required' : 'required',
+                                'maxlength' : 60
+                                } }) }}
+                                {% if form.subjet.vars.valid==false %}
+                                    <span class="help-block">{{ form_errors(form.subjet)}}</span>
+                                {% endif %}
+                        </div>                            
+                    </div>
+                        
+                        
+                    <div class="form-group {% if form.question.vars.valid==false %}has-error{% endif %}">
+                        <label class="control-label col-sm-4">Mensaje <sup>*</sup>
+                        </label>
+                        <div class="col-sm-6"> 
+                            {{ form_widget(form.question, { 'attr': {
+                                'required' : 'required',
+                                } }) }}
+                                {% if form.question.vars.valid==false %}
+                                    <span class="help-block">{{ form_errors(form.question)}}</span>
+                                {% endif %}
+                        </div>                            
+                    </div>
+                    
+                        
+                        
+                    
+                        
+                    {{ form_widget(form.submit, { 'attr': {
+                                'class' : 'btn btn-outline button button-medium',
+                                'required' : 'required',
+                                'maxlength' : 60
+                    } }) }}
+
+                    <p class="pull-right required">
+                        <span><sup>*</sup>
+                            Campo requerido
+                        </span>
+                    </p>
+                </div>
+            {{ form_end(form) }}
+        
+       </section>
+    </div>
+   
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+
+    
+{% endblock %}

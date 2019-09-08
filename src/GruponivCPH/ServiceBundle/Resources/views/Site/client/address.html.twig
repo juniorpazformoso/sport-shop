@@ -1,0 +1,162 @@
+{% extends '::base_frontend_struct.html.twig' %}
+
+
+{% block stylesheet %}
+    {{ parent() }}
+    
+    
+    <link href="{{ asset('web/bundles/frontend/css/clientaccount.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block render %}
+   
+   <div class="row" id="authentication"> 
+        <section id="center_column" class="col-md-12">
+            <div id="breadcrumbs">
+                <div class="row">
+                        <div class="small-12 columns">
+                            <div class="main-header">
+                                <div class="row">
+                                    <div class="small-12 medium-6 columns">
+                                        <h1>
+                                              Mis direcciones					
+                                        </h1>
+                                    </div>
+                                    <div class="small-12 medium-6 columns hide-for-small">
+                                        <aside class="breadcrumb"><a href="{{ path('service_homepage') }}">Pagina principal</a>/
+                                            <a href="{{ path('service_account_client')}}">Mi cuenta</a>
+                                            <span>/</span>Mis Direcciones</aside>	
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="alert alert-success box">
+                    {{ flashMessage }}
+                </div>
+                <div class="clearfix"></div>
+            {% endfor %}
+            
+            <div class="row">
+                
+                <p>Configure sus datos de pago y de envío. 
+                    Estos serán seleccionados por defecto cuando haga un pedido. 
+                    Puede añadir direcciones adicionales, algo especialmente útil para enviar regalos o recibir pedidos en la oficina.</p>
+                
+                <!--
+                <p class="alert alert-warning">Ninguna dirección disponible.&nbsp;<a href="{{ path('service_new_client_address')}}">Añadir nueva dirección</a></p>
+                -->
+                <div class="clearfix main-page-indent"> 
+                    <a href="{{ path('service_new_client_address')}}" title="Añadir una dirección" class="btn btn-outline button button-medium">
+                        <span>Añadir nueva dirección</span>
+                    </a>
+                </div>
+                
+                  
+                <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover" id="sample_3">
+                            <thead>
+                            <tr>
+                                
+                                <th>
+                                    Dirección
+                                </th>
+                                
+                                <th>
+                                    Localidad
+                                </th>
+                                
+                                <th>
+                                    Provincia
+                                </th>
+                                
+                                <th>
+                                    Comunidad
+                                </th>
+                                
+                                <th>
+                                    Población
+                                </th>
+                                
+                                <th>
+                                    Código postal
+                                </th>
+                                
+                                <th>
+                                    Ciudad
+                                </th>
+                                
+                                <th>
+                                    País
+                                </th>
+                                
+                                <th>
+                                    Empresa
+                                </th>
+                                
+                                
+                                
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% set cont = 0 %}
+                            {% for entity in entities %}
+                                <tr class="odd gradeX">
+                                    
+                                    <td>
+                                        {{ entity.address }}
+                                    </td>
+                                    
+                                    <td>
+                                        {{ entity.location }}
+                                    </td>
+                                    
+                                    <td>
+                                        {{ entity.province }}
+                                    </td>
+                                    
+                                    <td>
+                                        {{ entity.community }}
+                                    </td>
+                                    
+                                    <td>
+                                        {{ entity.town }}
+                                    </td>
+                                    
+                                    <td>
+                                        {{ entity.postalCode }}
+                                    </td>
+                                    
+                                    <td>
+                                        {{ entity.city }}
+                                    </td>
+                                    
+                                    <td>
+                                        {{ entity.country }}
+                                    </td>
+                                    
+                                    <td>
+                                        {{ entity.enterprise }}
+                                    </td>
+                                    
+                                    
+                                </tr>
+                                {% set cont = cont + 1 %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+            </div>
+                
+                <ul class="footer_links clearfix"><li class="pull-left"><a class="btn btn-outline button button-small btn-sm" href="{{ path('service_account_client') }}"><span><i class="fa fa-user"></i> Volver a su cuenta</span></a></li><li class="pull-right">
+                <a class="btn btn-outline button button-small btn-sm" href="{{ path('service_homepage') }}"><span><i class="fa fa-home"></i> Inicio</span></a></li></ul>
+            </div>
+       </section>
+   </div>
+                                    
+                                    
+   	  
+{% endblock %}

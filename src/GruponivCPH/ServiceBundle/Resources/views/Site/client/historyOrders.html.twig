@@ -1,0 +1,72 @@
+{% extends '::base_frontend_struct.html.twig' %}
+
+
+{% block stylesheet %}
+    {{ parent() }}
+    
+    
+    <link href="{{ asset('web/bundles/frontend/css/clientaccount.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block render %}
+   
+   <div class="row" id="authentication"> 
+        <section id="center_column" class="col-md-12">
+            <div id="breadcrumbs">
+                <div class="row">
+                        <div class="small-12 columns">
+                            <div class="main-header">
+                                <div class="row">
+                                    <div class="small-12 medium-6 columns">
+                                        <h1>
+                                            Mis pedidos					
+                                        </h1>
+                                    </div>
+                                    <div class="small-12 medium-6 columns hide-for-small">
+                                        <aside class="breadcrumb"><a href="{{ path('service_homepage') }}">Pagina principal</a>/
+                                            <a href="{{ path('service_account_client')}}">Mi cuenta</a>
+                                            <span>/</span>Historial y Detalle del pedido</aside>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="alert alert-success box">
+                    {{ flashMessage }}
+                </div>
+                <div class="clearfix"></div>
+            {% endfor %}
+            
+            <div class="row">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <td>Id</td>
+                        <td>Fecha</td>
+                    </thead>
+                    
+                    <tbody>
+                        {% for c in historyOrders %}
+                            <tr>
+                                <td>
+                                    <a href="{{ path('review_order', {'id' : c.id}) }}">
+                                        {{ c.identifier }}
+                                    </a>
+                                </td>
+                                <td>
+                                    {{ c.creationDate | date('d/m/Y') }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                
+            </div>
+       </section>           
+   </div>
+                                    
+                                    
+   	  
+{% endblock %}

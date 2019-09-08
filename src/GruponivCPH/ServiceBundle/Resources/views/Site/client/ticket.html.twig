@@ -1,0 +1,121 @@
+{% extends '::base_frontend_struct.html.twig' %}
+
+{% block page_title %}Dabber spain{% endblock %}
+{% block left_sidebar_active_home %} class="activa" {% endblock %}
+
+{% block stylesheet %}
+    {{ parent() }}
+
+    <link rel='stylesheet' id='rs-plugin-settings-css'  href="{{ asset('/web/bundles/frontend/plugins/slider/css/settings.css-rev=4.3.3&ver=4.4.9.css') }}" type='text/css' media='all' />
+    <link rel='stylesheet' id='contact-form-7-css'  href="{{ asset('/web/bundles/frontend/plugins/slider/css/styles.css-ver=4.3.css') }}"  type='text/css' media='all' />
+    <link rel='stylesheet'   href="{{ asset('/web/bundles/metronic/global/plugins/fancybox/source/jquery.fancybox.css') }}"  type='text/css' media='all' />
+
+    <style>
+        .fancybox-image{
+            width: 200% !important;
+            height: 200% !important;
+        }
+        
+        table td, table th{
+            font-size: 18px !important;
+        }
+    </style>
+{% endblock %}
+
+{% block content_title %} {{ 'content.title.lastjobs' | trans }} {% endblock %}
+
+{% block render %}
+
+    <div id="breadcrumbs">
+        <div class="row">
+            <div class="small-12 columns">
+                <div class="main-header">
+                    <div class="row">
+                        <div class="small-12 medium-6 columns">
+                            <h1>
+                                Atención al cliente				
+                            </h1>
+                        </div>
+                        <div class="small-12 medium-6 columns hide-for-small">
+
+                            <aside class="breadcrumb">
+                                <a href="{{ path('service_homepage') }}">Pagina principal</a>/
+                                <a href="{{ path('service_account_client')}}">Mi cuenta</a><span>/Atención al cliente</span>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div role="main"><div class="row ">
+            <section class="small-12 columns">
+                <a href="{{ path('site_ticket_new') }}" class="btn btn-primary">Nuevo ticket</a>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <th>
+                                Fecha
+                            </th>
+
+                            <th>
+                                Asunto
+                            </th>
+
+                            <th>
+                                Estado
+                            </th>
+
+                            <th>
+                                Última actualización
+                            </th>
+
+                            <th>
+                                Acciones
+                            </th>
+                        </thead>
+
+
+                        {% for ticket in client.tickets %}
+
+                            <tr>
+                                <td>
+                                    {{ ticket.creationDate | date('d-m-Y g:i A') }}
+                                </td>
+
+                                <td>
+                                    {{ ticket.subjet }}
+                                </td>
+
+                                <td>
+                                    {{ ticket.state }}
+                                </td>
+
+                                <td>
+                                    {{ ticket.updateDate | date('d-m-Y g:i A') }}
+                                </td>
+
+                                <td>
+                                    <a href="{{ path('showTicket', {'id' : ticket.id }) }}" class="btn btn-primary">
+                                        Ver ticket
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+
+
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+
+
+{% endblock %}

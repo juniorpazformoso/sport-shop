@@ -1,0 +1,218 @@
+{% extends '::base_frontend_struct.html.twig' %}
+
+{% block page_title %}Dabber spain{% endblock %}
+{% block left_sidebar_active_home %} class="activa" {% endblock %}
+
+{% block stylesheet %}
+    {{ parent() }}
+
+    <link rel='stylesheet' id='rs-plugin-settings-css'  href="{{ asset('/web/bundles/frontend/plugins/slider/css/settings.css-rev=4.3.3&ver=4.4.9.css') }}" type='text/css' media='all' />
+    <link rel='stylesheet' id='contact-form-7-css'  href="{{ asset('/web/bundles/frontend/plugins/slider/css/styles.css-ver=4.3.css') }}"  type='text/css' media='all' />
+    <link rel='stylesheet'   href="{{ asset('/web/bundles/metronic/global/plugins/fancybox/source/jquery.fancybox.css') }}"  type='text/css' media='all' />
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/admin/css/tickets.css') }}"/>
+
+    <style>
+        .fancybox-image{
+            width: 200% !important;
+            height: 200% !important;
+        }
+
+        table td, table th{
+            font-size: 18px !important;
+        }
+    </style>
+{% endblock %}
+
+{% block content_title %} {{ 'content.title.lastjobs' | trans }} {% endblock %}
+
+{% block render %}
+
+    <div id="breadcrumbs">
+        <div class="row">
+            <div class="small-12 columns">
+                <div class="main-header">
+                    <div class="row">
+                        <div class="small-12 medium-6 columns">
+                            <h1>
+                                Atención al cliente				
+                            </h1>
+                        </div>
+                        <div class="small-12 medium-6 columns hide-for-small">
+                            <aside class="breadcrumb">
+                                <a href="{{ path('service_homepage') }}">Pagina principal</a>/
+                                <a href="{{ path('service_account_client')}}">Mi cuenta</a>/
+                                <a href="{{ path('tickets_client')}}">Atención al cliente</a>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div role="main"><div class="row ">
+            <section class="small-12 columns">
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="well">
+                            <div class="data-body">
+                                <div class="col-md-3">
+
+                                    <span class="title-data">Fecha creación</span>
+
+                                    <div class="data-ticket">
+                                        {{ ticket.creationDate | date('d-m-Y g:i A') }}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <span class="title-data"><b>Última actualización</b></span>
+
+                                    <div class="data-ticket">
+                                        {{ ticket.updateDate | date('d-m-Y g:i A') }}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+
+                                    <span class="title-data">Estado</span>
+
+                                    <div class="data-ticket">
+                                        {{ ticket.state }}
+                                    </div>
+                                </div>
+
+
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <a href="{{ path('tickets_client') }}"  class="btn btn-default">Atrás</a>
+                        
+                        {% if ticket.state != "Cerrado" %}    
+                            <a href="javascript:void(0);" data-toggle="modal" data-target="#question-ticket" class="btn btn-success">Preguntar</a>            
+                        {% endif %}
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+
+
+                <br>
+
+                <div class="body-commnunication" style="margin-bottom: 40px;">
+                    {% for q in questions %}
+
+                        <div class="message question">                
+                            <div class="well user-info" style="margin-bottom: -1px !important;">
+                                <span class="pull-left">{{ ticket.client }} || Cliente</span>
+                                <span class="pull-right">{{ q.creationDate | date('d-m-Y g:i A')}}</span>
+                                <div class="clearfix"></div>
+                            </div>
+
+
+                            <div class="well content">
+                                {{ q.question }}                        
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>            
+
+
+                        {% if q.answer %}
+
+                            {% set answer = q.answer %}
+                            <div class="message question">               
+                                <div class="well user-info user-info-employed" style="margin-bottom: -1px !important;">
+                                    <span class="pull-left">{{ answer.user }} || Empleado</span>
+                                    <span class="pull-right">{{ answer.creationDate | date('d-m-Y g:i A')}}</span>
+                                    <div class="clearfix"></div>
+                                </div>
+
+
+                                <div class="well content">
+                                    {{ answer.answer }}
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>       
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+            </section>
+        </div>
+    </div>
+                
+    <style>
+    textarea{
+        width: 100%;
+    }
+</style>
+
+<div class="modal fade" id="question-ticket" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close modal-close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h3 class="modal-title" style="color: #000000" id="myModalLabel">Formular pregunta</h3>
+            </div>
+            <div class="modal-body">
+                {{ form_start(formQuestionTicket, {attr: {id: 'form-question'}}) }}
+                <div class="tabbable tabs-reversed">
+                    <h2>Pregunta</h2>
+
+
+                    <div class="tab-content">
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                {{ form_widget(formQuestionTicket.question) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            {{ form_end(formQuestionTicket) }}
+            <div class="clearfix"></div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn default" data-dismiss="modal">Cancelar</button>
+            <a class="btn btn-success" id="sendQuestion">Enviar</a>                
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+
+    <script>
+        $("#sendQuestion").click(function () {
+            var textQuestion = $("#question_ticket_question").val()
+
+            if (textQuestion == "")
+            {
+                toastr.error("<div>- Indique el contenido de la pregunta.</div>")
+                return;
+            }
+
+            $(".modal-close").trigger('click')
+            $("#form-question").submit()
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,160 @@
+{% extends '::base_frontend_struct.html.twig' %}
+
+
+{% block stylesheet %}
+    {{ parent() }}
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/bootstrap-toastr/toastr.css')}}"/>
+{% endblock %}
+
+{% block render %}
+
+    <div class="row" id="authentication"> 
+        <section id="center_column" class="col-md-12">
+            <div id="breadcrumbs">
+                <div class="row">
+                    <div class="small-12 columns">
+                        <div class="main-header">
+                            <div class="row">
+                                <div class="small-12 medium-6 columns">
+                                    <h1>
+                                        Autenticación					
+                                    </h1>
+                                </div>
+                                <div class="small-12 medium-6 columns hide-for-small">
+                                    <aside class="breadcrumb"><a href="{{ path('service_homepage') }}">Pagina principal</a><span>/</span>Autenticación</aside>				
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="alert alert-success box">
+                    {{ flashMessage }}
+                </div>
+                <div class="clearfix"></div>
+            {% endfor %}
+
+            <div class="row"><div class="col-xs-12 col-sm-6"><form action="" method="post" id="create-account_form" class="box">
+                <h3 class="page-subheading">Crear una cuenta</h3>
+                <div class="form_content clearfix"><p>Escriba su correo electrónico para crear su cuenta</p>
+                    <div class="alert alert-danger" id="create_account_error" style="display:none"></div><div class="form-group form-error"> <label for="email_create">Correo electrónico</label> <input type="text" class="is_required validate account_input form-control" data-validate="isEmail" id="email_create" name="email_create" value=""></div>
+                    <div class="submit"> <input type="hidden" class="hidden" name="back" value="my-account"> 
+                        <a href="javascript:void(0);" class="btn btn-outline button button-medium exclusive" type="submit" id="SubmitCreate" name="SubmitCreate"> 
+                            <span> <i class="fa fa-user left"></i>&nbsp; Crear una cuenta </span> 
+                        </a>
+                        
+                        <a id="request_activation_account" href="javascript:void(0);" class="button btn btn-outline button-medium"> 
+                                        <span> <i class="fa fa-lock left"></i>&nbsp; Recuperar contraseña
+                                        </span> 
+                                    </a>
+                        <input type="hidden" class="hidden" name="SubmitCreate" value="Crear una cuenta">
+                    </div></div></form></div>
+                    <div class="col-xs-12 col-sm-6">
+                        <form action="{{ path("fos_user_security_check_client") }}" method="post" id="login_form" class="box">
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+                            <h3 class="page-subheading">¿Ya está inscrito?</h3>
+                            <div class="form_content clearfix"><div class="form-group form-error"> 
+                                <label for="email">Correo electrónico</label> 
+                                <input class="is_required validate account_input form-control" data-validate="isEmail" type="text" id="email" name="_username" value=""></div><div class="form-group"> <label for="passwd">Contraseña</label> <span class="form-error">
+                                <input class="is_required validate account_input form-control" type="password" data-validate="isPasswd" id="passwd" name="_password" value=""></span></div>
+
+                                <p class="submit"> <input type="hidden" class="hidden" name="back" value="my-account"> 
+                                    <button type="submit" id="SubmitLogin" name="SubmitLogin" class="button btn btn-outline button-medium"> 
+                                        <span> <i class="fa fa-lock left"></i>&nbsp; Iniciar sesión 
+                                        </span> 
+                                    </button>
+                                </p>
+                                
+                                
+                            </div>
+                        </form>
+                    </div>
+                    
+            </div>
+        </section>
+    </div>
+
+
+
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+
+
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/bootstrap-toastr/toastr.min.js')}}"></script>
+
+    <script>
+        $("#request_activation_account").click(function (){
+            var email = $("#email_create").val()
+
+            var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            var formatEmailCorrect = true
+            
+
+            if (email == "")
+            {
+                formatEmailCorrect = false
+                toastr.error("Debe indicar un correo.")
+            }
+
+            if (email != "" && regex.test(email) == false)
+            {
+                formatEmailCorrect = false
+                toastr.error("Dirección email inválida.")
+            }
+            
+            if(formatEmailCorrect)
+            {
+                //var url = '{{ path("request_activation_account", {'email': 'email'}) }}';
+                var url = '{{ path("request_password_account", {'email': 'email'}) }}';
+                url = url.replace("email", email);
+                location.href = url
+            }            
+        })
+
+        $("#SubmitCreate").click(function () {
+            var email = $("#email_create").val()
+
+            var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            var formatEmailCorrect = true
+
+            if (email == "")
+            {
+                formatEmailCorrect = false
+                toastr.error("Debe indicar un correo.")
+            }
+
+            if (email != "" && regex.test(email) == false)
+            {
+                formatEmailCorrect = false
+                toastr.error("Dirección email inválida.")
+            }
+
+            if (formatEmailCorrect) {
+                $.ajax({
+                    url: "{{ path('email_client_unique') }}",
+                    type: "POST",
+                    dataType: "json",
+                    data: {email: email},
+                    success: function (data) {
+                        if (data.validMail)
+                        {
+                            var url = '{{ path("service_new_account", {'email': 'email'}) }}';
+                            url = url.replace("email", email);
+                            location.href = url
+                        }
+                        else
+                        {
+                            toastr.error("Una cuenta ya está registrada con este e-mail.")
+                        }
+                    }
+                })
+            }
+
+
+        })
+    </script>
+{% endblock %}
