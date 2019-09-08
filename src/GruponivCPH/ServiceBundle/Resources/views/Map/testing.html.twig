@@ -1,0 +1,107 @@
+{% extends '::base_metronic_struct.html.twig' %}
+
+{% block stylesheet %}
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css') }}"/>
+    
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+    
+    <!-- END PAGE LEVEL STYLES -->
+{% endblock %}
+
+{% block rootmenunotice %}
+    class="start active open"
+{% endblock %}
+
+{% block rootmenunoticeaux %}
+    <span class="selected"></span>
+{% endblock %}
+
+{% block rootmenunoticearrow %}
+    open
+{% endblock %}
+
+{% block rootmenucategorynotice %} class="active" {% endblock %}
+
+{% block render %}
+
+    <div class="page-content">
+        <div id="map"></div>
+    </div>
+
+
+{% endblock %}
+
+{% block javascript %}
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js') }}"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="{{ asset('web/bundles/metronic/admin/pages/scripts/table-managed.js') }}"></script>
+    <script>
+        function deleteConfirmation(name){
+            var formulario = document.getElementById(name);
+            formulario.submit();
+        }
+
+        
+            var markersArray = [];
+
+            function clearOverlays() {
+              for (var i = 0; i < markersArray.length; i++ ) {
+                markersArray[i].setMap(null);
+              }
+              markersArray.length = 0;
+            }
+
+            function placeMarker(position, map) {
+                clearOverlays();
+
+                console.log(position.lat());
+                $("#gruponivcph_servicebundle_article_latitude").val(position.lat());
+                $("#gruponivcph_servicebundle_article_longitude").val(position.lng());
+
+                var marker = new google.maps.Marker({
+                  position: position,
+                  map: map
+                });  
+                map.panTo(position);
+
+                markersArray.push(marker);
+              }
+
+            function initMap() {
+                //var uluru = {lat: -25.363, lng: 131.044};
+                var uluru = {lat: 25.7711774, lng: -80.225084};
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 3,
+                    center: uluru
+                });
+                var marker = new google.maps.Marker({
+                    position: uluru,
+                    map: map
+                });
+                markersArray.push(marker);
+
+                map.addListener('click', function(e) {
+                    placeMarker(e.latLng, map);
+                });
+            }
+            
+           
+            
+        
+    </script>
+    
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC__Jy-n5wryNNhYOBJ2YG8VIswyLHTKAM&callback=initMap" async defer>
+    </script>
+{% endblock %}
+
