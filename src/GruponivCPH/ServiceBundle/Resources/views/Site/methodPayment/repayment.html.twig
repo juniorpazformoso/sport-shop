@@ -1,0 +1,121 @@
+{% extends '::base_frontend_struct.html.twig' %}
+
+{% block page_title %}Dabber spain{% endblock %}
+{% block left_sidebar_active_home %} class="activa" {% endblock %}
+
+{% block stylesheet %}
+    {{ parent() }}
+
+    <link rel='stylesheet' id='rs-plugin-settings-css'  href="{{ asset('/web/bundles/frontend/plugins/slider/css/settings.css-rev=4.3.3&ver=4.4.9.css') }}" type='text/css' media='all' />
+    <link rel='stylesheet' id='contact-form-7-css'  href="{{ asset('/web/bundles/frontend/plugins/slider/css/styles.css-ver=4.3.css') }}"  type='text/css' media='all' />
+    <link rel='stylesheet'   href="{{ asset('/web/bundles/metronic/global/plugins/fancybox/source/jquery.fancybox.css') }}"  type='text/css' media='all' />
+
+    <style>
+        .fancybox-image{
+            width: 200% !important;
+            height: 200% !important;
+        }
+    </style>
+{% endblock %}
+
+{% block content_title %} {{ 'content.title.lastjobs' | trans }} {% endblock %}
+
+{% block render %}
+
+    <div id="breadcrumbs">
+        <div class="row">
+            <div class="small-12 columns">
+                <div class="main-header">
+                    <div class="row">
+                        <div class="small-12 medium-6 columns">
+                            <h1>
+                                Pago por reembolso					
+                            </h1>
+                        </div>
+                        <div class="small-12 medium-6 columns hide-for-small">
+
+                            <aside class="breadcrumb"><a href="{{ path('service_homepage') }}">Pagina principal</a><span>/</span>Pago por efectivo</aside>				</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div role="main"><div class="row ">
+            <section class="small-12 columns">
+                
+                
+                <h3>
+                    Usted puede usar  el identificador "<b>{{ orderClient.identifier }}</b>" para seguir este pedido desde la opción 
+                    <a href="{{ path('service_history_client') }}" title="Historia y detalles del pedido">Historia y detalles del pedido</a>
+                </h3>
+                    
+                {% autoescape false %}
+                    {{ repaymentMethod }}
+                {% endautoescape %}
+                
+                <br><br>
+                <h4>Total: <span>€ <span class="total-product-price">{{ orderClient.total }}</span></span></h4>
+                                
+                <br>
+                <h3>Su pedido incluye los siguientes productos</h3>
+                {% set total = 0 %}
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                        <th>
+                            Imagen
+                        </th>
+                        <th>
+                            Nombre
+                        </th>
+                        <th>
+                            Cantidad
+                        </th>
+                        
+                        <th>
+                            Precio producto
+                        </th>
+                        
+                        <th>
+                            Total
+                        </th>
+                        </thead>
+                        {% for orderProduct in orderClient.products %}
+
+                            <tr>
+                                <td>
+                                    <img style="width: auto; height: 80px;" src="{{ asset('web/uploads/') ~ orderProduct.product.image }}" alt="" />
+                                </td>
+
+                                <td>
+                                    {{ orderProduct.product.name }}
+                                </td>
+
+                                <td>
+                                    {{ orderProduct.count }}
+                                </td>
+                                
+                                <td>
+                                    €{{ orderProduct.product.price }}
+                                </td>
+                                
+                                <td>
+                                    €{{ orderProduct.count * orderProduct.product.price }}
+                                    {% set total = total + orderProduct.count * orderProduct.product.price %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                    
+                    
+                </div>
+            </section>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+{% endblock %}  
