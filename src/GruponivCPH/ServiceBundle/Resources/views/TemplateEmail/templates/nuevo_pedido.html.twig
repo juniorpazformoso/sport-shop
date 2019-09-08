@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <link href="{{ asset('web/bundles/metronic/global/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
+    </head>
+    
+    <body>
+        <br><br>
+        <div class="container" style="border-radius: 5px !important; padding: 0; width: 900px; border: 1px solid silver;">
+            <div style="background-color: black; color: white; padding: 20px; border-radius: 5px;">
+                <div class="pull-left" style="position: relative; bottom: 5px;">
+                    <h3><b>Nuevo pedido</b></h3>
+                </div>
+                
+                <div class="pull-right">
+                    <img width="200" src="{{ app.request.schemeAndHttpHost ~ asset('web/uploads/logo.png') }}" class="logoimg" alt="Dabber Spain">
+                </div>
+                
+                <div class="clearfix"></div>
+            </div>
+                
+            <div class="content" style="padding: 20px;">
+                {% if demo is defined %}
+                    {% include "ServiceBundle:TemplateEmail:templatesDemo/nuevo_pedido.html.twig" %}
+                {% else %}
+                    
+                {% endif %}
+            </div>
+        </div>
+    </body>
+</html>
