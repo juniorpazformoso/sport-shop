@@ -1,0 +1,160 @@
+{% extends '::base_metronic_struct.html.twig' %}
+
+{% block stylesheet %}
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    {{ parent() }}
+{% endblock %}
+
+{% block rootmenuusers %}
+    class="start active open"
+{% endblock %}
+
+{% block rootmenuusersaux %}
+    <span class="selected"></span>
+{% endblock %}
+
+{#{% block rootmenuusersarrow %}
+    open
+{% endblock %}
+
+{% block rootmenuusersmenuadmin %} {% if entity.roles[0] == 'ROLE_ADMIN' %} class="active" {% endif %} {% endblock %}
+{% block rootmenuusersmenuasoc %} {% if entity.roles[0] == 'ROLE_ASOCIADO' %} class="active" {% endif %} {% endblock %}#}
+
+{% block render %}
+
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <!-- BEGIN PAGE HEADER-->
+            <h3 class="page-title">
+                Usuarios <small>{{ entity.email }}</small>
+            </h3>
+            <div class="page-bar">
+                <ul class="page-breadcrumb">
+                    <li>
+                        <i class="fa fa-home"></i>
+                        <a href="{{ path('service_backend_admin') }}">Inicio</a>
+                        <i class="fa fa-angle-right"></i>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_user', {'role': entity.roles[0]}) }}">{% if entity.roles[0] == 'ROLE_ADMIN' %} Administradores {% else %} Asociados {% endif %}</a>
+                        <i class="fa fa-angle-right"></i>
+                    </li>
+                    <li>
+                        <a href="#">{{ entity.email }}</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- END PAGE HEADER-->
+            <!-- BEGIN PAGE CONTENT-->
+            <div class="row">
+                <div class="col-md-12">
+                    {% for type, messages in app.session.flashbag.all() %}
+                        {% for message in messages %}
+                            <div class="flash-{{ type }}">
+                                <div class="alert alert-block alert-danger fade in">
+                                    <button type="button" class="close" data-dismiss="alert"></button>
+                                    <h4 class="alert-heading">Error!</h4>
+                                    <p>
+                                        {{ message }}
+                                    </p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    <div class="tabbable tabbable-custom boxless tabbable-reversed">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab_0">
+                                <div class="portlet light bg-inverse">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="icon-equalizer font-red-sunglo"></i>
+                                            <span class="caption-subject font-red-sunglo bold uppercase">Editar usuario</span>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body form">
+                                        <!-- BEGIN FORM-->
+                                        {{ form_start(edit_form, {'attr': {'class': 'form-horizontal' }}) }}
+                                        <div class="form-body">
+                                            <div class="form-group">
+                                                <div class="col-md-3"></div>
+                                                <div class="col-md-4">
+                                                    <label class="required">Dirección de correo</label>
+                                                    <div class="input-group">
+                                                        {{ form_widget(edit_form.email, { 'attr': {
+                                                        'class' : 'form-control tags',
+                                                        'required' : 'required',
+                                                        } }) }}
+                                                        {{ form_errors(edit_form.email) }}
+                                                        <span class="input-group-addon">
+                                                        <i class="fa fa-envelope"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-3"></div>
+                                                <div class="col-md-4">
+                                                    <div class="input-group">
+
+                                                        {% set i = 0 %}
+                                                        {% set label = '' %}
+                                                        {% for passwordField in edit_form.password %}
+                                                            {% if i == 0 %}
+                                                                {% set i = 1 %}
+                                                                {% set label = 'Contraseña' %}
+                                                            {% else %}
+                                                                {% set label = 'Repita contraseña' %}
+                                                            {% endif %}
+                                                            <div class="">
+                                                                {{ form_label(passwordField, label, { 'attr': {'class': 'form-label'} }) }}
+                                                                {{ form_widget(passwordField, { 'attr': {'class': 'form-control'} }) }}
+                                                            </div>
+                                                        {% endfor %}
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-3"></div>
+                                                <div class="col-md-4">
+                                                    <div class="input-group">
+                                                        <p>Habilitado</p>
+                                                        {{ form_widget(edit_form.enabled, { 'attr': {
+                                                        'class' : 'make-switch',
+                                                        'data-on-text' : 'Sí',
+                                                        'data-off-text' : 'No'
+                                                        } }) }}
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-actions">
+                                            <div class="row">
+                                                <div class="col-md-offset-3 col-md-4">
+                                                    {{ form_widget(edit_form.submit, { 'attr': {
+                                                    'class' : 'btn green',
+                                                    'label' : 'Crear'
+                                                    } }) }}
+                                                    <a href="{{ path('admin_user', {'role': entity.roles[0]}) }}" class="btn default">Cancelar</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{ form_end(edit_form) }}
+                                        <!-- END FORM-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END PAGE CONTENT-->
+        </div>
+    </div>
+    <!-- END CONTENT -->
+
+
+</ul>
+{% endblock %}

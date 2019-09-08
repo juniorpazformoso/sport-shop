@@ -1,0 +1,139 @@
+{% extends '::base_metronic_struct.html.twig' %}
+
+{% block rootmenuusers %}
+    class="start active open"
+{% endblock %}
+
+{% block rootmenuusersaux %}
+    <span class="selected"></span>
+{% endblock %}
+
+{#{% block rootmenuusersarrow %}
+    open
+{% endblock %}
+
+{% block rootmenuusersmenuadmin %} {% if role == 'ROLE_ADMIN' %} class="active" {% endif %} {% endblock %}
+{% block rootmenuusersmenuasoc %} {% if role == 'ROLE_ASOCIADO' %} class="active" {% endif %} {% endblock %}#}
+
+{% block render %}
+
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+    <div class="page-content">
+    <!-- BEGIN PAGE HEADER-->
+    <h3 class="page-title">
+        Usuarios <small>Nuevo usuario</small>
+    </h3>
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="{{ path('service_backend_admin') }}">Inicio</a>
+                    <i class="fa fa-angle-right"></i>
+                </li>
+                <li>
+                    <a href="{{ path('admin_user', {'role': role}) }}">{% if role == 'ROLE_ADMIN' %} Administradores {% else %} Asociados {% endif %}</a>
+                </li>
+            </ul>
+        </div>
+    <!-- END PAGE HEADER-->
+    <!-- BEGIN PAGE CONTENT-->
+    <div class="row">
+    <div class="col-md-12">
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <div class="flash-{{ type }}">
+                    <div class="alert alert-block alert-danger fade in">
+                        <button type="button" class="close" data-dismiss="alert"></button>
+                        <h4 class="alert-heading">Error!</h4>
+                        <p>
+                            {{ message }}
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    <div class="tabbable tabbable-custom boxless tabbable-reversed">
+    <div class="tab-content">
+    <div class="tab-pane active" id="tab_0">
+    <div class="portlet light bg-inverse">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="icon-equalizer font-red-sunglo"></i>
+                <span class="caption-subject font-red-sunglo bold uppercase">Nuevo usuario</span>
+                <span class="caption-helper">{% if role == 'ROLE_ADMIN' %} Administradores {% else %} Asociados {% endif %}</span>
+            </div>
+        </div>
+        <div class="portlet-body form">
+            <!-- BEGIN FORM-->
+            {{ form_start(form, {'attr': {'class': 'form-horizontal' }}) }}
+                <div class="form-body">
+                    <div class="form-group">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-4">
+                            <label class="required">Dirección de correo</label>
+                            <div class="input-group">
+                                {{ form_widget(form.email, { 'attr': {
+                                'class' : 'form-control tags',
+                                'required' : 'required',
+                                } }) }}
+                                <span class="input-group-addon">
+                                                                <i class="fa fa-envelope"></i>
+                                                                </span>
+                                {{ form_errors(form.email) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-4">
+                            <div class="input-group">
+
+                                {% set i = 0 %}
+                                {% set label = '' %}
+                                {% for passwordField in form.password %}
+                                    {% if i == 0 %}
+                                        {% set i = 1 %}
+                                        {% set label = 'Contraseña' %}
+                                    {% else %}
+                                        {% set label = 'Repita contraseña' %}
+                                    {% endif %}
+                                    <div class="form-field">
+                                        {{ form_label(passwordField, label, { 'attr': {'class': 'form-label'} }) }}
+                                        {{ form_widget(passwordField, { 'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                {% endfor %}
+
+                                {% for mensaje in app.session.flashbag.get('info') %}
+                                    <p class="info">{{ mensaje }}</p>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-offset-3 col-md-4">
+                            {{ form_widget(form.submit, { 'attr': {
+                            'class' : 'btn green',
+                            'label' : 'Crear'
+                            } }) }}
+                            <a href="{{ path('admin_user', {'role': role}) }}" class="btn default">Cancelar</a>
+                        </div>
+                    </div>
+                </div>
+            {{ form_end(form) }}
+            <!-- END FORM-->
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-- END PAGE CONTENT-->
+    </div>
+    </div>
+    <!-- END CONTENT -->
+{% endblock %}

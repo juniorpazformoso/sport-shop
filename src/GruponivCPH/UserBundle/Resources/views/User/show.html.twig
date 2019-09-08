@@ -1,0 +1,159 @@
+{% extends '::base_metronic_struct.html.twig' %}
+
+{% block rootmenuusers %}
+    class="start active open"
+{% endblock %}
+
+{% block rootmenuusersaux %}
+    <span class="selected"></span>
+{% endblock %}
+
+{#{% block rootmenuusersarrow %}
+    open
+{% endblock %}
+
+{% block rootmenuusersmenuadmin %} {% if entity.roles[0] == 'ROLE_ADMIN' %} class="active" {% endif %} {% endblock %}
+{% block rootmenuusersmenuasoc %} {% if entity.roles[0] == 'ROLE_ASOCIADO' %} class="active" {% endif %} {% endblock %}#}
+
+{% block render%}
+
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
+        <h3 class="page-title">
+            Detalles <small>{{ entity.email }}</small>
+        </h3>
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="{{ path('service_backend_admin') }}">Inicio</a>
+                    <i class="fa fa-angle-right"></i>
+                </li>
+                <li>
+                    <a href="{{ path('admin_user', {'role': entity.roles[0]}) }}">{% if entity.roles[0] == 'ROLE_ADMIN' %} Administradores {% else %} Asociados {% endif %}</a>
+                    <i class="fa fa-angle-right"></i>
+                </li>
+                <li>
+                    <a href="{{ path('admin_user_show', {'id': entity.id}) }}">{{ entity.email }}</a>
+                </li>
+            </ul>
+        </div>
+        <!-- END PAGE HEADER-->
+        <div class="clearfix">
+        </div>
+
+        <!-- BEGIN PAGE CONTENT-->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tabbable tabbable-custom boxless tabbable-reversed">
+                    <div class="tab-content">
+                        <div class="portlet-body form">
+                            <!-- BEGIN FORM-->
+                            <div class="form-horizontal">
+                                <div class="form-body">
+                                    <h3 class="form-section">Detalles - {{ entity.email }}</h3>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3"><strong>Usuario:</strong></label>
+                                                <div class="col-md-9">
+                                                    <p class="control-label" style="text-align: left">
+                                                        {{ entity.email }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                    <!--/row-->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3"><strong>Estado:</strong></label>
+                                                <div class="col-md-9">
+                                                    <div class="control-label" style="text-align: left">
+                                                        <span class="label label-sm label-{% if entity.enabled %}success{% else %}default{% endif %}">
+                                                        {% if entity.enabled %}Habilitado{% else %}Deshabilitado{% endif %} </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                    <!--/row-->
+                                </div>
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-offset-3 col-md-9 record_actions">
+
+                                                    <table>
+                                                        <tr>
+                                                            <th><a href="{{ path('admin_user_edit', { 'id': entity.id }) }}" class="btn btn-sm yellow" style="margin-right: 5px">
+                                                                    Editar <i class="fa fa-edit"></i> </a></th>
+                                                            <th hidden="hidden">
+                                                                {{ form(delete_form, {'attr': {'id': 'delete_form' }}) }}
+                                                            </th>
+                                                            <th>
+                                                                <a class="btn btn-sm red" data-toggle="modal" href="#static"> Eliminar </a>
+                                                                <div id="static" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                                                                <h4 class="modal-title">Confirmación</h4>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <p>
+                                                                                <h4>¿Está seguro que desea eliminar el usuario?</h4>
+                                                                                </p>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" data-dismiss="modal" class="btn default">Cancelar</button>
+                                                                                <button type="button" data-dismiss="modal" class="btn red" onclick="deleteConfirmation()">Eliminar</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </th>
+                                                            <th><a href="{{ path('admin_user', {'role': entity.roles[0]}) }}" class="btn btn-sm default" style="margin-left: 5px">
+                                                                    Regresar  </a></th>
+                                                        </tr>
+
+                                                    </table>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- END PAGE CONTENT-->
+
+
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+
+    <script language="JavaScript">
+        function deleteConfirmation(){
+            var formulario = document.getElementById('delete_form');
+            formulario.submit();
+        }
+    </script>
+{% endblock %}
