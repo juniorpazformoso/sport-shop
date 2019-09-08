@@ -1,0 +1,120 @@
+{% extends '::base_frontend_struct.html.twig' %}
+
+
+{% block stylesheet %}
+    {{ parent() }}
+
+    <link rel='stylesheet' href="{{ asset('web/bundles/frontend/js/magnific-popup/magnific-popup.css')}}"  type='text/css' media='all' />
+
+    <style>
+        ul.accordion > li.active div.title:after{
+            content: '' !important;
+        }
+    </style>
+{% endblock %}
+
+{% block render %}
+    <div id="breadcrumbs">
+        <div class="row">
+            <div class="small-12 columns">
+                <div class="main-header">
+                    <div class="row">
+                        <div class="small-12 medium-6 columns">
+                            <h1>
+                                Resultados de la busquedad
+                            </h1>
+                        </div>
+                        <div class="small-12 medium-6 columns hide-for-small">
+
+                            <aside class="breadcrumb">
+                                <a class="home" href="{{ path('service_homepage') }}">
+                                    Página principal
+                                </a><span>/</span>Palas<span>/</span>
+
+                            </aside>				
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+    <div role="main">
+        <div class="row">
+
+            <section class="small-12 medium-12 columns" id="shop-page">
+
+
+
+
+                <div class="products row" data-equal=">.product">
+
+                    {% for product in products %}			
+
+                        <article itemscope  class="post small-6 medium-3 columns product type-product status-publish has-post-thumbnail">
+
+                            <figure>
+                                <a href="{{ path('site_product_detail', {'id' : product.id }) }}">
+                                    <div class="product-image">
+                                        <img width="270" height="340" 
+                                             src="{{ asset('web/uploads/') ~ product.imageHover }}" class="attachment-shop_catalog size-shop_catalog" alt="{{ product.name }}" />
+                                    </div>
+                                    <div class="product-image">
+                                        <img width="270" height="340" src="{{ asset('web/uploads/') ~ product.image }}"  alt="{{ product.name }}"/>
+                                    </div>
+                                </a>
+                            </figure>
+
+                            <div class="post-title">
+                                <aside class="post_categories"> 
+                                    {% for category in product.categories %}
+                                        {% if product.categories | length == loop.index %}
+                                            <a href="#" rel="tag">{{ category.title }}</a>
+                                        {% else %}
+                                            <a href="#" rel="tag">{{ category.title }}</a>,
+                                        {% endif %}                        
+                                    {% endfor %}
+                                </aside>
+
+                                <h3>
+                                    <a href="#">
+                                        {{ product.name }}
+                                    </a>
+                                </h3>
+
+                                <div class="shop-buttons">
+                                    <a href="{{ path('site_product_detail', {'id' : product.id }) }}" rel="nofollow"  class="button  product_type_simple" data-added-text="Añadido a la Cesta">Leer más</a>
+                                </div>
+                            </div>
+                        </article><!-- end product -->	
+
+                    {% endfor %}
+
+                </div>
+            </section>
+
+            <div class="post">
+                <div class="post-content">
+                    <div class="medium-6 small-12  columns animation left-to-right">
+                        <aside class="banner  type4 " style="background-repeat: no-repeat !important; min-height:192px; background: transparent url('{{ asset('web/uploads/left-box.jpg')}}'); padding:45px;" ><div class="divcontent">
+                                <h1 style="font-weight: 900;"><span style="color: #ffffff; text-transform: uppercase;">Gama Elite</span></h1>
+                                <p><a class="btn white small " href="{{ path("site_product_category_mosaico", {'slug': 'nivel_elite'}) }}">VER COLECCIÓN</a></div><div class="divstyle"></div></aside><aside class="gap cf" style="height:25px;"></aside>
+                    </div>
+
+                    <div class="medium-6 small-12  columns animation right-to-left">
+                        <aside class="banner  type4 " style="background-repeat: no-repeat !important; min-height:192px; background: transparent url('{{ asset('web/uploads/right-box.jpg')}}'); padding:45px;" ><div class="divcontent">
+                                <h1 style="font-weight: 900;"><span style="color: #ffffff; text-transform: uppercase;">Gama profesional</span></h1>
+                                <p><a class="btn white small " href="{{ path("site_product_category_mosaico", {'slug': 'nivel_profesional'}) }}">VER COLECCIÓN</a></div><div class="divstyle"></div></aside><aside class="gap cf" style="height:25px;"></aside>
+                    </div>  
+                </div><!-- end row -->
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block javascript %}
+        {{ parent() }}
+
+        <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/jquery.flexslider-min.js')}}"></script>
+        <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/jquery.sharrre.min.js')}}"></script>
+        <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/magnific-popup/jquery.magnific-popup.min.js')}}"></script>
+    {% endblock %}
