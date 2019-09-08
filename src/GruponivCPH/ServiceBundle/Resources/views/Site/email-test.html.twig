@@ -1,0 +1,33 @@
+{% extends '::base_frontend_struct.html.twig' %}
+
+
+{% block stylesheet %}
+    {{ parent() }}
+    
+{% endblock %}
+
+{% block render %}
+    <div class="container">
+        <form action="">
+            <input class="form-control" type="text" name="serveraddress" value="serveraddress" placeholder="Server address"/>
+            <input class="form-control" type="text" name="serveruser" value="serveruser" placeholder="Server user"/>
+            <input class="form-control" type="text" name="serverpassword" value="serverpassword" placeholder="Server password"/>
+            <input class="form-control" type="text" name="serverport" value="serverport" placeholder="Server port"/>
+            <select class="form-control" name="seguridad">
+                <option>tls</option>
+            </select>            
+            
+            <br><br>
+            <input class="form-control" type="text" name="setfrom" value="setfrom" placeholder="Address from"/>
+            <input class="form-control" type="text" name="setto" value="setfrom" placeholder="Address to"/>
+        </form>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/jquery.flexslider-min.js')}}"></script>
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/jquery.sharrre.min.js')}}"></script>
+    <script type='text/javascript' src="{{ asset('web/bundles/frontend/js/magnific-popup/jquery.magnific-popup.min.js')}}"></script>
+{% endblock %}
