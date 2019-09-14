@@ -1,0 +1,154 @@
+{% extends '::base_metronic_struct.html.twig' %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/bootstrap-summernote/summernote.css')}}">    
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/select2/select2.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/bootstrap-toastr/toastr.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/global/datetimepicker/bootstrap-datetimepicker.min.css') }}"/>
+    
+    <style>
+        .portlet{
+            height: 500px !important;
+        }
+    </style>
+    <!-- END PAGE LEVEL STYLES -->
+{% endblock %}
+
+
+{% block rootmenureports %}
+    class="start active open"
+{% endblock %}
+
+{% block rootmenureportsaux %}
+    <span class="selected"></span>
+{% endblock %}
+
+{% block rootmenucountry %} class="active" {% endblock %}
+
+{% block render %}
+
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <!-- BEGIN PAGE HEADER-->
+            <h3 class="page-title">
+                Facturación
+            </h3>
+            <div class="page-bar">
+                <ul class="page-breadcrumb">
+                    <li>
+                        <i class="fa fa-home"></i>
+                        <a href="{{ path('service_backend_admin') }}">Inicio</a>
+                        <i class="fa fa-angle-right"></i>
+                    </li>
+                    <li>
+                        Facturación
+                    </li>
+                </ul>
+            </div>
+            <!-- END PAGE HEADER-->
+            <!-- BEGIN PAGE CONTENT-->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tabbable tabbable-custom boxless tabbable-reversed">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab_0">
+                                <div class="portlet light bg-inverse">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="icon-equalizer font-red-sunglo"></i>
+                                            <span class="caption-subject font-red-sunglo bold uppercase">Facturación</span>
+                                            <span class="caption-helper"></span>
+                                        </div>
+                                        <div id="wait" style="float: right;display: none" class="progress progress-indeterminate">
+                                            <div class="win-ring small"></div>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body form">
+                                        <!-- BEGIN FORM-->
+
+                                        {{ form_start(form, {attr: {novalidate: 'novalidate', class : 'form-horizontal'}}) }}
+                                        <div class="col-md-12">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <div class="input text required" aria-required="true">
+                                                        <label for="PressTitle" class="control-label">Desde: </label><br>
+                                                        <div class='input-group date' id='datetimepicker1'>
+                                                            {{form_widget(form.startDate)}}
+                                                            <span class="input-group-addon">
+                                                                <span class="fa fa-calendar"></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3 col-md-offset-1">
+                                                <div class="form-group">
+
+                                                    <div class="input text required" aria-required="true">
+                                                        <label for="PressTitle" class="control-label">Hasta: </label><br>
+                                                        <div class='input-group date' id='datetimepicker2'>
+                                                            {{form_widget(form.endDate)}}
+                                                            <span class="input-group-addon">
+                                                                <span class="fa fa-calendar"></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-12">
+                                            <div class="form-actions">    
+                                                {{ form_widget(form.Export)}}                        
+                                            </div>                
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        {{ form_end(form) }}
+
+                                        <!-- END FORM-->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- END PAGE CONTENT-->
+        </div>
+
+    </div>
+
+    <!-- END CONTENT -->
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    
+    <script type="text/javascript"  src="{{ asset('web/bundles/global/datetimepicker/moment.min.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('web/bundles/global/datetimepicker/moment-with-locales.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('web/bundles/global/datetimepicker/bootstrap-datetimepicker.min.js') }}"></script>
+
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/bootstrap-toastr/toastr.min.js')}}"></script>
+    <script src="{{ asset('web/bundles/metronic/global/plugins/bootstrap-summernote/summernote.min.js')}}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/select2/select2.min.js')}}"></script>    
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js')}}"></script>
+    <script src="{{ asset('web/bundles/admin/validations/country.js')}}"></script>
+
+    <script>
+        jQuery(document).ready(function () {
+            $('#datetimepicker1').datetimepicker({format: 'DD/MM/YYYY', locale: 'es'})
+            $('#datetimepicker2').datetimepicker({format: 'DD/MM/YYYY', locale: 'es'})
+        });
+    </script>
+
+{% endblock %}

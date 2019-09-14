@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <link href="{{ asset('web/bundles/metronic/global/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
+    </head>
+<body>
+    <br><br>
+    
+<div class="container">
+    <h2 class="col-md-12">        
+        Send email
+    </h2>
+    {% if error %}
+        <div class="alert alert-danger">
+            {{ error }}
+        </div>        
+    {% endif %}
+    
+    <div class="col-md-6">
+        <form method="POST">
+            <div class="form-group">
+                <label>Nombre de usuario</label>
+                <input type="text" name="serveruser" class="form-control" placeholder="Nombre de usuario" value="{{ siteOptions.emailServerAddress }}"/>
+            </div>
+            
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input type="text" name="serverpass" class="form-control" placeholder="Contraseña" value="{{ siteOptions.emailServerPassword }}"/>
+            </div>
+            
+            
+            <div class="form-group">
+                <label>Servidor de salida de correo (SMTP)</label>
+                <input type="text" name="serverip" class="form-control" placeholder="Servidor de salida de correo (SMTP)" value="{{ siteOptions.emailServerIp }}"/>
+            </div>
+            
+            
+            <div class="form-group">
+                <label>Puerto de bandeja de salida</label>
+                <input type="text" name="serverport" class="form-control" placeholder="Puerto de bandeja de salida" value="{{ siteOptions.emailServerPort }}"/>
+            </div>
+            
+            <div class="form-group">
+                <label>Método seguridad</label>
+                <select class="form-control" name="secure">
+                    <option selected value="tls">tls</option>                    
+                    <option value="ssl">ssl</option>
+                    <option value="">Ninguna</option>
+                </select>
+            </div>
+            
+            <br><br>
+                        
+            <div class="form-group">
+                <label>Email to</label>
+                <input type="text" name="emailto" class="form-control" placeholder="Email to" value="{{ siteOptions.emailServerAddress }}"/>
+            </div>
+                        
+            <div class="form-group">
+                <label>Email from</label>
+                <input type="text" name="emailfrom" class="form-control" placeholder="Email from" value="{{ siteOptions.emailServerAddress }}"/>
+            </div>            
+            
+            <input type="submit" value="Enviar" class="btn btn-primary"/>
+            
+        </form>
+    </div>
+</div>
+
+</body>
+
+</html>
