@@ -1,0 +1,33 @@
+<div class="table-responsive">
+    <table class="factura">
+        <thead>
+            <tr style="background-color: #ffffff;">
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <form id="formTableStock" method="POST" action="{{ path('provider_stock') }}">
+                {% for stock in shoppingcart.getProducts %}
+
+                    <tr id="tr-stock-{{ stock.id }}" class="trStock_{{ stock.id }}" data-id="{{ stock.id }}">
+                        <td>
+                            {{ stock.nombre }}
+                        </td>
+                        <td>
+                            <div>
+                                <input name="stock_{{ stock.id }}"  class="only-digits span2" value="{{ stock.count }}" type="text">
+                            </div>
+                        </td>
+                        <td style="width: 25px;">
+                            <a href="javascript:void(0);" class="delped" onclick="removeStockProduct('{{ stock.id }}')">
+                                <span class="icon-close" style="color:black; font-size: 20px; text-align: center;"></span>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </form>
+        </tbody>
+    </table>    
+</div>

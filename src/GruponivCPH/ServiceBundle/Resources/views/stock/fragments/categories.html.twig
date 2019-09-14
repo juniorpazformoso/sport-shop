@@ -1,0 +1,22 @@
+{% for category in categories %}
+
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="dashboard-stat blue-madison">
+            <div class="visual">
+                <i class="fa fa-cube"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+
+                </div>
+                <div class="desc">
+                    {{ category.title }}
+                </div>
+            </div>
+            <a class="more" href="{{ path('stocsk_by_category', {'id' : category.id }) }}">
+                Abastecer <i class="m-icon-swapright m-icon-white"></i>
+            </a>
+        </div>
+    </div>
+
+{% endfor %}
