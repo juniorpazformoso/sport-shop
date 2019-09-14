@@ -1,0 +1,500 @@
+{% extends '::base_frontend_struct.html.twig' %}
+
+{% block page_title %}Dabber spain{% endblock %}
+{% block left_sidebar_active_home %} class="activa" {% endblock %}
+
+{% block stylesheet %}
+    {{ parent() }}
+
+    <link rel='stylesheet' id='rs-plugin-settings-css'  href="{{ asset('/web/bundles/frontend/plugins/slider/css/settings.css-rev=4.3.3&ver=4.4.9.css') }}" type='text/css' media='all' />
+    <link rel='stylesheet' id='contact-form-7-css'  href="{{ asset('/web/bundles/frontend/plugins/slider/css/styles.css-ver=4.3.css') }}"  type='text/css' media='all' />
+    <link rel='stylesheet'   href="{{ asset('/web/bundles/metronic/global/plugins/fancybox/source/jquery.fancybox.css') }}"  type='text/css' media='all' />
+
+    <style>
+        .fancybox-image{
+            width: 200% !important;
+            height: 200% !important;
+        }
+    </style>
+{% endblock %}
+
+{% block content_title %} {{ 'content.title.lastjobs' | trans }} {% endblock %}
+
+{% block render %}
+    <div class="modal fade" id="modal-add-to-cart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <br>
+                </div>
+
+                <div class="body">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="wrapper">
+
+        <div id="home-slidr">
+
+            <!-- START REVOLUTION SLIDER 4.3.3 fullwidth mode -->
+
+            <div id="rev_slider_1_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" style="margin:0px auto;background-color:#E9E9E9;padding:0px;margin-top:0px;margin-bottom:0px;max-height:560px;">
+
+                <div id="rev_slider_1_1" class="rev_slider fullwidthabanner" style="max-height:560px;height:560px;">
+                    <ul>	<!-- SLIDE  -->
+                        {% set index = 0 %}
+                        {% for slider in sliders %}
+                            {% if index == 0 %}
+                                <li data-transition="cube" data-slotamount="7" data-masterspeed="500" onClick="allProductCategory('{{ slider.url }}')" style="cursor: pointer;">
+                                    <!-- MAIN IMAGE -->
+                                    <img src="{{ asset('web/uploads/') ~ slider.image }}"  alt="slide-max-d5"  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                                    <!-- LAYERS -->
+
+                                    <!-- LAYER NR. 1 -->
+                                    <div class="tp-caption sfb tp-resizeme"
+                                         data-x="center" data-hoffset="405"
+                                         data-y="bottom" data-voffset="-145"
+                                         data-speed="600"
+                                         data-start="1700"
+                                         data-easing="Quad.easeIn"
+                                         data-splitin="none"
+                                         data-splitout="none"
+                                         data-elementdelay="0.1"
+                                         data-endelementdelay="0.1"
+                                         data-endspeed="300"
+                                         style="z-index: 2; max-width: auto; max-height: auto; white-space: nowrap;">
+                                        <!--<a href="index-13.htm"  class='btn white large'>Ver pALA</a>-->
+                                    </div>
+                                </li>
+                            {% endif %}
+
+                            {% if index == 1 %}
+                                <li data-transition="random" data-slotamount="7" data-masterspeed="300" onClick="allProductCategory('{{ slider.url }}')" style="cursor: pointer;">
+                                    <!-- MAIN IMAGE -->
+                                    <img src="{{ asset('web/uploads/') ~ slider.image }}"  alt="slide-rober-12"  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                                    <!-- LAYERS -->
+                                </li>
+                            {% endif %}
+
+                            {% if index == 2 %}
+                                <li data-transition="random" data-slotamount="7" data-masterspeed="300" onClick="allProductCategory('{{ slider.url }}')" style="cursor: pointer;">
+                                    <!-- MAIN IMAGE -->
+                                    <img src="{{ asset('web/uploads/') ~ slider.image }}" alt="slide-conica_SITE-1"  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                                    <!-- LAYERS -->
+                                </li>
+                            {% endif %}
+
+                            {% if index == 3 %}
+                                <li data-transition="3dcurtain-horizontal,3dcurtain-vertical,cube,cube-horizontal" data-slotamount="7" data-masterspeed="500" onClick="allProductCategory('{{ slider.category.slug }}')" style="cursor: pointer;">
+                                    <!-- MAIN IMAGE -->
+                                    <img src="{{ asset('web/uploads/') ~ slider.image }}"  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                                    <!-- LAYERS -->
+                                </li>
+                            {% endif %}
+
+                            {% if index == 4 %}
+                                <li data-transition="random" data-slotamount="7" data-masterspeed="300" onClick="allProductCategory('{{ slider.url }}')" style="cursor: pointer;">
+                                    <!-- MAIN IMAGE -->
+                                    <img src="{{ asset('web/uploads/') ~ slider.image }}"   alt=""  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                                    <!-- LAYERS -->
+                                </li>
+                            {% endif%}
+
+                            {% if index == 5 %}
+                                <li data-transition="random" data-slotamount="7" data-masterspeed="300" onClick="allProductCategory('{{ slider.url }}')" style="cursor: pointer;">
+                                    <!-- MAIN IMAGE -->
+                                    <img src="{{ asset('web/uploads/') ~ slider.image }}"  alt=""  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                                    <!-- LAYERS -->
+
+                                    <!-- LAYER NR. 1 -->
+                                    <div class="tp-caption tp-fade tp-resizeme"
+                                         data-x="1051"
+                                         data-y="447" 
+                                         data-speed="300"
+                                         data-start="500"
+                                         data-easing="Power3.easeInOut"
+                                         data-splitin="none"
+                                         data-splitout="none"
+                                         data-elementdelay="0.1"
+                                         data-endelementdelay="0.1"
+                                         data-endspeed="300"
+                                         style="z-index: 2; max-width: auto; max-height: auto; white-space: nowrap;"><a href="index-14.htm"  class='btn white large'>Ver Pala</a>
+                                    </div>
+                                </li>
+                            {% endif %}
+
+                            {% if index == 6 %}
+                                <li data-transition="random" data-slotamount="7" data-masterspeed="300" onClick="allProductCategory('{{ slider.url }}')" style="cursor: pointer;">
+                                    <!-- MAIN IMAGE -->
+                                    <img src="{{ asset('web/uploads/') ~ slider.image }}"   alt="Dabber-slide-prisma-3"  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                                    <!-- LAYERS -->
+
+                                    <!-- LAYER NR. 1 -->
+                                    <div class="tp-caption tp-fade tp-resizeme"
+                                         data-x="1071"
+                                         data-y="423" 
+                                         data-speed="300"
+                                         data-start="500"
+                                         data-easing="Power3.easeInOut"
+                                         data-splitin="none"
+                                         data-splitout="none"
+                                         data-elementdelay="0.1"
+                                         data-endelementdelay="0.1"
+                                         data-endspeed="300"
+                                         style="z-index: 2; max-width: auto; max-height: auto; white-space: nowrap;"><a href="index-15.htm" tppabs="http://dabbersport.com/wp/producto/prisma/" class='btn white large'>Ver Pala</a>
+                                    </div>
+                                </li>
+                            {% endif %}
+
+
+                            {% if index >= 6 %}
+                                {% set index = 0 %}
+                            {% else %}
+                                {% set index = index + 1 %}
+                            {% endif %}
+
+
+
+
+                        {% endfor %}
+                    </ul>
+                    <div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div></div>
+            </div>            
+        </div>
+    </div>
+
+
+
+
+    <div class='clearfix'></div>
+
+
+
+    <div role="main"><div class="row ">
+
+            <article class="post post-18 page type-page status-publish hentry" id="post-18">
+                <div class="post-content">
+
+
+                    <div class="medium-12 small-12  columns ">
+                        <div class="carousel-container container">
+                            <div class="medium-12 small-12 columns" style='display: none;' id='caruselProducts'>
+                                <aside class="gap cf" style="height:40px;"></aside><aside class="styled_header"><h5>Palas Dabber</h5><h6>ELITE</h6><span class="icon"><img src="{{ asset('web/uploads/best-sellers.png') }}" alt="ELITE" /></span></aside>
+                                <div class="carousel products owl row" data-columns="4" data-navigation="true">
+
+
+                                    {% for product in products %}
+                                        {% if product.sectionProduct == "Palas superior" and product.visibleInHome %}
+                                            <article itemscope  class="post small-6 medium-4 columns post-1634 product">
+
+                                                <a  class="fancybox-effects fancy-{{ product.id }}" href="{{ asset('web/uploads/') ~ product.image }}"></a>
+
+                                                <figure>
+
+                                                    <a href="{{ path('site_product_detail', {'id' : product.id }) }}">
+                                                        <div class="product-image">
+                                                            <img width="270" height="340"  src="{{ asset('web/uploads/') ~ product.imageHover }}"  class="attachment-shop_catalog size-shop_catalog"/>
+                                                        </div>
+                                                        <div class="product-image">
+                                                            <img width="270" height="340"  src="{{ asset('web/uploads/') ~ product.image }}" class="attachment-shop_catalog size-shop_catalog"/>
+                                                        </div>			
+                                                    </a>
+
+                                                    <div class="quick-view" data-id="{{ product.id }}"><i class="fa fa-search"></i></div>
+                                                </figure>
+
+                                                <div class="post-title">
+                                                    <aside class="post_categories"> 
+                                                        {% for category in product.categories %}
+                                                            {% if product.categories | length == loop.index %}
+                                                                <a href="#" rel="tag">{{ category.title }}</a>
+                                                            {% else %}
+                                                                <a href="#" rel="tag">{{ category.title }}</a>, 
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </aside>		
+                                                    <h3><a href="#">{{ product.name }}</a></h3>
+
+
+                                                    <div class="shop-buttons">                                                        
+                                                        <a href="javascript:void(0);" rel="nofollow" data-product_id="{{ product.id }}" class="button shop-button">Comprar</a>
+                                                        {% if not is_granted("IS_AUTHENTICATED_FULLY") %}
+                                                            <a href="{{ path('site_product_detail', {'id' : product.id }) }}" rel="nofollow" 
+                                                               class="button shop-button">Leer más</a>
+                                                        {% endif %}
+                                                    </div>                                                    
+
+                                                </div>
+                                            </article><!-- end product -->
+                                        {% endif %}
+                                    {% endfor %}
+
+                                </div>
+
+                            </div>
+                            <div class="medium-12 small-12 facebook-box columns animation fade-in">
+                                <aside class="banner  type4" style="min-height:134px; background: transparent url('{{ asset('web/uploads/facebookhome.jpg')}}'); padding:45px;"><div class="divcontent"><a href="{{ siteOption.socialFacebookUrl }}" target="_blank"><span style="font-size: 22px; color: #fff;"><strong style="font-weight: 900; color: #fff; text-transform: uppercase;">Sígenos por facebook</strong></span><br>
+                                            <span class="hidden-xs" style="font-size: 13px; font-family: Arial; color: #b8b8b8;">{{ siteOption.socialFacebookUrl }}</span></a></div><div class="divstyle"></div></aside>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="medium-12 small-12  columns">
+
+                        <div class="carousel-container container">
+
+
+                            <div class="medium-12 small-12 columns animation fade-in">
+                                <aside class="gap cf" style="height:40px;"></aside><aside class="styled_header"><h5>Palas Dabber</h5><h6>PROFESIONAL</h6><span class="icon"><img src="{{ asset('web/uploads/best-sellers-2.png') }}" alt="Línea Europea" /></span></aside>
+
+                                <div class="carousel products owl row" data-columns="4" data-navigation="true">
+
+
+                                    {% for product in products %}
+                                        {% if product.sectionProduct == "Palas inferior" and product.visibleInHome %}
+                                            <article itemscope  class="post small-6 medium-4 columns post-1634 product type-product status-publish has-post-thumbnail product_cat-linea-europea product_cat-linea-europa product_tag-101 product_tag-38-mm product_tag-europa product_tag-linea-europea product_tag-palas-europa product_tag-profesional shipping-taxable product-type-simple product-cat-linea-europea product-cat-linea-europa product-tag-2016 product-tag-38-mm product-tag-europa product-tag-linea-europea product-tag-palas-europa product-tag-profesional instock">
+                                                <a  class="fancybox-effects fancy-{{ product.id }}" href="{{ asset('web/uploads/') ~ product.image }}"></a>
+                                                <figure>
+                                                    <a href="{{ path('site_product_detail', {'id' : product.id }) }}">
+                                                        <div class="product-image">
+                                                            <img width="270" height="340"  src="{{ asset('web/uploads/') ~ product.imageHover }}"  class="attachment-shop_catalog size-shop_catalog"/>
+                                                        </div>
+                                                        <div class="product-image">
+                                                            <img width="270" height="340"  src="{{ asset('web/uploads/') ~ product.image }}" class="attachment-shop_catalog size-shop_catalog"/>
+                                                        </div>			
+                                                    </a>
+
+                                                    <div class="quick-view" data-id="{{ product.id }}"><i class="fa fa-search"></i></div>
+                                                </figure>
+
+                                                <div class="post-title">
+                                                    <aside class="post_categories">
+                                                        {% for category in product.categories %}
+                                                            {% if product.categories | length == loop.index %}
+                                                                <a href="#" rel="tag">{{ category.title }}</a>
+                                                            {% else %}
+                                                                <a href="#" rel="tag">{{ category.title }}</a>, 
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </aside>		
+                                                    <h3><a href="#">{{ product.name }}</a></h3>
+
+
+                                                    <div class="shop-buttons">
+                                                        
+                                                        <a href="javascript:void(0);"  rel="nofollow" data-price="{{ product.price }}" data-product_id="{{ product.id }}" 
+                                                               class="button shop-button">Comprar</a>
+                                                        {% if not is_granted("IS_AUTHENTICATED_FULLY") %}
+                                                            <a href="{{ path('site_product_detail', {'id' : product.id }) }}" rel="nofollow" 
+                                                               class="button shop-button">Leer más</a>
+                                                        {% endif %}
+                                                    </div>
+
+
+                                                </div>
+                                            </article><!-- end product -->
+                                        {% endif %}
+                                    {% endfor %}
+
+                                </div>
+
+                            </div>
+
+                            <div id="" class="row vc_row-fluid "  >
+
+
+                                <div class="medium-6 small-12  columns animation left-to-right">
+                                    <aside class="banner  type4 " style="background-repeat: no-repeat !important; min-height:192px; background: transparent url('{{ asset('web/uploads/left-box.jpg')}}'); padding:45px;" ><div class="divcontent">
+                                            <h1 style="font-weight: 900;"><span style="color: #ffffff; text-transform: uppercase;">Gama Elite</span></h1>
+                                            <p><a class="btn white small " href="{{ path("site_product_category_mosaico", {'slug': 'nivel_elite'}) }}">VER COLECCIÓN</a></div><div class="divstyle"></div></aside><aside class="gap cf" style="height:25px;"></aside>
+                                </div>
+
+                                <div class="medium-6 small-12  columns animation right-to-left">
+                                    <aside class="banner  type4 " style="background-repeat: no-repeat !important; min-height:192px; background: transparent url('{{ asset('web/uploads/right-box.jpg')}}'); padding:45px;" ><div class="divcontent">
+                                            <h1 style="font-weight: 900;"><span style="color: #ffffff; text-transform: uppercase;">Gama profesional</span></h1>
+                                            <p><a class="btn white small " href="{{ path("site_product_category_mosaico", {'slug': 'nivel_profesional'}) }}">VER COLECCIÓN</a></div><div class="divstyle"></div></aside><aside class="gap cf" style="height:25px;"></aside>
+                                </div>
+
+
+                                <!--
+                                <div class="medium-12 small-12  columns margin-small-top">
+                                    <aside class="banner  type4 " style="min-height:30px; background: transparent url('{{ asset('web/uploads/fondo-palas-exclusivas.jpg')}}'); padding:30px;"><div class="divcontent">
+                                            <h1 style="text-align: center;"><span style="color: #ffffff; text-transform: uppercase;">Tecnología avanzada</span></h1>
+                                            <p><a class="btn white small" href="{{ path('site_technology') }}">VER MÁS</a></p></div><div class="divstyle"></div></aside><aside class="gap cf" style="height:20px;"></aside>
+                                </div> 
+                                -->
+                            </div>
+
+                        </div>
+
+
+
+
+                    </div>
+            </article>
+
+        </div></div>
+
+
+
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+
+    <script type='text/javascript' src="{{ asset('/web/bundles/metronic/global/plugins/fancybox/source/jquery.fancybox.js') }}"></script>
+
+    <script type='text/javascript' src="{{ asset('/web/bundles/frontend/plugins/slider/js/jquery.js' )}}"></script>
+    <script type='text/javascript' src="{{ asset('/web/bundles/frontend/plugins/slider/js/jquery.themepunch.plugins.min.js') }}"></script>
+    <script type='text/javascript' src="{{ asset('/web/bundles/frontend/plugins/slider/js/jquery.themepunch.revolution.min.js') }}"></script>
+    <script type='text/javascript' src="{{ asset('/web/bundles/frontend/js/jquery.owl.carousel.min.js') }}"></script>
+
+
+
+    <script>
+        $(function () {
+            $(".shop-button").click(function () {
+
+                var id = $(this).attr("data-product_id")
+
+                console.log(urlShop)
+
+                $.ajax({
+                    url: urlShop,
+                    data: {id: id},
+                    type: "POST",
+                    dataType: "html",
+                    success: function (data) {
+                        loadCar()
+                        $("#modal-add-to-cart .body").empty()
+                        $("#modal-add-to-cart .body").append(data)
+                        $("#txtQuantityDetail-" + id).val(1)
+
+                        var $modal = $("#modal-add-to-cart")
+
+                        $modal.modal()
+
+                    }
+                })
+        
+                })
+
+                $(".quick-view").click(function () {
+                    var self = $(this)
+                    var productId = self.attr('data-id')
+
+                    $(".fancy-" + productId).trigger('click')
+                })
+
+
+
+                $(".fancybox-effects").fancybox({
+                    padding: 0,
+                    helpers: {
+                        overlay: {
+                            locked: false
+                        }
+                    }
+                });
+
+            })
+
+            var tpj = jQuery;
+            tpj.noConflict();
+            var revapi1;
+
+            $(function () {
+
+                if (tpj('#rev_slider_1_1').revolution == undefined)
+                {
+                    revslider_showDoubleJqueryError('#rev_slider_1_1');
+                }
+                else
+                {
+
+                    revapi1 = tpj('#rev_slider_1_1').show().revolution(
+                            {
+                                dottedOverlay: "none",
+                                delay: 9000,
+                                startwidth: 1170,
+                                startheight: 560,
+                                hideThumbs: 0,
+                                thumbWidth: 100,
+                                thumbHeight: 50,
+                                thumbAmount: 5,
+                                navigationType: "bullet",
+                                navigationArrows: "solo",
+                                navigationStyle: "round",
+                                touchenabled: "on",
+                                onHoverStop: "on",
+                                swipe_velocity: 0.7,
+                                swipe_min_touches: 1,
+                                swipe_max_touches: 1,
+                                drag_block_vertical: false,
+                                keyboardNavigation: "off",
+                                navigationHAlign: "center",
+                                navigationVAlign: "bottom",
+                                navigationHOffset: 0,
+                                navigationVOffset: 20,
+                                soloArrowLeftHalign: "left",
+                                soloArrowLeftValign: "center",
+                                soloArrowLeftHOffset: 20,
+                                soloArrowLeftVOffset: 0,
+                                soloArrowRightHalign: "right",
+                                soloArrowRightValign: "center",
+                                soloArrowRightHOffset: 20,
+                                soloArrowRightVOffset: 0,
+                                shadow: 0,
+                                fullWidth: "on",
+                                fullScreen: "off",
+                                spinner: "spinner0",
+                                stopLoop: "off",
+                                stopAfterLoops: -1,
+                                stopAtSlide: -1,
+                                shuffle: "off",
+                                autoHeight: "off",
+                                forceFullWidth: "off",
+                                hideTimerBar: "on",
+                                hideThumbsOnMobile: "off",
+                                hideNavDelayOnMobile: 1500,
+                                hideBulletsOnMobile: "off",
+                                hideArrowsOnMobile: "off",
+                                hideThumbsUnderResolution: 0,
+                                hideSliderAtLimit: 0,
+                                hideCaptionAtLimit: 0,
+                                hideAllCaptionAtLilmit: 0,
+                                startWithSlide: 0,
+                                //videoJsPath:"http://dabbersport.com/wp/wp-content/plugins/revslider/rs-plugin/videojs/",
+                                fullScreenOffsetContainer: ""
+                            });
+                }
+
+
+                $("#caruselProducts").show()
+            });	//ready
+
+
+            function allProductCategory(url)
+            {
+                location.href = url
+            }
+
+
+    </script>
+
+
+{% endblock %}
