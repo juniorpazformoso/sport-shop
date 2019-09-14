@@ -1,0 +1,125 @@
+{% extends '::base_metronic_struct.html.twig' %}
+
+{% block stylesheet %}
+    {{ parent() }}    
+
+
+
+    <style>
+        /*Mover estos estilos de aqui*/
+        table.factura{
+            margin-top: 30px;
+        }
+
+        table.factura tr td {
+            vertical-align: top;
+        }
+
+        table td, table th {
+            padding: 9px 10px;
+            text-align: left;
+        }
+
+        table.factura {
+            color: rgb(51, 51, 51);
+            font-weight: bold;
+            font-size: 20px;
+            width: 100%;
+            color: rgb(51, 51, 51);
+        }
+
+        table.factura tr {
+            background-color: rgb(233, 233, 233);
+            border-bottom: 5px solid rgb(255, 255, 255);
+        }
+
+        table.factura label{
+            font-size: 19px;
+            font-weight: 600;                
+        }
+    </style>
+{% endblock %}
+
+
+{% block render %}
+
+<div class="page-content">
+    <!-- BEGIN PAGE HEADER-->
+    <h3 class="page-title">
+        Inicio <small>Abastecer productos</small>
+    </h3>
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a href="{{ path('service_backend_admin') }}">Inicio</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a href="#">Productos</a>
+            </li>
+        </ul>
+    </div>
+    <!-- END PAGE HEADER-->
+    <div class="clearfix">
+    </div>
+
+    <!-- BEGIN PAGE CONTENT-->
+    
+
+        <div class="container-stocks">
+            {{ render(controller('ServiceBundle:Stock:categories')) }}
+        </div> 
+
+        {% if shoppingcart.getCount > 0 %}
+            <a href="javascript:void(0);" class="btn btn-success pull-right" id="provider-next">Siguiente</a>
+            <div class="table-stock-products">
+                <div class="clearfix"></div>
+                
+                {% include "ServiceBundle:stock:fragments/tableStocks.html.twig" %}
+                
+            </div>
+        {% endif %}
+    
+        </div>
+{% endblock %}
+
+
+{% block javascript %}
+    {{ parent() }}
+
+
+    <script>
+
+
+
+
+        function removeStockProduct(id)
+        {
+            $("#tr-stock-" + id).remove()
+
+            if ($("table.factura  tr").length - 1 == 0)
+            {
+                $(".table-stock-products").hide()
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "{{ path('remove_stock_product') }}",
+                dataType: "json",
+                data: {id: id},
+                success: function (data) {
+                    
+                }
+            })
+        }
+
+        $("#provider-next").click(function () {
+            $("#formTableStock").submit()
+        })
+
+    </script>
+
+
+
+{% endblock %}

@@ -1,0 +1,202 @@
+{% extends '::base_metronic_struct.html.twig' %}
+
+{% block stylesheet %}
+    {{ parent() }}    
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css') }}"/>
+{% endblock %}
+
+{% block render %}
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
+        <h3 class="page-title">
+            Inicio <small>Abastecer productos</small>
+        </h3>
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="{{ path('service_backend_admin') }}">Inicio</a>
+                    <i class="fa fa-angle-right"></i>
+                </li>
+                <li>
+                    <a href="#">Productos</a>
+                </li>
+            </ul>
+        </div>
+        <!-- END PAGE HEADER-->
+        <div class="clearfix">
+        </div>
+
+        <!-- BEGIN PAGE CONTENT-->
+        <a href="javascript:void(0);" class="btn btn-success pull-right" id="next">Siguiente</a>
+        <br><br><br>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet box grey-cascade">
+                    <div class="portlet-title btn-success">
+                        <div class="caption">
+                            <i class="fa fa-folder-open"></i>Productos
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <form id="formTableStock" action="{{ path('stocking_product' )}}" method="post">
+                            <input type="hidden" name="lengthStockProduct" id="lengthStockProduct"/>
+                            <table class="datatable table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="align-center">
+                                            Foto
+                                        </th>
+
+                                        <th class="align-center">
+                                            Nombre
+                                        </th>           
+
+                                        <th class="align-center">
+                                            Cantidad stock
+                                        </th>
+
+                                        <th class="align-center">
+                                            Opciones
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+                                    {% for stock in stocksByCategory %}
+
+                                        <tr>
+                                            <td class="align-center">                                    
+                                                <img style="width: auto; height: 80px;" src="{{ asset('web/uploads/') ~ stock.product.image }}" alt="" />                                    
+                                            </td>
+
+                                            <td class="align-center">
+
+                                                {{ stock.product.name }}
+
+                                            </td>
+
+
+
+                                            <td class="align-center">
+                                                {{ stock.amount }}
+                                            </td>
+
+
+                                            <td class="actions-two-button">
+                                                <input class="stock_checkbox" type="checkbox" name="stock_{{ loop.index }}" id="stock_{{ stock.id }}" value="{{ stock.id }}"/>
+                                            </td>
+                                        </tr>
+
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('web/bundles/metronic/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js') }}"></script>
+
+
+    <script>
+
+
+        
+
+        {% for stock in shoppingcart.getProducts() %}
+            $("#stock_" + "{{ stock.id }}").attr('checked', 'checked')
+        {% endfor %}
+
+
+
+
+
+
+
+            $("#next").click(function () {
+                var lengthStockProduct = $("input[type='checkbox']").length
+                $("#lengthStockProduct").val(lengthStockProduct)
+
+                $.each($("input[type='checkbox']"), function (index, data) {
+                    var idStock = $(data).val()
+                    var index = index + 1
+                    $("form").append($("<input type='hidden' name='stock_" + index + "' value='" + idStock + "'/>"))
+
+                    var checked = "";
+                    if ($("#stock_" + idStock).is(':checked'))
+                        checked = "checked"
+                    else
+                        checked = "false"
+
+                    $("form").append($("<input type='hidden' name='checked_" + index + "' value='" + checked + "'/>"))
+                })
+
+                $.each($("input[type='checkbox']"), function (index, data) {
+                    var idStock = $(data).val()
+                    
+                    
+                })
+                $("form").submit()
+            })
+
+
+            $(function (){
+                
+                var table = $('.datatable');
+
+        // begin first table
+        table.dataTable({
+            "ordering": false,
+            "lengthMenu": [
+                [5, 15, 20, -1],
+                [5, 15, 20, "Todo"] // change per page values here
+            ],
+            // set the initial value
+            "pageLength": 5,
+            "pagingType": "bootstrap_full_number",
+            "language": {
+                "sProcessing": "Procesando...",
+                "lengthMenu": "  _MENU_ registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
+                "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix": "",
+                "sSearch": "Buscar: ",
+                "sUrl": "",
+                "sInfoThousands": ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast": "Último",
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "oAria": {
+                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+
+                }
+            }
+
+
+        });
+
+            })
+    </script>
+{% endblock %}

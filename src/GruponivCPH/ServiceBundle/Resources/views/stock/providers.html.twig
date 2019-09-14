@@ -1,0 +1,138 @@
+{% extends '::base_metronic_struct.html.twig' %}
+
+
+
+{% block render %}
+    
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
+        <h3 class="page-title">
+            Inicio <small>Abastecer productos</small>
+        </h3>
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="{{ path('service_backend_admin') }}">Inicio</a>
+                    <i class="fa fa-angle-right"></i>
+                </li>
+                <li>
+                    <a href="#">Productos</a>
+                </li>
+            </ul>
+        </div>
+        <!-- END PAGE HEADER-->
+        <div class="clearfix">
+        </div>
+
+        <!-- BEGIN PAGE CONTENT-->
+        <div class="row">
+
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="alert alert-success box">
+                    {{ flashMessage }}
+                </div>
+                <div class="clearfix"></div>
+            {% endfor %}
+
+    
+    
+    <div class="portlet  box grey-cascade">
+        <div class="portlet-title btn-success">
+            <div class="caption">
+                <i class="fa fa-folder-open"></i>Proveedores
+            </div>
+        </div>
+        <div class="portlet-body">
+            <form id="form-data-stock-provider" action="{{ path('saveStockData')}}" method="POST">
+                <a href="{{ path('stock_selected') }}" class="btn btn-danger pull-left">Anterior</a>
+                <a href="javascript:void(0);" id="data-stock-provider" class="btn btn-success pull-right">Abastecer</a>
+                <br><br><br>
+                
+            <table class="datatable table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th class="align-center">
+                            Nombre
+                        </th>
+                        <th class="align-center">
+                            Teléfono
+                        </th>                       
+                        
+                        <th class="align-center">
+                            Escojer
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        {% for provider in providers %}
+                            <tr>                           
+                                <td class="align-center">
+                                    {{ provider.name }}
+                                </td>
+
+                                <td class="align-center">
+                                    {{ provider.phone }}
+                                </td>
+
+
+                                <td> 
+                                    <input style="position: relative; left: 10px;" type="radio" name="provider" id="provider_{{ provider.id }}"  value="{{ provider.id }}"/>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    
+                </tbody>
+            </table>
+            </form>
+        </div>
+    </div>
+    
+    
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent()}}
+    
+    
+    
+    
+    <script>
+        
+        
+        $("#data-stock-provider").click(function (){
+            
+            
+            if($("input[type='radio']:checked").length == 0)
+            {
+                /*
+                toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "showDuration": "7000",
+                    }
+
+                toastr.error("- Debe seleccionar un proveedor")
+                */
+            }
+            else
+            {
+                $("#form-data-stock-provider").submit()
+            }
+            
+        })
+        
+        
+        
+        $("#provider_" + "{{ app.request.session.get('provider') }}").attr('checked', 'checked')
+        
+        
+        
+    </script>
+    
+    
+{% endblock %}
+

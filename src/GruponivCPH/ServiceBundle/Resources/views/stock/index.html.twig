@@ -1,0 +1,59 @@
+{% extends '::base_metronic_struct.html.twig' %}
+
+
+{% block stylesheet %}
+    {{ parent() }}
+    <link href="{{ asset('web/bundles/app/metronic-assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('web/bundles/app/metronic-assets/global/plugins/fancybox/source/jquery.fancybox.css')}}" rel="stylesheet" type="text/css"/>
+
+{% endblock %}
+
+
+
+{% block render %}
+
+    <div class="page-content">
+        <!-- BEGIN PAGE HEADER-->
+        <h3 class="page-title">
+            Inicio <small>Abastecer productos</small>
+        </h3>
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="{{ path('service_backend_admin') }}">Inicio</a>
+                    <i class="fa fa-angle-right"></i>
+                </li>
+                <li>
+                    <a href="#">Productos</a>
+                </li>
+            </ul>
+        </div>
+        <!-- END PAGE HEADER-->
+        <div class="clearfix">
+        </div>
+
+        <!-- BEGIN PAGE CONTENT-->
+        <div class="row">
+
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="alert alert-success box">
+                    {{ flashMessage }}
+                </div>
+                <div class="clearfix"></div>
+            {% endfor %}
+
+
+            <div class="container-stocks">
+                {{ render(controller('ServiceBundle:Stock:categories')) }}
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}
+
+
+    {% block javascript %}
+        {{ parent() }}
+
+    {% endblock %}
