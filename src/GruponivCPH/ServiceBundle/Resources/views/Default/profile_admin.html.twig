@@ -1,0 +1,88 @@
+{% extends '::base_metronic_struct.html.twig' %}
+
+{% block render %}
+
+    <div class="page-content">
+
+        <div class="row profile">
+            <div class="col-md-12">
+                <!--BEGIN TABS-->
+                <div class="portlet-title" style="margin-bottom: 20px">
+                    <div class="caption">
+                        <i class="icon-equalizer font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase">Perfil de usuario</span>
+                    </div>
+                </div>
+                {% for type, messages in app.session.flashbag.all() %}
+                    {% for message in messages %}
+                        <div class="flash-{{ type }}">
+                            <div class="alert alert-block alert-success fade in">
+                                <button type="button" class="close" data-dismiss="alert"></button>
+                                <h4 class="alert-heading">Aviso</h4>
+                                <p>
+                                    {{ message }}
+                                </p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+
+                <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
+                    <div class="row profile-account">
+                        <div class="col-md-4">
+                            <ul class="ver-inline-menu tabbable margin-bottom-10">
+                                <li class="active">
+                                    <a data-toggle="tab" href="#tab_1-1">
+                                        <i class="fa fa-user"></i> Información personal </a>
+                                            <span class="after">
+                                            </span>
+                                </li>
+                                <li>
+                                    <a data-toggle="tab" href="#tab_3-3">
+                                        <i class="fa fa-lock"></i> Cambiar contraseña </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="tab-content">
+                                <div id="tab_1-1" class="tab-pane active">
+                                    <div class="form-group">
+                                        <label class="control-label">Dirección de correo</label>
+                                        {{ form_widget(form.email) }}
+                                    </div>
+                                </div>
+                                <div id="tab_3-3" class="tab-pane">
+                                    <div class="form-group">
+                                        {% set i = 0 %}
+                                        {% set label = '' %}
+                                        {% for passwordField in form.password %}
+                                            {% if i == 0 %}
+                                                {% set i = 1 %}
+                                                {% set label = 'Contraseña' %}
+                                            {% else %}
+                                                {% set label = 'Repita contraseña' %}
+                                            {% endif %}
+                                            <div class="form-field">
+                                                {{ form_label(passwordField, label, { 'attr': {'class': 'form-label'} }) }}
+                                                {{ form_widget(passwordField, { 'attr': {'class': 'form-control'} }) }}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                {{ form_rest(form) }}
+                            </div>
+                            <div class="margiv-top-10 pull-right">
+                                <button type="submit" class="btn green">Salvar cambios</button>
+                                <a href="{{ path('service_backend_admin') }}" class="btn default">
+                                    Cancelar </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+                <!--END TABS-->
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

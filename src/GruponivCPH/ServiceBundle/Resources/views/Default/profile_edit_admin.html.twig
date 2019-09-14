@@ -1,0 +1,90 @@
+{% extends '::base_metronic_struct_lite.html.twig' %}
+
+{% block stylesheet %}
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('web/bundles/metronic/global/plugins/select2/select2.css') }}"/>
+    <!-- END PAGE LEVEL STYLES -->
+{% endblock %}
+
+{% block render%}
+
+    <div class="page-content">
+
+        <div class="tab-pane active" id="tab_0">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-equalizer font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase">Edición de perfil de usuario</span>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <!-- BEGIN FORM-->
+                    <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
+                        <div class="form-body form-horizontal">
+                            <div class="form-group">
+                                <label for="username" class="col-md-3 control-label">Dirección de correo</label>
+                                <div class="col-md-4">
+                                    <div class="input-group" aria-disabled="true">
+                                <span class="input-group-addon">
+                                <i class="fa fa-envelope"></i>
+                                </span>
+                                        {{ form_widget(form.email) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-body form-horizontal">
+                            <div class="form-group">
+                                <div class="col-md-3 control-label"></div>
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        {% set i = 0 %}
+                                        {% set label = '' %}
+                                        {% for passwordField in form.password %}
+                                            {% if i == 0 %}
+                                                {% set i = 1 %}
+                                                {% set label = 'Contraseña' %}
+                                            {% else %}
+                                                {% set label = 'Repita contraseña' %}
+                                            {% endif %}
+                                            <div class="form-field">
+                                                {{ form_label(passwordField, label, { 'attr': {'class': 'form-label'} }) }}
+                                                {{ form_widget(passwordField, { 'attr': {'class': 'form-control'} }) }}
+                                            </div>
+                                        {% endfor %}
+
+                                        {{ form_widget(form.password) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <a href="{{ path('fos_user_profile_edit') }}" class="btn yellow">
+                                        Editar perfil <i class="fa fa-edit"></i> </a>
+                                    <a href="{{ path('service_homepage') }}" class="btn default">Cancelar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- END FORM-->
+                </div>
+            </div>
+        </div>
+
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <div id="prefix_201167333891" class="Metronic-alerts alert alert-success fade in">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                    {{ message }}
+                </div>
+                <div class="flash-{{ type }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+</div>
+{% endblock %}
