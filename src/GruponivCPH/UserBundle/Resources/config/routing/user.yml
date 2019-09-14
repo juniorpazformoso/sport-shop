@@ -1,0 +1,30 @@
+admin_user:
+    path:     /user/{role}/
+    defaults: { _controller: "UserBundle:User:index" }
+
+admin_user_show:
+    path:     /user/show/{id}/
+    defaults: { _controller: "UserBundle:User:show" }
+
+admin_user_new:
+    path:     /user/new/{role}/
+    defaults: { _controller: "UserBundle:User:new" }
+
+admin_user_create:
+    path:     /user/create/{role}/
+    defaults: { _controller: "UserBundle:User:create" }
+    requirements: { _method: post }
+
+admin_user_edit:
+    path:     /user/edit/{id}/
+    defaults: { _controller: "UserBundle:User:edit" }
+
+admin_user_update:
+    path:     /user/update/{id}/
+    defaults: { _controller: "UserBundle:User:update" }
+    requirements: { _method: post|put }
+
+admin_user_delete:
+    path:     /user/delete/{id}/
+    defaults: { _controller: "UserBundle:User:delete" }
+    requirements: { _method: post|delete }
